@@ -13,14 +13,14 @@
         theme: {
           extend: {
             colors: {
-              'xv-bg': '#fff0f5', /* Lavender Blush */
-              'xv-cream': '#fffaf0', /* Floral White */
-              'xv-rose': '#e1adba', /* Dusty Rose */
-              'xv-rose-dark': '#be185d', /* Dark Pink/Magenta for text */
-              'xv-gold': '#d4af37', /* Classic Gold */
-              'xv-rose-gold': '#ea9f8c', /* Rose Gold */
-              'xv-wine': '#831843', /* Deep Burgundy for contrast */
-              'xv-pink': '#fbcfe8', /* Light Pink */
+              'xv-bg': '#fef3e2', /* Lavender Blush */
+              'xv-cream': '#fff8f0', /* Floral White */
+              'xv-rose': '#c2410c', /* Dusty Rose */
+              'xv-rose-dark': '#b91c1c', /* Dark Pink/Magenta for text */
+              'xv-gold': '#d97706', /* Classic Gold */
+              'xv-rose-gold': '#ea580c', /* Rose Gold */
+              'xv-wine': '#7c2d12', /* Deep Burgundy for contrast */
+              'xv-pink': '#fcd34d', /* Light Pink */
             },
             fontFamily: {
               'cinzel': ['Cinzel', 'serif'],
@@ -45,10 +45,10 @@
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #fff0f5;
+        background: #fef3e2;
       }
       ::-webkit-scrollbar-thumb {
-        background: #e1adba;
+        background: #c2410c;
         border-radius: 4px;
       }
       
@@ -80,7 +80,7 @@
       }
       
       .text-shadow-glow {
-        text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(225,173,186,0.5);
+        text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(194,65,12,0.5);
       }
     </style>
 <script type="importmap">
@@ -98,5 +98,6 @@
 <body class="bg-xv-bg text-gray-700 antialiased overflow-x-hidden selection:bg-xv-rose selection:text-white">
     <div class="bg-texture"></div>
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>

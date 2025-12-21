@@ -9,12 +9,12 @@ export const Hero: React.FC = () => {
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat bg-fixed"
         style={{
           // Keeping the horse image as requested, but the overlay will change the mood
-          backgroundImage: "url('https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=2069&auto=format&fit=crop')",
+          backgroundImage: "url('https://i.ibb.co/B2hLG2s4/Caballo-charro-crema-y-blanco-con-hacienda-mexicana-de-fondo.jpg')",
           backgroundPosition: "center 20%" 
         }}
       >
         {/* Soft Pink/Purple Overlay for feminine touch */}
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/30 via-pink-500/10 to-xv-bg mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-b from-orange-900/30 via-amber-500/20 to-xv-bg mix-blend-overlay" />
         <div className="absolute inset-0 bg-gradient-to-t from-xv-bg via-transparent to-black/20" />
       </div>
 
@@ -39,7 +39,7 @@ export const Hero: React.FC = () => {
             className="absolute w-4 h-4 bg-xv-pink/80 rounded-full blur-[1px] shadow-sm"
             style={{
                 borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%', // Organic petal shape
-                backgroundColor: i % 2 === 0 ? '#fbcfe8' : '#fda4af' // Alternating pink shades
+                backgroundColor: i % 2 === 0 ? '#fcd34d' : '#f97316' // Alternating pink shades
             }}
           />
         ))}
@@ -72,7 +72,7 @@ export const Hero: React.FC = () => {
                <h1 className="font-vibes text-7xl md:text-9xl text-white drop-shadow-md z-10 relative">
                  Skarleth
                </h1>
-               <h1 className="font-vibes text-7xl md:text-9xl text-pink-300 absolute top-0 left-0 right-0 blur-md opacity-70 z-0 transform translate-y-1">
+               <h1 className="font-vibes text-7xl md:text-9xl text-amber-300 absolute top-0 left-0 right-0 blur-md opacity-70 z-0 transform translate-y-1">
                  Skarleth
                </h1>
             </motion.div>
