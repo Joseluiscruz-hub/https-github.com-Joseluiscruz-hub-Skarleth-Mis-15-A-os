@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fef3e2;
+}
+::-webkit-scrollbar-thumb {
+  background: #c2410c;
+  border-radius: 4px;
+}
+
+/* Soft Noise/Grain for texture but lighter */
+.bg-texture {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.4;
+  background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+}
+
+.text-shadow-soft {
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.text-shadow-glow {
+  text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(194,65,12,0.5);
+}
