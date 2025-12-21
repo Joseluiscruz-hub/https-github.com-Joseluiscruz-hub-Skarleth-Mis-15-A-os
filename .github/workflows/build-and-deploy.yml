@@ -30,13 +30,8 @@ jobs:
       - name: Build project
         run: npm run build
       
-      - name: Configure git
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-      
       - name: Deploy to GitHub Pages
-        run: |
-          git add -f dist/
-          git commit -m "Build and deploy to gh-pages"
-          git push origin HEAD:gh-pages --force
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
