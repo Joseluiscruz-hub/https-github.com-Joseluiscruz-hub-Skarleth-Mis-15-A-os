@@ -11,6 +11,9 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -24,8 +27,13 @@ jobs:
       - name: Build project
         run: npm run build
       
+      - name: Configure git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+      
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: dist
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add -f dist/
+          git commit -m "Build and deploy to gh-pages"
+          git push origin HEAD:gh-pages --force
