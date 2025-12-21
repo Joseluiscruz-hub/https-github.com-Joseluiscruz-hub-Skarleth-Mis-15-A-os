@@ -18,15 +18,16 @@ export const MusicPlayer: React.FC = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+      {/* Música mexicana festiva - Mariachi */}
       <audio 
         ref={audioRef} 
         loop
-        src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_5145b2b250.mp3?filename=waltz-of-the-flowers-tchaikovsky-11603.mp3" 
+        src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8cb749d484.mp3?filename=mexican-party-instrumental-music-99953.mp3" 
       />
       
       {/* Tooltip hint */}
       <div className={`bg-white text-xv-rose-dark text-xs font-mont py-2 px-4 rounded-full shadow-lg transition-opacity duration-500 mb-2 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
-        Música 🎵
+        🎺 Música 🎵
       </div>
 
       <button
