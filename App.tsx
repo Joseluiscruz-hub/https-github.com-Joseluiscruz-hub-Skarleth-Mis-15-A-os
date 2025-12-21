@@ -23,7 +23,7 @@ const App: React.FC = () => {
       
       <main className="relative z-10">
         <Hero />
-        <Countdown targetDate="2025-04-05T16:00:00" />
+        <Countdown targetDate="2025-05-23T16:00:00" />
         <Events />
         <Gallery />
         <RSVP />
