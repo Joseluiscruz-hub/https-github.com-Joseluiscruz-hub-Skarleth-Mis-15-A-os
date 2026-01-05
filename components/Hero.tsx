@@ -95,7 +95,7 @@ export const Hero: React.FC = () => {
               <div className="flex items-center gap-4">
                   <div className="h-[1px] w-12 bg-white shadow-lg"></div>
                   <p className="font-mont text-white text-xl md:text-2xl tracking-widest font-semibold text-shadow-soft">
-                      23 • MAYO • 2025
+                      23 • MAYO • 2026
                   </p>
                   <div className="h-[1px] w-12 bg-white shadow-lg"></div>
               </div>

@@ -1,19 +1,39 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Heart } from 'lucide-react';
+import { Send, CheckCircle2, Heart, XCircle, Utensils } from 'lucide-react';
 
 export const RSVP: React.FC = () => {
   const [name, setName] = useState('');
   const [guests, setGuests] = useState('1');
   const [family, setFamily] = useState('');
+  const [attendance, setAttendance] = useState<'yes' | 'no' | null>(null);
+  const [dietaryRestrictions, setDietaryRestrictions] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name) return;
+    if (!name || !attendance) return;
 
-    const phoneNumber = "521234567890"; 
-    const message = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}. Confirmo mi asistencia a los XV de Skarleth para *${guests} personas*. ¡Gracias! 👑💖`;
+    const phoneNumber = "521234567890"; // ⚠️ CAMBIAR POR NÚMERO REAL
     
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    let whatsappMessage = '';
+    if (attendance === 'yes') {
+      whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\n✅ *Confirmo mi asistencia* a los XV de Skarleth para *${guests} persona(s)*.\n\n`;
+      if (dietaryRestrictions) {
+        whatsappMessage += `🍽️ Restricciones alimentarias: ${dietaryRestrictions}\n\n`;
+      }
+      if (message) {
+        whatsappMessage += `💬 Mensaje: ${message}\n\n`;
+      }
+      whatsappMessage += `¡Gracias! 👑💖`;
+    } else {
+      whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\n❌ Lamentablemente *no podré asistir* a los XV de Skarleth.\n\n`;
+      if (message) {
+        whatsappMessage += `💬 Mensaje: ${message}\n\n`;
+      }
+      whatsappMessage += `Les deseo lo mejor en su celebración. 💖`;
+    }
+    
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(url, '_blank');
   };
 
@@ -34,13 +54,44 @@ export const RSVP: React.FC = () => {
             <h2 className="font-vibes text-5xl md:text-6xl text-xv-rose-dark mb-4">Confirmación</h2>
             <p className="font-mont text-gray-500 leading-relaxed font-light">
               Nos encantaría compartir este momento mágico contigo. <br/>
-              Por favor confirma tu asistencia antes del 20 de Marzo.
+              Por favor confirma tu asistencia antes del <strong className="text-xv-wine">1 de Mayo, 2026</strong>.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Attendance Selection */}
             <div>
-              <label className="block font-cinzel text-xv-wine text-xs mb-2 ml-1 tracking-wider">Nombre Completo</label>
+              <label className="block font-cinzel text-xv-wine text-xs mb-3 ml-1 tracking-wider">¿Podrás asistir?</label>
+              <div className="grid grid-cols-2 gap-4">
+                <button
+                  type="button"
+                  onClick={() => setAttendance('yes')}
+                  className={`flex items-center justify-center gap-2 py-4 rounded-xl border-2 transition-all duration-300 font-mont text-sm ${
+                    attendance === 'yes'
+                      ? 'border-green-500 bg-green-50 text-green-700'
+                      : 'border-gray-200 hover:border-green-300 text-gray-600'
+                  }`}
+                >
+                  <CheckCircle2 size={20} />
+                  <span>Sí, asistiré</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setAttendance('no')}
+                  className={`flex items-center justify-center gap-2 py-4 rounded-xl border-2 transition-all duration-300 font-mont text-sm ${
+                    attendance === 'no'
+                      ? 'border-red-400 bg-red-50 text-red-600'
+                      : 'border-gray-200 hover:border-red-300 text-gray-600'
+                  }`}
+                >
+                  <XCircle size={20} />
+                  <span>No podré ir</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label className="block font-cinzel text-xv-wine text-xs mb-2 ml-1 tracking-wider">Nombre Completo *</label>
               <input 
                 type="text" 
                 value={name}
@@ -62,33 +113,69 @@ export const RSVP: React.FC = () => {
               />
             </div>
 
+            {attendance === 'yes' && (
+              <>
+                <div>
+                  <label className="block font-cinzel text-xv-wine text-xs mb-2 ml-1 tracking-wider">Nº de Asistentes</label>
+                  <select 
+                    value={guests}
+                    onChange={(e) => setGuests(e.target.value)}
+                    className="w-full bg-xv-bg border border-xv-rose/30 rounded-xl px-4 py-3 text-gray-700 focus:outline-none focus:border-xv-rose-gold focus:ring-1 focus:ring-xv-rose-gold transition-colors font-mont"
+                  >
+                    {[1, 2, 3, 4, 5, 6].map(num => (
+                      <option key={num} value={num} className="text-gray-700">
+                        {num} {num === 1 ? 'Persona' : 'Personas'}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-cinzel text-xv-wine text-xs mb-2 ml-1 tracking-wider">
+                    <Utensils size={14} className="inline mr-2" />
+                    Restricciones Alimentarias (opcional)
+                  </label>
+                  <input 
+                    type="text" 
+                    value={dietaryRestrictions}
+                    onChange={(e) => setDietaryRestrictions(e.target.value)}
+                    placeholder="Ej. Vegetariano, sin gluten, alergia a mariscos..."
+                    className="w-full bg-xv-bg border border-xv-rose/30 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-xv-rose-gold focus:ring-1 focus:ring-xv-rose-gold transition-colors font-mont text-sm"
+                  />
+                </div>
+              </>
+            )}
+
             <div>
-              <label className="block font-cinzel text-xv-wine text-xs mb-2 ml-1 tracking-wider">Nº de Asistentes</label>
-              <select 
-                value={guests}
-                onChange={(e) => setGuests(e.target.value)}
-                className="w-full bg-xv-bg border border-xv-rose/30 rounded-xl px-4 py-3 text-gray-700 focus:outline-none focus:border-xv-rose-gold focus:ring-1 focus:ring-xv-rose-gold transition-colors font-mont"
-              >
-                {[1, 2, 3, 4, 5, 6].map(num => (
-                  <option key={num} value={num} className="text-gray-700">
-                    {num} {num === 1 ? 'Persona' : 'Personas'}
-                  </option>
-                ))}
-              </select>
+              <label className="block font-cinzel text-xv-wine text-xs mb-2 ml-1 tracking-wider">Mensaje para Skarleth (opcional)</label>
+              <textarea 
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Escribe un mensaje especial..."
+                rows={3}
+                className="w-full bg-xv-bg border border-xv-rose/30 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-xv-rose-gold focus:ring-1 focus:ring-xv-rose-gold transition-colors font-mont resize-none"
+              />
             </div>
 
             <button 
               type="submit"
-              className="w-full bg-gradient-to-r from-xv-rose-dark to-xv-wine text-white font-cinzel text-sm font-bold py-4 rounded-xl shadow-lg hover:shadow-xl hover:shadow-xv-rose/40 transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 mt-6"
+              disabled={!attendance || !name}
+              className="w-full bg-gradient-to-r from-xv-rose-dark to-xv-wine text-white font-cinzel text-sm font-bold py-4 rounded-xl shadow-lg hover:shadow-xl hover:shadow-xv-rose/40 transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 mt-6 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               <Send size={18} />
-              <span>Enviar Confirmación</span>
+              <span>Enviar Confirmación por WhatsApp</span>
             </button>
           </form>
 
-          <div className="mt-8 flex items-center justify-center gap-2 text-xv-wine/60 text-sm font-mont bg-xv-bg/50 py-2 rounded-lg">
-            <CheckCircle2 size={16} />
-            <span>Código de Vestimenta: Formal</span>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="flex items-center justify-center gap-2 text-xv-wine/60 text-sm font-mont bg-xv-bg/50 py-2 rounded-lg">
+              <CheckCircle2 size={16} />
+              <span>Vestimenta: Formal</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-xv-wine/60 text-sm font-mont bg-xv-bg/50 py-2 rounded-lg">
+              <Heart size={16} />
+              <span>Fecha límite: 1 Mayo</span>
+            </div>
           </div>
         </div>
       </div>
