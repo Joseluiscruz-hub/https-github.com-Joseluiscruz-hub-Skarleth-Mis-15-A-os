@@ -3,13 +3,14 @@ import { Disc, Pause, Play, Volume2, SkipForward } from 'lucide-react';
 
 const songs = [
   {
-    name: 'Es mi niña bonita - Vicente Fernández',
-    // It's best to place the MP3 in your project's public/static folder
-    // and reference it with a relative URL (e.g. `/mi-nina-bonita.mp3`).
-    // Google Drive links often block streaming due to CORS and can't be
-    // used reliably in the browser, which is why the audio wasn't heard.
-    src: '/mi-nina-bonita.mp3',
+    name: 'Jarabe Tapatío - Mariachi',
+    // Enlace directo de prueba (Archive.org permite streaming directo)
+    src: 'https://archive.org/download/musicamexicana-soloparausted_201910/18%20El%20Sinaloense%20-%20Mariachi%20Juvenil%20Tecatitl%C3%A1n.mp3',
   },
+  {
+    name: 'La Culebra - Mariachi',
+    src: 'https://archive.org/download/musicamexicana-soloparausted_201910/19%20La%20Culebra%20-%20Mariachi%20Juvenil%20Tecalitl%C3%A1n.mp3',
+  }
 ];
 
 export const MusicPlayer: React.FC = () => {
@@ -20,7 +21,6 @@ export const MusicPlayer: React.FC = () => {
   const currentSong = songs[currentSongIndex];
   const [loadError, setLoadError] = useState(false);
 
-  // Cambiar a la siguiente canción cuando termina
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -43,18 +43,18 @@ export const MusicPlayer: React.FC = () => {
     };
   }, [currentSongIndex]);
 
-  // Reproducir automáticamente cuando cambia la canción (si ya estaba sonando)
   useEffect(() => {
     if (isPlaying && audioRef.current) {
       audioRef.current.play().catch((e) => console.log('Audio play prevented'));
     }
-  }, [currentSongIndex]);
+  }, [currentSongIndex, isPlaying]); // Añadido isPlaying como dependencia
 
   const togglePlay = () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
       } else {
+        setLoadError(false); // Reset error al intentar play
         audioRef.current
           .play()
           .catch((e) => console.log('Audio autoplay prevented'));
@@ -67,48 +67,40 @@ export const MusicPlayer: React.FC = () => {
     e.stopPropagation();
     const nextIndex = (currentSongIndex + 1) % songs.length;
     setCurrentSongIndex(nextIndex);
-    if (audioRef.current && isPlaying) {
-      audioRef.current.load();
-      audioRef.current.play().catch((e) => console.log('Audio play prevented'));
-    }
+    // El useEffect se encargará de reproducir la nueva canción
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
       <audio ref={audioRef} src={currentSong.src} />
+      
       {loadError && (
-        <div className="mt-2 text-xs text-red-500">
-          No se pudo cargar la música. Asegúrate de que el archivo exista en la
-          carpeta pública o usa un enlace directo con CORS habilitado.
+        <div className="mt-2 text-[10px] text-red-500 bg-white p-1 rounded shadow">
+          Error al cargar audio.
         </div>
-      )
+      )}
 
-      {/* Song name & tooltip */}
-      <div
-        className={`bg-white text-xv-rose-dark text-xs font-mont py-2 px-4 rounded-full shadow-lg transition-all duration-500 mb-2 ${isPlaying ? 'opacity-100' : 'opacity-100'}`}
-      >
-        {isPlaying ? `🎺 ${currentSong.name}` : '🎺 Música 🎵'}
+      <div className="bg-white text-xv-rose-dark text-xs font-bold py-2 px-4 rounded-full shadow-lg transition-all duration-500 mb-2 border border-xv-rose-gold">
+        {isPlaying ? `🎺 ${currentSong.name}` : '🎺 Música de la Fiesta 🎵'}
       </div>
 
       <div className="flex items-center gap-2">
-        {/* Next Song Button */}
         {isPlaying && (
           <button
             onClick={nextSong}
             className="w-10 h-10 rounded-full bg-white border-2 border-xv-rose-gold shadow-lg flex items-center justify-center transition-transform active:scale-95 hover:scale-105"
-            title="Siguiente canción"
+            title="Siguiente"
           >
             <SkipForward size={18} className="text-xv-rose-dark" />
           </button>
         )}
 
-        {/* Play/Pause Button */}
         <button
           onClick={togglePlay}
           className="group relative w-14 h-14 rounded-full bg-white border-2 border-xv-rose-gold shadow-[0_5px_15px_rgba(234,159,140,0.4)] flex items-center justify-center transition-transform active:scale-95 hover:scale-105"
         >
           <div
-            className={`absolute inset-0 rounded-full border border-xv-rose/50 ${isPlaying ? 'animate-spin' : ''}`}
+            className={`absolute inset-0 rounded-full border border-xv-rose-gold/50 ${isPlaying ? 'animate-spin' : ''}`}
             style={{ animationDuration: '3s' }}
           ></div>
 
@@ -118,7 +110,6 @@ export const MusicPlayer: React.FC = () => {
             <Play size={24} className="text-xv-rose-dark relative z-10 ml-1" />
           )}
 
-          {/* Floating notes animation when playing */}
           {isPlaying && (
             <>
               <Volume2
@@ -127,7 +118,7 @@ export const MusicPlayer: React.FC = () => {
               />
               <Disc
                 size={16}
-                className="absolute -top-8 right-4 text-xv-pink animate-pulse opacity-50"
+                className="absolute -top-8 right-4 text-xv-rose-gold animate-pulse opacity-50"
               />
             </>
           )}
