@@ -30,20 +30,20 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
             {[...Array(30)].map((_, i) => (
               <motion.div
                 key={i}
-                initial={{ 
+                initial={{
                   opacity: 0,
                   x: Math.random() * window.innerWidth,
-                  y: Math.random() * window.innerHeight 
+                  y: Math.random() * window.innerHeight,
                 }}
-                animate={{ 
+                animate={{
                   opacity: [0, 0.6, 0],
                   y: [null, Math.random() * -200],
-                  x: [null, Math.random() * 100 - 50]
+                  x: [null, Math.random() * 100 - 50],
                 }}
                 transition={{
                   duration: Math.random() * 3 + 2,
                   repeat: Infinity,
-                  delay: Math.random() * 2
+                  delay: Math.random() * 2,
                 }}
                 className="absolute w-2 h-2 bg-xv-rose-gold/40 rounded-full"
               />
@@ -54,7 +54,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
             className="relative"
           >
             {/* Decorative frame */}
@@ -74,8 +74,11 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                <Sparkles className="mx-auto text-xv-rose-gold mb-4" size={32} />
-                
+                <Sparkles
+                  className="mx-auto text-xv-rose-gold mb-4"
+                  size={32}
+                />
+
                 <p className="font-cinzel text-xv-wine text-sm tracking-[0.2em] uppercase mb-4">
                   Tienes una invitación
                 </p>
@@ -83,14 +86,18 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                 <h1 className="font-cinzel text-5xl md:text-6xl text-xv-rose-dark mb-2">
                   Skarleth
                 </h1>
-                
+
                 <p className="font-cinzel text-xv-rose-gold text-lg tracking-widest mb-6">
                   XV AÑOS
                 </p>
 
                 <div className="flex items-center justify-center gap-3 mb-8">
                   <div className="h-[1px] w-12 bg-xv-rose-gold/40"></div>
-                  <Heart className="text-xv-rose-gold" size={16} fill="currentColor" />
+                  <Heart
+                    className="text-xv-rose-gold"
+                    size={16}
+                    fill="currentColor"
+                  />
                   <div className="h-[1px] w-12 bg-xv-rose-gold/40"></div>
                 </div>
 
