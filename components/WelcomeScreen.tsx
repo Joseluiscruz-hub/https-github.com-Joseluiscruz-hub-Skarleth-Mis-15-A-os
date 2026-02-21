@@ -80,7 +80,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                   Tienes una invitación
                 </p>
 
-                <h1 className="font-vibes text-5xl md:text-6xl text-xv-rose-dark mb-2">
+                <h1 className="font-cinzel text-5xl md:text-6xl text-xv-rose-dark mb-2">
                   Skarleth
                 </h1>
                 

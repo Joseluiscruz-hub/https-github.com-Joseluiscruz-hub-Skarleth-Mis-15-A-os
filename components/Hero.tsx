@@ -69,10 +69,10 @@ export const Hero: React.FC = () => {
                transition={{ duration: 1.2, delay: 1 }}
                className="relative py-4"
             >
-               <h1 className="font-vibes text-7xl md:text-9xl text-white drop-shadow-md z-10 relative">
+               <h1 className="font-cinzel text-7xl md:text-9xl text-white drop-shadow-md z-10 relative">
                  Skarleth
                </h1>
-               <h1 className="font-vibes text-7xl md:text-9xl text-amber-300 absolute top-0 left-0 right-0 blur-md opacity-70 z-0 transform translate-y-1">
+               <h1 className="font-cinzel text-7xl md:text-9xl text-amber-300 absolute top-0 left-0 right-0 blur-md opacity-70 z-0 transform translate-y-1">
                  Skarleth
                </h1>
             </motion.div>
