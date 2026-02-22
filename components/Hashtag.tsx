@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Instagram, Camera, Hash } from 'lucide-react';
 
 export const Hashtag: React.FC = () => {
-  const hashtag = "#LosXVDeSkarleth";
+  const hashtag = '#LosXVDeSkarleth';
 
   const copyHashtag = () => {
     navigator.clipboard.writeText(hashtag);

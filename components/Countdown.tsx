@@ -54,18 +54,28 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     <section className="py-16 bg-gradient-to-r from-xv-bg via-white to-xv-bg relative">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-10">
-          <h3 className="titulos-cursiva text-5xl text-xv-rose-gold mb-2 drop-shadow-sm">Faltan</h3>
+          <h3 className="titulos-cursiva text-5xl text-xv-rose-gold mb-2 drop-shadow-sm">
+            Faltan
+          </h3>
           <div className="w-16 h-0.5 bg-xv-rose mx-auto mb-2"></div>
-          <p className="texto-general text-xv-wine text-sm tracking-widest">PARA EL GRAN DÍA</p>
+          <p className="texto-general text-xv-wine text-sm tracking-widest">
+            PARA EL GRAN DÍA
+          </p>
         </div>
-        
+
         <div className="flex flex-wrap justify-center items-center">
           <TimeUnit value={timeLeft.days} label="Días" />
-          <span className="text-2xl text-xv-rose-gold mb-8 hidden md:block titulos-cursiva">:</span>
+          <span className="text-2xl text-xv-rose-gold mb-8 hidden md:block titulos-cursiva">
+            :
+          </span>
           <TimeUnit value={timeLeft.hours} label="Horas" />
-          <span className="text-2xl text-xv-rose-gold mb-8 hidden md:block titulos-cursiva">:</span>
+          <span className="text-2xl text-xv-rose-gold mb-8 hidden md:block titulos-cursiva">
+            :
+          </span>
           <TimeUnit value={timeLeft.minutes} label="Minutos" />
-          <span className="text-2xl text-xv-rose-gold mb-8 hidden md:block titulos-cursiva">:</span>
+          <span className="text-2xl text-xv-rose-gold mb-8 hidden md:block titulos-cursiva">
+            :
+          </span>
           <TimeUnit value={timeLeft.seconds} label="Segundos" />
         </div>
       </div>
