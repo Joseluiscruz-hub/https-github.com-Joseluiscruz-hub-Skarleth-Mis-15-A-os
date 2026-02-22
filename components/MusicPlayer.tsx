@@ -19,7 +19,7 @@ const songs = [
   },
   {
     name: 'Canción 1',
-    // Enlaces proporcionados por el usuario. Si no se reproducen por CORS, 
+    // Enlaces proporcionados por el usuario. Si no se reproducen por CORS,
     // descarga los archivos y ponlos en la carpeta `public/`.
     src: 'https://image2url.com/r2/default/files/1771800814308-317b033a-3d3d-47e7-8e68-b9b086970aaf.mp3',
   },
