@@ -3,14 +3,24 @@ import { Disc, Pause, Play, Volume2, SkipForward } from 'lucide-react';
 
 const songs = [
   {
+    name: 'Canción 1',
+    // Enlaces proporcionados por el usuario. Si no se reproducen por CORS, 
+    // descarga los archivos y ponlos en la carpeta `public/`.
+    src: 'https://image2url.com/r2/default/files/1771800814308-317b033a-3d3d-47e7-8e68-b9b086970aaf.mp3',
+  },
+  {
+    name: 'Canción 2',
+    src: 'https://image2url.com/r2/default/files/1771800873547-af7c9453-bd24-4b33-acf7-2c4b6f483db3.mp3',
+  },
+  {
     name: 'Jarabe Tapatío - Mariachi',
-    // Enlace directo de prueba (Archive.org permite streaming directo)
+    // Enlace de prueba desde Archive.org; este host permite streaming directo.
     src: 'https://archive.org/download/musicamexicana-soloparausted_201910/18%20El%20Sinaloense%20-%20Mariachi%20Juvenil%20Tecatitl%C3%A1n.mp3',
   },
   {
     name: 'La Culebra - Mariachi',
-    src: 'https://archive.org/download/musicamexicana-soloparausted_201910/19%20La%20Culebra%20-%20Mariachi%20Juvenil%20Tecalitl%C3%A1n.mp3',
-  }
+    src: 'https://archive.org/download/musicamexicana-soloparausted_201910/19%20La%20Culebra%20-%20Mariachi%20Juvenil%20Tecatitl%C3%A1n.mp3',
+  },
 ];
 
 export const MusicPlayer: React.FC = () => {
@@ -21,6 +31,7 @@ export const MusicPlayer: React.FC = () => {
   const currentSong = songs[currentSongIndex];
   const [loadError, setLoadError] = useState(false);
 
+  // Cambiar a la siguiente canción cuando termina
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -43,11 +54,12 @@ export const MusicPlayer: React.FC = () => {
     };
   }, [currentSongIndex]);
 
+  // Reproducir automáticamente cuando cambia la canción (si ya estaba sonando)
   useEffect(() => {
     if (isPlaying && audioRef.current) {
       audioRef.current.play().catch((e) => console.log('Audio play prevented'));
     }
-  }, [currentSongIndex, isPlaying]); // Añadido isPlaying como dependencia
+  }, [currentSongIndex, isPlaying]);
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -73,7 +85,6 @@ export const MusicPlayer: React.FC = () => {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
       <audio ref={audioRef} src={currentSong.src} />
-      
       {loadError && (
         <div className="mt-2 text-[10px] text-red-500 bg-white p-1 rounded shadow">
           Error al cargar audio.
