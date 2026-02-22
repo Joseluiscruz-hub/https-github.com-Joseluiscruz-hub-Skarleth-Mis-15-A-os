@@ -2,6 +2,21 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Disc, Pause, Play, Volume2, SkipForward } from 'lucide-react';
 
 const songs = [
+  // agrega aquí tus canciones favoritas del evento (se recomienda colocarlas
+  // en la carpeta public/ y referenciarlas con "/nombre.mp3" para evitar
+  // problemas de CORS y rangos 416 como los que viste antes).
+  {
+    name: 'El Vals (Papá & Yo)',
+    src: '/el-valz.mp3', // reemplaza con la ruta real
+  },
+  {
+    name: 'Quinceañera (Marco Flores)',
+    src: '/quinceanera.mp3',
+  },
+  {
+    name: 'Viva la Quinceañera',
+    src: '/viva-la-quince.mp3',
+  },
   {
     name: 'Canción 1',
     // Enlaces proporcionados por el usuario. Si no se reproducen por CORS, 
