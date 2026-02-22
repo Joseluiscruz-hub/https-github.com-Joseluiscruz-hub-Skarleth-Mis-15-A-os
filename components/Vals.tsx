@@ -24,7 +24,7 @@ export const Vals: React.FC = () => {
             size={40}
             strokeWidth={1.5}
           />
-          <h2 className="font-vibes text-5xl md:text-6xl text-xv-rose-gold mb-4">
+          <h2 className="titulos-cursiva text-5xl md:text-6xl text-xv-rose-gold mb-4">
             El Vals
           </h2>
           <div className="w-16 h-0.5 bg-xv-rose-gold/50 mx-auto mb-6"></div>
@@ -45,9 +45,7 @@ export const Vals: React.FC = () => {
                 size={20}
                 fill="currentColor"
               />
-              <span className="font-cinzel text-sm text-xv-wine tracking-widest uppercase">
-                Vals con mi Papá
-              </span>
+              <span className="nombres-padrinos">Vals con mi Papá</span>
               <Heart
                 className="text-xv-rose-gold"
                 size={20}
@@ -55,7 +53,7 @@ export const Vals: React.FC = () => {
               />
             </div>
 
-            <h3 className="font-vibes text-4xl text-xv-rose-dark mb-2">
+            <h3 className="titulos-cursiva text-4xl text-xv-rose-dark mb-2">
               "Mi Princesa"
             </h3>
             <p className="font-mont text-gray-500 text-sm italic mb-4">
@@ -77,7 +75,7 @@ export const Vals: React.FC = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.8 }}
-          className="text-center font-vibes text-2xl text-xv-rose-dark mt-12"
+          className="text-center titulos-cursiva text-2xl text-xv-rose-dark mt-12"
         >
           Gracias por acompañarme en este sueño 💫
         </motion.p>

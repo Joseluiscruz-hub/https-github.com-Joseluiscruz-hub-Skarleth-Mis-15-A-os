@@ -57,7 +57,7 @@ export const Hashtag: React.FC = () => {
             onClick={copyHashtag}
             className="group relative"
           >
-            <h2 className="font-vibes text-4xl md:text-6xl text-white drop-shadow-lg cursor-pointer">
+            <h2 className="titulos-cursiva text-4xl md:text-6xl text-white drop-shadow-lg cursor-pointer">
               {hashtag}
             </h2>
             <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 font-mont text-xs text-white/60 opacity-0 group-hover:opacity-100 transition-opacity">

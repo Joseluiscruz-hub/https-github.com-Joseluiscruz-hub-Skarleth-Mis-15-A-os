@@ -13,8 +13,8 @@ export const RSVP: React.FC = () => {
     e.preventDefault();
     if (!name || !attendance) return;
 
-    const phoneNumber = "521234567890"; // ⚠️ CAMBIAR POR NÚMERO REAL
-    
+    const phoneNumber = '521234567890'; // ⚠️ CAMBIAR POR NÚMERO REAL
+
     let whatsappMessage = '';
     if (attendance === 'yes') {
       whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\n✅ *Confirmo mi asistencia* a los XV de Skarleth para *${guests} persona(s)*.\n\n`;
@@ -32,7 +32,7 @@ export const RSVP: React.FC = () => {
       }
       whatsappMessage += `Les deseo lo mejor en su celebración. 💖`;
     }
-    
+
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(url, '_blank');
   };
@@ -45,23 +45,27 @@ export const RSVP: React.FC = () => {
 
       <div className="container mx-auto px-4 relative z-10 max-w-2xl">
         <div className="bg-white/80 backdrop-blur-xl border border-white shadow-[0_10px_40px_rgba(225,173,186,0.2)] rounded-3xl p-8 md:p-12 relative">
-          
           <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-white p-3 rounded-full shadow-lg text-xv-rose-gold">
-             <Heart fill="currentColor" size={32} />
+            <Heart fill="currentColor" size={32} />
           </div>
 
           <div className="text-center mb-10 mt-4">
-            <h2 className="font-vibes text-5xl md:text-6xl text-xv-rose-dark mb-4">Confirmación</h2>
+            <h2 className="titulos-cursiva text-5xl md:text-6xl text-xv-rose-dark mb-4">
+              Confirmación
+            </h2>
             <p className="font-mont text-gray-500 leading-relaxed font-light">
-              Nos encantaría compartir este momento mágico contigo. <br/>
-              Por favor confirma tu asistencia antes del <strong className="text-xv-wine">1 de Mayo, 2026</strong>.
+              Nos encantaría compartir este momento mágico contigo. <br />
+              Por favor confirma tu asistencia antes del{' '}
+              <strong className="text-xv-wine">1 de Mayo, 2026</strong>.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Attendance Selection */}
             <div>
-              <label className="block font-cinzel text-xv-wine text-xs mb-3 ml-1 tracking-wider">¿Podrás asistir?</label>
+              <label className="block texto-general text-xv-wine text-xs mb-3 ml-1 tracking-wider">
+                ¿Podrás asistir?
+              </label>
               <div className="grid grid-cols-2 gap-4">
                 <button
                   type="button"
@@ -91,9 +95,11 @@ export const RSVP: React.FC = () => {
             </div>
 
             <div>
-              <label className="block font-cinzel text-xv-wine text-xs mb-2 ml-1 tracking-wider">Nombre Completo *</label>
-              <input 
-                type="text" 
+              <label className="block texto-general text-xv-wine text-xs mb-2 ml-1 tracking-wider">
+                Nombre Completo *
+              </label>
+              <input
+                type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Ej. Juan Pérez"
@@ -101,11 +107,13 @@ export const RSVP: React.FC = () => {
                 required
               />
             </div>
-            
+
             <div>
-              <label className="block font-cinzel text-xv-wine text-xs mb-2 ml-1 tracking-wider">Apellidos de la Familia</label>
-              <input 
-                type="text" 
+              <label className="block texto-general text-xv-wine text-xs mb-2 ml-1 tracking-wider">
+                Apellidos de la Familia
+              </label>
+              <input
+                type="text"
                 value={family}
                 onChange={(e) => setFamily(e.target.value)}
                 placeholder="Ej. Familia Pérez López"
@@ -116,13 +124,15 @@ export const RSVP: React.FC = () => {
             {attendance === 'yes' && (
               <>
                 <div>
-                  <label className="block font-cinzel text-xv-wine text-xs mb-2 ml-1 tracking-wider">Nº de Asistentes</label>
-                  <select 
+                  <label className="block texto-general text-xv-wine text-xs mb-2 ml-1 tracking-wider">
+                    Nº de Asistentes
+                  </label>
+                  <select
                     value={guests}
                     onChange={(e) => setGuests(e.target.value)}
                     className="w-full bg-xv-bg border border-xv-rose/30 rounded-xl px-4 py-3 text-gray-700 focus:outline-none focus:border-xv-rose-gold focus:ring-1 focus:ring-xv-rose-gold transition-colors font-mont"
                   >
-                    {[1, 2, 3, 4, 5, 6].map(num => (
+                    {[1, 2, 3, 4, 5, 6].map((num) => (
                       <option key={num} value={num} className="text-gray-700">
                         {num} {num === 1 ? 'Persona' : 'Personas'}
                       </option>
@@ -131,12 +141,12 @@ export const RSVP: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block font-cinzel text-xv-wine text-xs mb-2 ml-1 tracking-wider">
+                  <label className="block texto-general text-xv-wine text-xs mb-2 ml-1 tracking-wider">
                     <Utensils size={14} className="inline mr-2" />
                     Restricciones Alimentarias (opcional)
                   </label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={dietaryRestrictions}
                     onChange={(e) => setDietaryRestrictions(e.target.value)}
                     placeholder="Ej. Vegetariano, sin gluten, alergia a mariscos..."
@@ -147,8 +157,10 @@ export const RSVP: React.FC = () => {
             )}
 
             <div>
-              <label className="block font-cinzel text-xv-wine text-xs mb-2 ml-1 tracking-wider">Mensaje para Skarleth (opcional)</label>
-              <textarea 
+              <label className="block texto-general text-xv-wine text-xs mb-2 ml-1 tracking-wider">
+                Mensaje para Skarleth (opcional)
+              </label>
+              <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Escribe un mensaje especial..."
@@ -157,10 +169,10 @@ export const RSVP: React.FC = () => {
               />
             </div>
 
-            <button 
+            <button
               type="submit"
               disabled={!attendance || !name}
-              className="w-full bg-gradient-to-r from-xv-rose-dark to-xv-wine text-white font-cinzel text-sm font-bold py-4 rounded-xl shadow-lg hover:shadow-xl hover:shadow-xv-rose/40 transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 mt-6 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full bg-gradient-to-r from-xv-rose-dark to-xv-wine text-white font-mont text-sm font-bold py-4 rounded-xl shadow-lg hover:shadow-xl hover:shadow-xv-rose/40 transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 mt-6 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               <Send size={18} />
               <span>Enviar Confirmación por WhatsApp</span>

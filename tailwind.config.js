@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -19,13 +16,16 @@ export default {
         'xv-red': '#dc2626',
       },
       fontFamily: {
-        'cinzel': ['Cinzel', 'serif'],
-        'vibes': ['Great Vibes', 'cursive'],
-        'mont': ['Montserrat', 'sans-serif'],
+        cormorant: ['Cormorant Garamond', 'serif'],
+        pinyon: ['Pinyon Script', 'cursive'],
+        mont: ['Montserrat', 'sans-serif'],
+        // keep old aliases for compatibility if needed
+        cinzel: ['Cormorant Garamond', 'serif'],
+        vibes: ['Pinyon Script', 'cursive'],
       },
       animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'sway': 'sway 3s ease-in-out infinite alternate',
+        float: 'float 6s ease-in-out infinite',
+        sway: 'sway 3s ease-in-out infinite alternate',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
@@ -41,4 +41,4 @@ export default {
     },
   },
   plugins: [],
-}
+};

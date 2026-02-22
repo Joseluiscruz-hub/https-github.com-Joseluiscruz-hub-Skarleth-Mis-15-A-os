@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-xv-bg: #fef3e2;
@@ -11,24 +11,33 @@
   --color-xv-pink: #fcd34d;
   --color-xv-green: #15803d;
   --color-xv-red: #dc2626;
-  
-  --font-cinzel: 'Cinzel', serif;
-  --font-vibes: 'Great Vibes', cursive;
+
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-pinyon: 'Pinyon Script', cursive;
   --font-mont: 'Montserrat', sans-serif;
-  
+
   --animate-float: float 6s ease-in-out infinite;
   --animate-sway: sway 3s ease-in-out infinite alternate;
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes sway {
-  0% { transform: rotate(-5deg); }
-  100% { transform: rotate(5deg); }
+  0% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 /* Custom scrollbar */
@@ -43,6 +52,37 @@
   border-radius: 4px;
 }
 
+/* Typography utility classes for Boho-Editorial style */
+
+.nombre-skarleth {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.titulos-cursiva {
+  font-family: var(--font-pinyon), cursive;
+  text-transform: capitalize;
+  font-size: 2.8rem;
+  color: #c97c5d;
+}
+
+.texto-general {
+  font-family: var(--font-mont), sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.nombres-padrinos {
+  font-family: var(--font-mont), sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  color: #8b6e60;
+}
+
 /* Soft Noise/Grain for texture but lighter */
 .bg-texture {
   position: fixed;
@@ -53,13 +93,15 @@
   pointer-events: none;
   z-index: 50;
   opacity: 0.4;
-  background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+  background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
 }
 
 .text-shadow-soft {
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .text-shadow-glow {
-  text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(194,65,12,0.5);
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(194, 65, 12, 0.5);
 }

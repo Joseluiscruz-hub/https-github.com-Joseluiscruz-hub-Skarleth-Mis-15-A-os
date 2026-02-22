@@ -63,7 +63,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.8 }}
-            className="font-cinzel text-white text-sm md:text-lg uppercase mb-2 tracking-[0.3em] text-shadow-soft"
+            className="texto-general text-white text-sm md:text-lg uppercase mb-2 tracking-[0.3em] text-shadow-soft"
           >
             Te invito a celebrar mis
           </motion.p>
@@ -74,10 +74,10 @@ export const Hero: React.FC = () => {
             transition={{ duration: 1.2, delay: 1 }}
             className="relative py-4"
           >
-            <h1 className="font-cinzel text-7xl md:text-9xl text-white drop-shadow-md z-10 relative">
+            <h1 className="nombre-skarleth text-7xl md:text-9xl text-white drop-shadow-md z-10 relative">
               Skarleth
             </h1>
-            <h1 className="font-cinzel text-7xl md:text-9xl text-amber-300 absolute top-0 left-0 right-0 blur-md opacity-70 z-0 transform translate-y-1">
+            <h1 className="nombre-skarleth text-7xl md:text-9xl text-amber-300 absolute top-0 left-0 right-0 blur-md opacity-70 z-0 transform translate-y-1">
               Skarleth
             </h1>
           </motion.div>
@@ -86,7 +86,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 1.3 }}
-            className="font-cinzel text-2xl md:text-5xl text-white mt-2 tracking-[0.2em] font-bold text-shadow-soft"
+            className="titulos-cursiva text-2xl md:text-5xl text-white mt-2 tracking-[0.2em] font-bold text-shadow-soft"
           >
             XV AÑOS
           </motion.h2>

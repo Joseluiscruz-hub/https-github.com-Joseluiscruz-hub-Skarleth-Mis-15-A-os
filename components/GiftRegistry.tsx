@@ -10,7 +10,13 @@ interface GiftOptionProps {
   delay: number;
 }
 
-const GiftOption: React.FC<GiftOptionProps> = ({ icon, title, description, action, delay }) => (
+const GiftOption: React.FC<GiftOptionProps> = ({
+  icon,
+  title,
+  description,
+  action,
+  delay,
+}) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -22,7 +28,7 @@ const GiftOption: React.FC<GiftOptionProps> = ({ icon, title, description, actio
       <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-xv-rose-gold/20 to-xv-pink/20 text-xv-rose-gold mb-4">
         {icon}
       </div>
-      <h3 className="font-cinzel text-lg text-xv-wine mb-2">{title}</h3>
+      <h3 className="texto-general text-lg text-xv-wine mb-2">{title}</h3>
       <p className="font-mont text-gray-500 text-sm mb-4">{description}</p>
       {action}
     </div>
@@ -40,10 +46,10 @@ export const GiftRegistry: React.FC = () => {
 
   // Bank account info (replace with real data)
   const bankAccount = {
-    bank: "BBVA",
-    clabe: "012345678901234567",
-    card: "4152 3135 8888 9999",
-    holder: "José Luis Cruz Hernández"
+    bank: 'BBVA',
+    clabe: '012345678901234567',
+    card: '4152 3135 8888 9999',
+    holder: 'José Luis Cruz Hernández',
   };
 
   return (
@@ -59,11 +65,17 @@ export const GiftRegistry: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <Gift className="mx-auto text-xv-rose-gold mb-4" size={40} strokeWidth={1.5} />
-          <h2 className="font-vibes text-5xl md:text-6xl text-xv-rose-gold mb-4">Mesa de Regalos</h2>
+          <Gift
+            className="mx-auto text-xv-rose-gold mb-4"
+            size={40}
+            strokeWidth={1.5}
+          />
+          <h2 className="titulos-cursiva text-5xl md:text-6xl text-xv-rose-gold mb-4">
+            Mesa de Regalos
+          </h2>
           <p className="font-mont text-gray-500 max-w-lg mx-auto leading-relaxed">
-            Tu presencia es el mejor regalo. Sin embargo, si deseas obsequiarme algo, 
-            aquí te dejo algunas opciones.
+            Tu presencia es el mejor regalo. Sin embargo, si deseas obsequiarme
+            algo, aquí te dejo algunas opciones.
           </p>
         </motion.div>
 
@@ -93,22 +105,34 @@ export const GiftRegistry: React.FC = () => {
                   onClick={() => copyToClipboard(bankAccount.clabe, 'clabe')}
                   className="w-full flex items-center justify-between bg-xv-bg hover:bg-xv-pink/20 px-4 py-2 rounded-lg transition-colors group"
                 >
-                  <span className="font-mono text-xs text-gray-600">CLABE: {bankAccount.clabe.slice(0, 8)}...</span>
+                  <span className="font-mono text-xs text-gray-600">
+                    CLABE: {bankAccount.clabe.slice(0, 8)}...
+                  </span>
                   {copied === 'clabe' ? (
                     <Check size={16} className="text-green-500" />
                   ) : (
-                    <Copy size={16} className="text-gray-400 group-hover:text-xv-rose-gold" />
+                    <Copy
+                      size={16}
+                      className="text-gray-400 group-hover:text-xv-rose-gold"
+                    />
                   )}
                 </button>
                 <button
-                  onClick={() => copyToClipboard(bankAccount.card.replace(/\s/g, ''), 'card')}
+                  onClick={() =>
+                    copyToClipboard(bankAccount.card.replace(/\s/g, ''), 'card')
+                  }
                   className="w-full flex items-center justify-between bg-xv-bg hover:bg-xv-pink/20 px-4 py-2 rounded-lg transition-colors group"
                 >
-                  <span className="font-mono text-xs text-gray-600">Tarjeta: {bankAccount.card}</span>
+                  <span className="font-mono text-xs text-gray-600">
+                    Tarjeta: {bankAccount.card}
+                  </span>
                   {copied === 'card' ? (
                     <Check size={16} className="text-green-500" />
                   ) : (
-                    <Copy size={16} className="text-gray-400 group-hover:text-xv-rose-gold" />
+                    <Copy
+                      size={16}
+                      className="text-gray-400 group-hover:text-xv-rose-gold"
+                    />
                   )}
                 </button>
               </div>

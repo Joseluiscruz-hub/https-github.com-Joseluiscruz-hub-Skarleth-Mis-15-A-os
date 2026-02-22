@@ -26,8 +26,12 @@ export const DressCode: React.FC = () => {
           className="text-center mb-10"
         >
           <Sparkles className="mx-auto text-xv-rose-gold mb-4" size={32} />
-          <h2 className="font-vibes text-5xl text-xv-rose-gold mb-2">Código de Vestimenta</h2>
-          <p className="font-cinzel text-xv-wine text-lg tracking-widest uppercase">Formal / Elegante</p>
+          <h2 className="titulos-cursiva text-5xl text-xv-rose-gold mb-2">
+            Código de Vestimenta
+          </h2>
+          <p className="texto-general text-xv-wine text-lg tracking-widest uppercase">
+            Formal / Elegante
+          </p>
         </motion.div>
 
         <div className="max-w-3xl mx-auto">
@@ -40,7 +44,7 @@ export const DressCode: React.FC = () => {
               transition={{ delay: 0.2 }}
               className="bg-white rounded-2xl p-6 shadow-lg border border-xv-rose/10"
             >
-              <h3 className="font-cinzel text-sm uppercase tracking-wider text-xv-wine mb-4 text-center">
+              <h3 className="texto-general text-sm uppercase tracking-wider text-xv-wine mb-4 text-center">
                 🎨 Colores Sugeridos
               </h3>
               <div className="flex flex-wrap justify-center gap-3">
@@ -50,7 +54,9 @@ export const DressCode: React.FC = () => {
                       className="w-12 h-12 rounded-full shadow-md border-2 border-white"
                       style={{ backgroundColor: c.color }}
                     />
-                    <span className="font-mont text-xs text-gray-500">{c.name}</span>
+                    <span className="font-mont text-xs text-gray-500">
+                      {c.name}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -64,7 +70,7 @@ export const DressCode: React.FC = () => {
               transition={{ delay: 0.3 }}
               className="bg-white rounded-2xl p-6 shadow-lg border border-xv-rose/10"
             >
-              <h3 className="font-cinzel text-sm uppercase tracking-wider text-xv-wine mb-4 text-center">
+              <h3 className="texto-general text-sm uppercase tracking-wider text-xv-wine mb-4 text-center">
                 🚫 Por Favor Evitar
               </h3>
               <div className="flex flex-wrap justify-center gap-3">
@@ -79,7 +85,9 @@ export const DressCode: React.FC = () => {
                         <X className="text-red-500" size={28} strokeWidth={3} />
                       </div>
                     </div>
-                    <span className="font-mont text-xs text-gray-500">{c.name}</span>
+                    <span className="font-mont text-xs text-gray-500">
+                      {c.name}
+                    </span>
                   </div>
                 ))}
               </div>

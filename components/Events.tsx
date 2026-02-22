@@ -37,7 +37,7 @@ const EventCard: React.FC<EventCardProps> = ({
 
       <div className="p-8 pt-12 flex flex-col items-center text-center">
         {/* Number */}
-        <div className="w-10 h-10 rounded-full bg-xv-bg border border-xv-rose-gold flex items-center justify-center font-cinzel text-xv-wine mb-6 text-sm shadow-inner">
+        <div className="w-10 h-10 rounded-full bg-xv-bg border border-xv-rose-gold flex items-center justify-center texto-general text-xv-wine mb-6 text-sm shadow-inner">
           {number}
         </div>
 
@@ -47,7 +47,9 @@ const EventCard: React.FC<EventCardProps> = ({
         </div>
 
         {/* Title */}
-        <h3 className="font-vibes text-4xl text-xv-rose-dark mb-2">{title}</h3>
+        <h3 className="titulos-cursiva text-4xl text-xv-rose-dark mb-2">
+          {title}
+        </h3>
         <div className="w-8 h-0.5 bg-xv-rose-gold/50 mb-6"></div>
 
         {/* Details */}
@@ -95,10 +97,10 @@ export const Events: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-vibes text-6xl md:text-7xl text-xv-rose-gold mb-4 drop-shadow-sm">
+            <h2 className="titulos-cursiva text-6xl md:text-7xl text-xv-rose-gold mb-4 drop-shadow-sm">
               Itinerario
             </h2>
-            <p className="font-cinzel text-sm md:text-base text-xv-wine/70 tracking-[0.3em] uppercase">
+            <p className="texto-general text-sm md:text-base text-xv-wine/70 tracking-[0.3em] uppercase">
               Acompáñanos en este día especial
             </p>
           </motion.div>

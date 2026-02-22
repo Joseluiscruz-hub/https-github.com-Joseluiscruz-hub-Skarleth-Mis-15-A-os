@@ -79,15 +79,15 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                   size={32}
                 />
 
-                <p className="font-cinzel text-xv-wine text-sm tracking-[0.2em] uppercase mb-4">
+                <p className="texto-general text-xv-wine text-sm tracking-[0.2em] uppercase mb-4">
                   Tienes una invitación
                 </p>
 
-                <h1 className="font-cinzel text-5xl md:text-6xl text-xv-rose-dark mb-2">
+                <h1 className="nombre-skarleth text-5xl md:text-6xl text-xv-rose-dark mb-2">
                   Skarleth
                 </h1>
 
-                <p className="font-cinzel text-xv-rose-gold text-lg tracking-widest mb-6">
+                <p className="titulos-cursiva text-xv-rose-gold text-lg tracking-widest mb-6">
                   XV AÑOS
                 </p>
 
@@ -109,7 +109,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleEnter}
-                  className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-xv-rose-dark to-xv-wine text-white font-cinzel text-sm tracking-wider px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-shadow overflow-hidden"
+                  className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-xv-rose-dark to-xv-wine text-white font-mont text-sm tracking-wider px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-shadow overflow-hidden"
                 >
                   <span className="relative z-10">Abrir Invitación</span>
                   <motion.span

@@ -52,7 +52,7 @@ export const Gallery: React.FC = () => {
     <section className="py-20 bg-white relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-            <h2 className="font-vibes text-5xl md:text-6xl text-xv-rose-dark mb-2">Galería</h2>
+            <h2 className="titulos-cursiva text-5xl md:text-6xl text-xv-rose-dark mb-2">Galería</h2>
             <div className="w-16 h-1 bg-xv-rose-gold mx-auto mt-4 rounded-full"></div>
             <p className="font-mont text-gray-400 text-sm mt-4 tracking-wider uppercase">Recuerdos Inolvidables</p>
         </div>
@@ -80,7 +80,7 @@ export const Gallery: React.FC = () => {
               
               {/* Grid Caption on Hover */}
               <div className="absolute bottom-0 left-0 right-0 p-3 bg-white/90 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <p className="text-xv-wine text-xs font-cinzel text-center tracking-wider">{photo.caption}</p>
+                <p className="text-xv-wine text-xs texto-general text-center tracking-wider">{photo.caption}</p>
               </div>
             </motion.div>
           ))}
@@ -140,7 +140,7 @@ export const Gallery: React.FC = () => {
               />
               
               <div className="absolute -bottom-16 md:-bottom-20 left-0 right-0 text-center pointer-events-none">
-                <h3 className="font-vibes text-xv-rose-dark text-3xl md:text-4xl mb-1 tracking-wide">
+                <h3 className="titulos-cursiva text-xv-rose-dark text-3xl md:text-4xl mb-1 tracking-wide">
                   {photos[currentIndex].caption}
                 </h3>
                 <p className="text-gray-400 font-mont text-sm">

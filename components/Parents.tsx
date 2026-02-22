@@ -25,14 +25,14 @@ const ParentCard: React.FC<ParentCardProps> = ({
     <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-xv-rose-gold/10 text-xv-rose-gold mb-4">
       {icon}
     </div>
-    <h3 className="font-cinzel text-sm uppercase tracking-[0.2em] text-xv-wine mb-4">
+    <h3 className="texto-general uppercase tracking-[0.2em] text-xv-wine mb-4">
       {title}
     </h3>
     <div className="space-y-1">
       {names.map((name, index) => (
         <p
           key={index}
-          className="font-vibes text-2xl md:text-3xl text-xv-rose-dark"
+          className="nombres-padrinos text-2xl md:text-3xl text-xv-rose-dark"
         >
           {name}
         </p>
@@ -55,7 +55,7 @@ export const Parents: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-vibes text-5xl md:text-6xl text-xv-rose-gold mb-4">
+          <h2 className="titulos-cursiva text-5xl md:text-6xl text-xv-rose-gold mb-4">
             Con la satisfacción de haberme visto nacer y crecer
           </h2>
           <p className="font-mont text-gray-400 text-sm tracking-wider">
@@ -104,7 +104,7 @@ export const Parents: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h3 className="font-vibes text-4xl text-xv-rose-dark mb-2">
+            <h3 className="titulos-cursiva text-4xl text-xv-rose-dark mb-2">
               Mis Padrinos
             </h3>
             <p className="font-mont text-gray-400 text-xs tracking-wider uppercase">
