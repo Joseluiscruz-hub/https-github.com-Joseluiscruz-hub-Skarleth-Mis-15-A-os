@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Hero } from './components/Hero';
 import { Countdown } from './components/Countdown';
 import { Parents } from './components/Parents';
+import { Timeline } from './components/Timeline';
 import { Events } from './components/Events';
 import { Vals } from './components/Vals';
 import { DressCode } from './components/DressCode';
@@ -13,28 +14,28 @@ import { Footer } from './components/Footer';
 import { MusicPlayer } from './components/MusicPlayer';
 import { PapelPicado } from './components/PapelPicado';
 import { WelcomeScreen } from './components/WelcomeScreen';
+import { FloatingRSVPButton } from './components/FloatingRSVPButton';
+import { LoveWall } from './components/LoveWall';
 
 const App: React.FC = () => {
-  const [showContent, setShowContent] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
-
-  const handleEnterInvitation = () => {
-    setShowWelcome(false);
-    setShowContent(true);
-  };
 
   return (
     <>
-      {showWelcome && <WelcomeScreen onEnter={handleEnterInvitation} />}
-      
-      <div className={`min-h-screen relative transition-opacity duration-1000 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
+      {showWelcome && <WelcomeScreen onEnter={() => setShowWelcome(false)} />}
+
+      <div
+        className={`min-h-screen relative transition-opacity duration-1000 ${showWelcome ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+      >
         <PapelPicado />
         <MusicPlayer />
-        
+        <FloatingRSVPButton />
+
         <main className="relative z-10">
           <Hero />
           <Countdown targetDate="2026-05-23T16:00:00" />
           <Parents />
+          <Timeline />
           <Events />
           <Vals />
           <DressCode />
@@ -42,6 +43,7 @@ const App: React.FC = () => {
           <GiftRegistry />
           <RSVP />
           <Hashtag />
+          <LoveWall />
         </main>
 
         <Footer />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 interface CountdownProps {
   targetDate: string;
@@ -11,72 +11,114 @@ interface TimeLeft {
   seconds: number;
 }
 
-export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
-  const calculateTimeLeft = (): TimeLeft => {
-    const difference = +new Date(targetDate) - +new Date();
-    let timeLeft: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+const formatUnit = (value: number) => value.toString().padStart(2, '0');
 
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    }
-    return timeLeft;
+const getTimeLeft = (targetDate: string): TimeLeft => {
+  const difference = +new Date(targetDate) - +new Date();
+
+  if (difference <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  }
+
+  return {
+    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((difference / 1000 / 60) % 60),
+    seconds: Math.floor((difference / 1000) % 60),
   };
+};
 
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
+const FlipUnit: React.FC<{ value: number; label: string }> = ({ value, label }) => {
+  const [displayValue, setDisplayValue] = useState(formatUnit(value));
+  const [isFlipping, setIsFlipping] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-    return () => clearTimeout(timer);
-  });
+    const nextValue = formatUnit(value);
+    if (nextValue === displayValue) {
+      return;
+    }
 
-  const TimeUnit = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center mx-2 md:mx-4">
-      <div className="w-16 h-16 md:w-24 md:h-24 bg-white/60 backdrop-blur-sm border border-xv-rose-gold/30 rounded-full flex items-center justify-center relative overflow-hidden group shadow-lg">
-        <div className="absolute inset-0 bg-xv-pink/20 transform scale-0 group-hover:scale-110 transition-transform duration-500 rounded-full" />
-        <span className="texto-general text-2xl md:text-4xl text-xv-wine font-bold relative z-10">
-          {value < 10 ? `0${value}` : value}
-        </span>
+    setIsFlipping(true);
+    const timer = window.setTimeout(() => {
+      setDisplayValue(nextValue);
+      setIsFlipping(false);
+    }, 320);
+
+    return () => window.clearTimeout(timer);
+  }, [value, displayValue]);
+
+  return (
+    <div className="flex flex-col items-center mx-1 md:mx-3">
+      <div className="relative w-20 h-24 md:w-28 md:h-32 perspective-[1000px]">
+        <div className="absolute inset-0 rounded-xl overflow-hidden bg-gradient-to-b from-[#3b1f14] to-[#1a0e08] shadow-[0_12px_25px_rgba(28,11,4,0.45)] border border-amber-200/20">
+          <div className="absolute inset-x-0 top-1/2 h-[1px] bg-amber-200/25 z-10" />
+
+          <div className="absolute top-0 left-0 right-0 h-1/2 flex items-end justify-center pb-1 text-3xl md:text-5xl font-cormorant text-amber-100 tracking-wider">
+            {displayValue}
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-1/2 flex items-start justify-center pt-1 text-3xl md:text-5xl font-cormorant text-amber-100 tracking-wider">
+            {displayValue}
+          </div>
+
+          {isFlipping && (
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-0 left-0 right-0 h-1/2 origin-bottom bg-gradient-to-b from-[#4a291b] to-[#1f1008] animate-flip-top flex items-end justify-center pb-1 text-3xl md:text-5xl font-cormorant text-amber-100">
+                {displayValue}
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 h-1/2 origin-top bg-gradient-to-b from-[#341c12] to-[#1b0f09] animate-flip-bottom flex items-start justify-center pt-1 text-3xl md:text-5xl font-cormorant text-amber-100">
+                {formatUnit(value)}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-      <span className="font-mont text-xs md:text-sm mt-3 tracking-widest text-xv-rose-dark/80 uppercase font-medium">
+      <span className="font-mont text-[11px] md:text-xs mt-3 tracking-[0.2em] text-xv-wine/80 uppercase">
         {label}
       </span>
     </div>
   );
+};
+
+export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => getTimeLeft(targetDate));
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setTimeLeft(getTimeLeft(targetDate));
+    }, 1000);
+
+    return () => window.clearInterval(timer);
+  }, [targetDate]);
+
+  const parts = useMemo(
+    () => [
+      { key: 'days', label: 'Dias', value: timeLeft.days },
+      { key: 'hours', label: 'Horas', value: timeLeft.hours },
+      { key: 'minutes', label: 'Minutos', value: timeLeft.minutes },
+      { key: 'seconds', label: 'Segundos', value: timeLeft.seconds },
+    ],
+    [timeLeft]
+  );
 
   return (
-    <section className="py-16 bg-gradient-to-r from-xv-bg via-white to-xv-bg relative">
+    <section className="py-20 bg-[linear-gradient(180deg,#fdf2df_0%,#fff8ee_50%,#fdf2df_100%)] relative">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-10">
-          <h3 className="titulos-cursiva text-5xl text-xv-rose-gold mb-2 drop-shadow-sm">
-            Faltan
-          </h3>
-          <div className="w-16 h-0.5 bg-xv-rose mx-auto mb-2"></div>
-          <p className="texto-general text-xv-wine text-sm tracking-widest">
-            PARA EL GRAN DÍA
+          <h3 className="titulos-cursiva text-5xl text-xv-rose-gold mb-2">Faltan</h3>
+          <p className="texto-general text-xv-wine text-sm tracking-[0.3em] uppercase">
+            PARA MI GRAN NOCHE
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center items-center">
-          <TimeUnit value={timeLeft.days} label="Días" />
-          <span className="text-2xl text-xv-rose-gold mb-8 hidden md:block titulos-cursiva">
-            :
-          </span>
-          <TimeUnit value={timeLeft.hours} label="Horas" />
-          <span className="text-2xl text-xv-rose-gold mb-8 hidden md:block titulos-cursiva">
-            :
-          </span>
-          <TimeUnit value={timeLeft.minutes} label="Minutos" />
-          <span className="text-2xl text-xv-rose-gold mb-8 hidden md:block titulos-cursiva">
-            :
-          </span>
-          <TimeUnit value={timeLeft.seconds} label="Segundos" />
+        <div className="flex flex-wrap justify-center items-center gap-y-4">
+          {parts.map((part, index) => (
+            <React.Fragment key={part.key}>
+              <FlipUnit value={part.value} label={part.label} />
+              {index < parts.length - 1 && (
+                <span className="hidden md:block text-2xl text-xv-wine/70 px-2">:</span>
+              )}
+            </React.Fragment>
+          ))}
         </div>
       </div>
     </section>
