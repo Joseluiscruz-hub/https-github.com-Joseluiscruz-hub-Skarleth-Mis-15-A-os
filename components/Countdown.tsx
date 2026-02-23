@@ -48,9 +48,9 @@ const FlipUnit: React.FC<{ value: number; label: string }> = ({ value, label }) 
   }, [value, displayValue]);
 
   return (
-    <div className="flex flex-col items-center mx-1 md:mx-3">
+    <div className="flip-unit flex flex-col items-center mx-1 md:mx-3">
       <div className="relative w-20 h-24 md:w-28 md:h-32 perspective-[1000px]">
-        <div className="absolute inset-0 rounded-xl overflow-hidden bg-gradient-to-b from-[#3b1f14] to-[#1a0e08] shadow-[0_12px_25px_rgba(28,11,4,0.45)] border border-amber-200/20">
+        <div className="flip-card absolute inset-0 rounded-xl overflow-hidden bg-gradient-to-b from-[#3b1f14] to-[#1a0e08] shadow-[0_12px_25px_rgba(28,11,4,0.45)] border border-amber-200/20">
           <div className="absolute inset-x-0 top-1/2 h-[1px] bg-amber-200/25 z-10" />
 
           <div className="absolute top-0 left-0 right-0 h-1/2 flex items-end justify-center pb-1 text-3xl md:text-5xl font-cormorant text-amber-100 tracking-wider">
@@ -72,7 +72,7 @@ const FlipUnit: React.FC<{ value: number; label: string }> = ({ value, label }) 
           )}
         </div>
       </div>
-      <span className="font-mont text-[11px] md:text-xs mt-3 tracking-[0.2em] text-xv-wine/80 uppercase">
+      <span className="flip-label font-mont text-[11px] md:text-xs mt-3 tracking-[0.2em] text-xv-wine/80 uppercase">
         {label}
       </span>
     </div>
@@ -101,7 +101,7 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
   );
 
   return (
-    <section className="py-20 bg-[linear-gradient(180deg,#fdf2df_0%,#fff8ee_50%,#fdf2df_100%)] relative">
+    <section className="countdown-section py-20 bg-[linear-gradient(180deg,#fdf2df_0%,#fff8ee_50%,#fdf2df_100%)] relative">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-10">
           <h3 className="titulos-cursiva text-5xl text-xv-rose-gold mb-2">Faltan</h3>

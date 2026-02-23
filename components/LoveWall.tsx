@@ -43,7 +43,7 @@ export const LoveWall: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-xv-bg/60">
+    <section className="love-wall-section py-20 bg-xv-bg/60">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-10">
           <Heart className="mx-auto text-xv-rose-gold mb-3" fill="currentColor" />
@@ -70,7 +70,7 @@ export const LoveWall: React.FC = () => {
             {messages.map((message) => (
               <article
                 key={message.id}
-                className="bg-white rounded-2xl p-5 border border-xv-rose/20 shadow-sm"
+                className="love-message bg-white rounded-2xl p-5 border border-xv-rose/20 shadow-sm"
               >
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="font-cormorant text-2xl text-xv-rose-dark">{message.name}</h3>

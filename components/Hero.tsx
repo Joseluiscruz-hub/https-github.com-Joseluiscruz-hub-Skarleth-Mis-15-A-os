@@ -3,7 +3,10 @@ import { motion } from 'framer-motion';
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-xv-bg">
+    <section
+      id="hero"
+      className="hero relative h-screen w-full overflow-hidden flex items-center justify-center bg-xv-bg"
+    >
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat bg-fixed"
         style={{

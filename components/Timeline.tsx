@@ -37,7 +37,7 @@ const moments = [
 
 export const Timeline: React.FC = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-white via-xv-bg/40 to-white overflow-hidden">
+    <section className="timeline-section py-24 bg-gradient-to-b from-white via-xv-bg/40 to-white overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
@@ -55,7 +55,7 @@ export const Timeline: React.FC = () => {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute top-[120px] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-xv-rose-gold/40 to-transparent hidden md:block" />
+          <div className="timeline-line absolute top-[120px] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-xv-rose-gold/40 to-transparent hidden md:block" />
 
           <div className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory [scrollbar-width:thin]">
             {moments.map((moment, index) => (
@@ -65,7 +65,7 @@ export const Timeline: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className="min-w-[260px] md:min-w-[320px] bg-white border border-xv-rose/20 rounded-3xl p-4 shadow-lg snap-start"
+                className="timeline-card min-w-[260px] md:min-w-[320px] bg-white border border-xv-rose/20 rounded-3xl p-4 shadow-lg snap-start"
               >
                 <div className="relative mb-4">
                   <img
@@ -73,7 +73,7 @@ export const Timeline: React.FC = () => {
                     alt={moment.title}
                     className="w-full h-56 object-cover rounded-2xl"
                   />
-                  <span className="absolute top-3 left-3 bg-white/90 px-3 py-1 rounded-full text-xs font-mont text-xv-wine tracking-wider uppercase">
+                  <span className="timeline-age absolute top-3 left-3 bg-white/90 px-3 py-1 rounded-full text-xs font-mont text-xv-wine tracking-wider uppercase">
                     {moment.age}
                   </span>
                 </div>

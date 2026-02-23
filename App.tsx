@@ -25,7 +25,7 @@ const App: React.FC = () => {
       {showWelcome && <WelcomeScreen onEnter={() => setShowWelcome(false)} />}
 
       <div
-        className={`min-h-screen relative transition-opacity duration-1000 ${showWelcome ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`theme-mexican min-h-screen relative transition-opacity duration-1000 ${showWelcome ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       >
         <PapelPicado />
         <MusicPlayer />

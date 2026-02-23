@@ -34,7 +34,7 @@ const EventCard: React.FC<EventCardProps> = ({
   >
     <div className="p-7 md:p-8">
       <div className="flex items-center gap-4 mb-4">
-        <div className="w-10 h-10 rounded-full bg-xv-bg border border-xv-rose-gold flex items-center justify-center texto-general text-xv-wine text-sm">
+        <div className="itinerario-number w-10 h-10 rounded-full bg-xv-bg border border-xv-rose-gold flex items-center justify-center texto-general text-xv-wine text-sm">
           {number}
         </div>
         <div className="text-xv-rose-gold">{icon}</div>
