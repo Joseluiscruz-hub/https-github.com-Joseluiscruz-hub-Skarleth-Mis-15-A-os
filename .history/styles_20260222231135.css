@@ -1,107 +1,235 @@
-@import 'tailwindcss';
+/* ============================================
+   TEMA: CREMA MEXICANA — SKARLETH XV AÑOS
+   Café oscuro · Rojo suave · Oro artesanal
+   ============================================ */
 
-@theme {
-  --color-xv-bg: #fef3e2;
-  --color-xv-cream: #fff8f0;
-  --color-xv-rose: #c2410c;
-  --color-xv-rose-dark: #b91c1c;
-  --color-xv-gold: #d97706;
-  --color-xv-rose-gold: #ea580c;
-  --color-xv-wine: #7c2d12;
-  --color-xv-pink: #fcd34d;
-  --color-xv-green: #15803d;
-  --color-xv-red: #dc2626;
-
-  --font-cormorant: 'Cormorant Garamond', serif;
-  --font-pinyon: 'Pinyon Script', cursive;
-  --font-mont: 'Montserrat', sans-serif;
-
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-sway: sway 3s ease-in-out infinite alternate;
-  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+:root {
+  --color-bg:           #1C1008;
+  --color-bg-card:      #251610;
+  --color-bg-section:   #201208;
+  --color-primary:      #B01020;
+  --color-primary-soft: #8B0F1E;
+  --color-gold:         #C9952A;
+  --color-gold-soft:    rgba(201,149,42,0.25);
+  --color-text:         #F2E8D9;
+  --color-text-muted:   #BFA882;
+  --color-border:       rgba(201,149,42,0.22);
 }
 
-@keyframes sway {
-  0% {
-    transform: rotate(-5deg);
-  }
-  100% {
-    transform: rotate(5deg);
-  }
+/* ── Base ── */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+/* ── Hero ── */
+/* Gradiente cálido oscuro, no negro frío */
+section:first-of-type,
+.hero, #hero {
+  background: radial-gradient(ellipse at top center,
+    #3A1A08 0%,
+    #201208 55%,
+    #1C1008 100%);
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* ── SKARLETH (H1) ── */
+h1 {
+  color: var(--color-gold);
+  text-shadow: 0 0 40px rgba(201,149,42,0.4), 0 2px 6px rgba(0,0,0,0.6);
 }
-::-webkit-scrollbar-track {
-  background: #fef3e2;
+
+/* ── "XV AÑOS" ── */
+h2:first-of-type, .xv-anos {
+  color: var(--color-primary);
+  letter-spacing: 0.35em;
 }
-::-webkit-scrollbar-thumb {
-  background: #c2410c;
+
+/* ── "23 • MAYO • 2026" ── */
+.fecha, [class*="fecha"] {
+  color: var(--color-text-muted);
+  letter-spacing: 0.2em;
+}
+
+/* ── Flip Clock / Countdown ── */
+/* Cada dígito */
+[class*="flip"], [class*="countdown"] {
+  background: #251610;
+  border: 1px solid var(--color-gold-soft);
+  color: var(--color-gold);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+/* Labels DIAS, HORAS, etc */
+[class*="flip"] span,
+[class*="countdown"] span,
+[class*="label"] {
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+}
+
+/* ── Cards de Papá / Mamá ── */
+[class*="padre"], [class*="mama"],
+[class*="padrino"], [class*="padres"] {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+}
+
+/* ── Títulos de sección (h2/h3) ── */
+h2 { color: var(--color-gold); }
+h3 { color: var(--color-text); }
+
+/* ── Textos secundarios ── */
+p, span, li { color: var(--color-text-muted); }
+
+/* ── Separadores ✿ ❧ ✿ ── */
+/* Ya los tienes en el HTML, solo dales color */
+[class*="divider"], [class*="separator"] {
+  color: var(--color-primary);
+  opacity: 0.7;
+}
+
+/* ── Timeline Mi Historia ── */
+[class*="timeline"] {
+  background: transparent;
+}
+[class*="timeline"] [class*="dot"],
+[class*="timeline"] [class*="circle"],
+[class*="timeline"]::before {
+  background: var(--color-primary);
+  border: 2px solid var(--color-gold);
+}
+[class*="timeline"] [class*="year"],
+[class*="timeline"] [class*="edad"] {
+  color: var(--color-gold);
+  font-weight: 700;
+}
+
+/* ── Itinerario: números 1, 2, 3 ── */
+[class*="step"] .numero,
+[class*="itinerary"] .number,
+[class*="numero"] {
+  background: var(--color-primary);
+  color: #fff;
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 0 12px rgba(176,16,32,0.4);
+}
+
+/* ── Cards del itinerario ── */
+[class*="step"], [class*="itinerary"] {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+}
+
+/* ── Vals / El Vals ── */
+[class*="vals"], [class*="waltz"] {
+  background: linear-gradient(135deg, #251610, #1C1008);
+  border: 1px solid var(--color-border);
+}
+
+/* ── Código de Vestimenta ── */
+[class*="vestimenta"], [class*="dresscode"] {
+  background: var(--color-bg-card);
+}
+/* Chips de colores sugeridos */
+[class*="color-chip"], [class*="color-tag"] {
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+/* ── Galería ── */
+[class*="gallery"] img,
+[class*="galeria"] img {
+  border: 2px solid var(--color-border);
+  transition: all 0.35s ease;
+}
+[class*="gallery"] img:hover,
+[class*="galeria"] img:hover {
+  border-color: var(--color-gold);
+  transform: scale(1.04);
+  box-shadow: 0 8px 30px rgba(201,149,42,0.2);
+}
+
+/* ── Mesa de Regalos ── */
+[class*="regalo"], [class*="gift"] {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+}
+[class*="regalo"] strong,
+[class*="gift"] strong {
+  color: var(--color-gold);
+}
+
+/* ── CLABE / datos bancarios ── */
+[class*="clabe"], [class*="cuenta"], code {
+  background: #100805;
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold-soft);
+  padding: 2px 6px;
   border-radius: 4px;
 }
 
-/* Typography utility classes for Boho-Editorial style */
-
-.nombre-skarleth {
-  font-family: var(--font-cormorant), serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
+/* ── RSVP / Confirmación ── */
+[class*="rsvp"], [class*="confirmacion"] {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+}
+input, textarea {
+  background: #120808 !important;
+  border: 1px solid var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+input:focus, textarea:focus {
+  border-color: var(--color-gold) !important;
+  box-shadow: 0 0 10px rgba(201,149,42,0.2) !important;
+  outline: none !important;
 }
 
-.titulos-cursiva {
-  font-family: var(--font-pinyon), cursive;
-  text-transform: capitalize;
-  font-size: 2.8rem;
-  color: #c97c5d;
+/* ── Botones ── */
+button, .btn, [class*="btn"] {
+  background: var(--color-primary);
+  color: #F2E8D9;
+  border: 1px solid var(--color-gold);
+  transition: all 0.3s ease;
+}
+button:hover, .btn:hover {
+  background: var(--color-gold);
+  color: #1C1008;
 }
 
-.texto-general {
-  font-family: var(--font-mont), sans-serif;
-  font-weight: 300;
-  font-size: 0.9rem;
+/* ── FAB flotante "¿Asistirás?" ── */
+[class*="fab"], [class*="floating"] {
+  background: var(--color-primary) !important;
+  border: 2px solid var(--color-gold) !important;
+  box-shadow: 0 4px 20px rgba(176,16,32,0.5) !important;
 }
 
-.nombres-padrinos {
-  font-family: var(--font-mont), sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.8rem;
-  color: #8b6e60;
+/* ── #LosXVDeSkarleth (hashtag) ── */
+[class*="hashtag"], [class*="share"] {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
 }
 
-/* Soft Noise/Grain for texture but lighter */
-.bg-texture {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 50;
-  opacity: 0.4;
-  background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+/* ── Muro de Amor ── */
+[class*="muro"], [class*="mensaje"] {
+  background: #1A0A06;
+  border-left: 3px solid var(--color-primary);
+  color: var(--color-text-muted);
 }
 
-.text-shadow-soft {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+/* ── Footer ── */
+footer {
+  background: #0D0603;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
 }
 
-.text-shadow-glow {
-  text-shadow:
-    0 0 10px rgba(255, 255, 255, 0.8),
-    0 0 20px rgba(194, 65, 12, 0.5);
-}
+/* ── Links ── */
+a { color: var(--color-gold); }
+a:hover { color: var(--color-primary); }
+
+/* ── tsParticles: cambia en tu config JS ──
+   colors: ["#B01020","#C9952A","#FF6B35",
+            "#9B59B6","#2ECC71","#3498DB"]
+   (rojos, dorados y los colores del bordado Otomí)
+*/
