@@ -3,7 +3,7 @@ import { Music2, Pause, Play, Volume2, VolumeX } from 'lucide-react';
 
 const VALS_TRACK = {
   name: 'Mi Princesa - David Bisbal',
-  src: '/music/mi-princesa-david-bisbal.mp3',
+  src: `${import.meta.env.BASE_URL}music/mi-princesa-david-bisbal.mp3`,
 };
 
 export const MusicPlayer: React.FC = () => {
