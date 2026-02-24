@@ -25,7 +25,8 @@ const photos = [
   },
   {
     src: '/WhatsApp Image 2026-02-22 at 9.18.00 PM.jpeg',
-    caption: 'Recuerdo 18',
+    caption: 'Recuerdo 18'
+  },
   { src: '/images/20131221_224851.jpg', caption: 'Recuerdo 1' },
   { src: '/images/20131221_224857.jpg', caption: 'Recuerdo 2' },
   { src: '/images/20140517_174622.jpg', caption: 'Recuerdo 3' },
