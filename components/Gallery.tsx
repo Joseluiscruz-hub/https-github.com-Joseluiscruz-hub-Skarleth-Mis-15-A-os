@@ -48,7 +48,16 @@ const photos = [
     src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.18.00 PM.jpeg'),
     caption: 'Recuerdo 18',
   },
-  // Recuerdo 19 removed per request
+  // added previously missing photos
+  { src: base + 'IMG-20260201-WA0023.jpg', caption: 'Recuerdo 19' },
+  {
+    src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.39.58 PM.jpeg'),
+    caption: 'Recuerdo 19.1',
+  },
+  {
+    src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.42.08 PM.jpeg'),
+    caption: 'Recuerdo 19.2',
+  },
   { src: base + 'IMG-20260208-WA0024.jpg', caption: 'Recuerdo 20' },
   { src: base + 'IMG-20260222-WA0038.jpg', caption: 'Recuerdo 21' },
   { src: base + 'IMG-20260222-WA0039.jpg', caption: 'Recuerdo 22' },
