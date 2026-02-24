@@ -34,57 +34,6 @@ const photos = [
   { src: base + '1771824780683.png', caption: 'Recuerdo 28' },
   { src: base + '1771824907894(1).png', caption: 'Recuerdo 29' },
 ];
-  { src: '/images/IMG_20180904_202705.jpg', caption: 'Recuerdo 12' },
-  { src: '/images/IMG_20200325_182037_1.jpg', caption: 'Recuerdo 13' },
-  {
-    src: '/images/QVZobTFTY19peV83R000cS1FaEpaSUVV.jpeg',
-    caption: 'Recuerdo 14',
-  },
-  {
-    src: '/images/QVZqSHhXcE02bC1xbUhyaF9NVER5MWh2.jpeg',
-    caption: 'Recuerdo 15',
-  },
-  {
-    src: '/images/QVZqX3Z2eDQ4WGVYYjVBLXFJOENDNGxN.jpeg',
-    caption: 'Recuerdo 16',
-  },
-  {
-    src: '/images/WhatsApp Image 2026-02-22 at 6.26.40 PM.jpeg',
-    caption: 'Recuerdo 17',
-  },
-  {
-    src: '/images/WhatsApp Image 2026-02-22 at 9.18.00 PM.jpeg',
-    caption: 'Recuerdo 18',
-  },
-  {
-    src: '/images/WhatsApp Image 2026-02-22 at 9.39.58 PM.jpeg',
-    caption: 'Recuerdo 19',
-  },
-  {
-    src: '/images/WhatsApp Image 2026-02-22 at 9.42.08 PM.jpeg',
-    caption: 'Recuerdo 20',
-  },
-  { src: '/images/IMG-20260201-WA0023.jpg', caption: 'Recuerdo 21' },
-  { src: '/images/IMG-20260208-WA0024.jpg', caption: 'Recuerdo 22' },
-  { src: '/images/IMG-20260222-WA0038.jpg', caption: 'Recuerdo 23' },
-  { src: '/images/IMG-20260222-WA0039.jpg', caption: 'Recuerdo 24' },
-  { src: '/images/IMG-20260222-WA0041.jpg', caption: 'Recuerdo 25' },
-  { src: '/images/foto1.jpg', caption: 'Recuerdo 26' },
-  { src: '/images/foto2.jpg', caption: 'Recuerdo 27' },
-  { src: '/images/foto3.jpg', caption: 'Recuerdo 28' },
-  { src: '/images/foto4.jpg', caption: 'Recuerdo 29' },
-  { src: '/images/1771824780683.png', caption: 'Recuerdo 30' },
-  { src: '/images/1771824907894(1).png', caption: 'Recuerdo 31' },
-  { src: '/images/IMG-20260201-WA0023.jpg', caption: 'Recuerdo 21' },
-  { src: '/images/IMG-20260208-WA0024.jpg', caption: 'Recuerdo 22' },
-  { src: '/images/IMG-20260222-WA0038.jpg', caption: 'Recuerdo 23' },
-  { src: '/images/IMG-20260222-WA0039.jpg', caption: 'Recuerdo 24' },
-  { src: '/images/IMG-20260222-WA0041.jpg', caption: 'Recuerdo 25' },
-  { src: '/images/foto1.jpg', caption: 'Recuerdo 26' },
-  { src: '/images/foto2.jpg', caption: 'Recuerdo 27' },
-  { src: '/images/foto3.jpg', caption: 'Recuerdo 28' },
-  { src: '/images/foto4.jpg', caption: 'Recuerdo 29' },
-];
 
 export const Gallery: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
