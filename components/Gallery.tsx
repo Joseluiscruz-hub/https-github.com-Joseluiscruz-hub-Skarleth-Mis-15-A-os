@@ -7,6 +7,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 // deployed to GitHub Pages or run locally.
 const base = import.meta.env.BASE_URL + 'images/';
 
+// this photo will be used as the gallery background rather than displayed in
+// the grid itself. it corresponds to “Recuerdo 29”.
+const backgroundPhoto = base + '1771824907894(1).png';
+
 // encodeURI is used on filenames that contain spaces or other special
 // characters (e.g. WhatsApp snapshots) so the browser requests an
 // escaped URL. Without this some images were returning 404s in production.
@@ -44,7 +48,7 @@ const photos = [
     src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.18.00 PM.jpeg'),
     caption: 'Recuerdo 18',
   },
-  { src: base + 'IMG-20260201-WA0023.jpg', caption: 'Recuerdo 19' },
+  // Recuerdo 19 removed per request
   { src: base + 'IMG-20260208-WA0024.jpg', caption: 'Recuerdo 20' },
   { src: base + 'IMG-20260222-WA0038.jpg', caption: 'Recuerdo 21' },
   { src: base + 'IMG-20260222-WA0039.jpg', caption: 'Recuerdo 22' },
@@ -54,7 +58,7 @@ const photos = [
   { src: base + 'foto3.jpg', caption: 'Recuerdo 26' },
   { src: base + 'foto4.jpg', caption: 'Recuerdo 27' },
   { src: base + '1771824780683.png', caption: 'Recuerdo 28' },
-  { src: base + '1771824907894(1).png', caption: 'Recuerdo 29' },
+  // Recuerdo 29 removed from grid; used as background instead
 ];
 
 export const Gallery: React.FC = () => {
@@ -108,7 +112,12 @@ export const Gallery: React.FC = () => {
   };
 
   return (
-    <section className="gallery-section py-20 bg-white relative">
+      <section
+        className="gallery-section py-20 bg-white relative bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${backgroundPhoto})`,
+        }}
+      >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="titulos-cursiva text-5xl md:text-6xl text-xv-rose-dark mb-2">
