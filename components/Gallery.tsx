@@ -112,12 +112,12 @@ export const Gallery: React.FC = () => {
   };
 
   return (
-      <section
-        className="gallery-section py-20 bg-white relative bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${backgroundPhoto})`,
-        }}
-      >
+    <section
+      className="gallery-section py-20 bg-white relative bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${backgroundPhoto})`,
+      }}
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="titulos-cursiva text-5xl md:text-6xl text-xv-rose-dark mb-2">
