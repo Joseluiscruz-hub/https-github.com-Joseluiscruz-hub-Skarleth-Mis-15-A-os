@@ -3,13 +3,47 @@ import { X, ChevronLeft, ChevronRight, Expand } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const photos = [
-  { src: 'https://picsum.photos/700/1050?random=21', caption: 'Sesión Casual' },
-  { src: 'https://picsum.photos/900/650?random=22', caption: 'Momentos Inolvidables' },
-  { src: 'https://picsum.photos/700/900?random=23', caption: 'Mi Sonrisa' },
-  { src: 'https://picsum.photos/850/1200?random=24', caption: 'Con Mi Familia' },
-  { src: 'https://picsum.photos/900/760?random=25', caption: 'Detalles de Ensueño' },
-  { src: 'https://picsum.photos/700/980?random=26', caption: 'Cuenta Regresiva' },
-  { src: 'https://picsum.photos/800/1200?random=27', caption: 'Princesa por un Día' },
+  { src: '/20131221_224851.jpg', caption: 'Recuerdo 1' },
+  { src: '/20131221_224857.jpg', caption: 'Recuerdo 2' },
+  { src: '/20140517_174622.jpg', caption: 'Recuerdo 3' },
+  { src: '/20141101_173020.jpg', caption: 'Recuerdo 4' },
+  { src: '/20150218_125919-1.jpg', caption: 'Recuerdo 5' },
+  { src: '/20160325_143755.jpg', caption: 'Recuerdo 6' },
+  { src: '/20170624_125446.jpg', caption: 'Recuerdo 7' },
+  { src: '/20171101_182213.jpg', caption: 'Recuerdo 8' },
+  { src: '/20181223_153309.jpg', caption: 'Recuerdo 9' },
+  { src: '/Foto0037.jpg', caption: 'Recuerdo 10' },
+  { src: '/Foto0886.jpg', caption: 'Recuerdo 11' },
+  { src: '/IMG_20180904_202705.jpg', caption: 'Recuerdo 12' },
+  { src: '/IMG_20200325_182037_1.jpg', caption: 'Recuerdo 13' },
+  { src: '/QVZobTFTY19peV83R000cS1FaEpaSUVV.jpeg', caption: 'Recuerdo 14' },
+  { src: '/QVZqSHhXcE02bC1xbUhyaF9NVER5MWh2.jpeg', caption: 'Recuerdo 15' },
+  { src: '/QVZqX3Z2eDQ4WGVYYjVBLXFJOENDNGxN.jpeg', caption: 'Recuerdo 16' },
+  {
+    src: '/WhatsApp Image 2026-02-22 at 6.26.40 PM.jpeg',
+    caption: 'Recuerdo 17',
+  },
+  {
+    src: '/WhatsApp Image 2026-02-22 at 9.18.00 PM.jpeg',
+    caption: 'Recuerdo 18',
+  },
+  {
+    src: '/WhatsApp Image 2026-02-22 at 9.39.58 PM.jpeg',
+    caption: 'Recuerdo 19',
+  },
+  {
+    src: '/WhatsApp Image 2026-02-22 at 9.42.08 PM.jpeg',
+    caption: 'Recuerdo 20',
+  },
+  { src: '/images/IMG-20260201-WA0023.jpg', caption: 'Recuerdo 21' },
+  { src: '/images/IMG-20260208-WA0024.jpg', caption: 'Recuerdo 22' },
+  { src: '/images/IMG-20260222-WA0038.jpg', caption: 'Recuerdo 23' },
+  { src: '/images/IMG-20260222-WA0039.jpg', caption: 'Recuerdo 24' },
+  { src: '/images/IMG-20260222-WA0041.jpg', caption: 'Recuerdo 25' },
+  { src: '/images/foto1.jpg', caption: 'Recuerdo 26' },
+  { src: '/images/foto2.jpg', caption: 'Recuerdo 27' },
+  { src: '/images/foto3.jpg', caption: 'Recuerdo 28' },
+  { src: '/images/foto4.jpg', caption: 'Recuerdo 29' },
 ];
 
 export const Gallery: React.FC = () => {
@@ -66,9 +100,13 @@ export const Gallery: React.FC = () => {
     <section className="gallery-section py-20 bg-white relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="titulos-cursiva text-5xl md:text-6xl text-xv-rose-dark mb-2">Galería</h2>
+          <h2 className="titulos-cursiva text-5xl md:text-6xl text-xv-rose-dark mb-2">
+            Galería
+          </h2>
           <div className="w-16 h-1 bg-xv-rose-gold mx-auto mt-4 rounded-full" />
-          <p className="font-mont text-gray-400 text-sm mt-4 tracking-wider uppercase">Recuerdos Inolvidables</p>
+          <p className="font-mont text-gray-400 text-sm mt-4 tracking-wider uppercase">
+            Recuerdos Inolvidables
+          </p>
         </div>
 
         <div className="columns-1 sm:columns-2 md:columns-3 gap-4 [column-fill:_balance]">
@@ -92,7 +130,9 @@ export const Gallery: React.FC = () => {
                 <Expand size={28} className="text-white" />
               </div>
               <div className="absolute left-3 right-3 bottom-3 rounded-xl bg-white/90 backdrop-blur-sm py-2 px-3 translate-y-16 group-hover:translate-y-0 transition-transform duration-300">
-                <p className="text-xv-wine text-xs texto-general text-center tracking-wider">{photo.caption}</p>
+                <p className="text-xv-wine text-xs texto-general text-center tracking-wider">
+                  {photo.caption}
+                </p>
               </div>
             </motion.button>
           ))}
@@ -156,8 +196,12 @@ export const Gallery: React.FC = () => {
               />
 
               <div className="absolute -bottom-14 left-0 right-0 text-center pointer-events-none">
-                <h3 className="titulos-cursiva text-white text-3xl mb-1 tracking-wide">{photos[currentIndex].caption}</h3>
-                <p className="text-gray-300 font-mont text-xs">Desliza para cambiar</p>
+                <h3 className="titulos-cursiva text-white text-3xl mb-1 tracking-wide">
+                  {photos[currentIndex].caption}
+                </h3>
+                <p className="text-gray-300 font-mont text-xs">
+                  Desliza para cambiar
+                </p>
               </div>
             </motion.div>
           </motion.div>
