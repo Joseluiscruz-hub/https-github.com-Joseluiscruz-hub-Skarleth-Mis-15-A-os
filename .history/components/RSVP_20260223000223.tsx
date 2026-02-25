@@ -60,7 +60,7 @@ export const RSVP: React.FC = () => {
 
     let whatsappMessage = '';
     if (attendance === 'yes') {
-      whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\n✅ *Confirmo mi asistencia* a los XV de Skarleth para *${guests} persona(s)*.\n\n`;
+      whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\n✅ *Confirmo mi asistencia* a los XV de Skarlet para *${guests} persona(s)*.\n\n`;
       if (dietaryRestrictions) {
         whatsappMessage += `🍽️ Restricciones alimentarias: ${dietaryRestrictions}\n\n`;
       }
@@ -69,7 +69,7 @@ export const RSVP: React.FC = () => {
       }
       whatsappMessage += '¡Gracias! 👑💖';
     } else {
-      whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\n❌ Lamentablemente *no podré asistir* a los XV de Skarleth.\n\n`;
+      whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\n❌ Lamentablemente *no podré asistir* a los XV de Skarlet.\n\n`;
       if (message) {
         whatsappMessage += `💬 Mensaje: ${message}\n\n`;
       }
