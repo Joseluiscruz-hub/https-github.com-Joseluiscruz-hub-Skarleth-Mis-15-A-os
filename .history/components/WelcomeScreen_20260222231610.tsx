@@ -84,7 +84,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                 </p>
 
                 <h1 className="nombre-skarleth text-5xl md:text-6xl text-xv-rose-dark mb-2">
-                  Skarleth
+                  Skarlet
                 </h1>
 
                 <p className="titulos-cursiva text-xv-rose-gold text-lg tracking-widest mb-6">
