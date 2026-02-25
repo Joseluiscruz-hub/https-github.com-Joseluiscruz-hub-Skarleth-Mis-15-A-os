@@ -13,11 +13,11 @@ export const RSVP: React.FC = () => {
     e.preventDefault();
     if (!name || !attendance) return;
 
-    const phoneNumber = '521234567890'; // ⚠️ CAMBIAR POR NÚMERO REAL
+    const phoneNumber = '525588150830'; // ⚠️ CAMBIAR POR NÚMERO REAL
 
     let whatsappMessage = '';
     if (attendance === 'yes') {
-      whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\n✅ *Confirmo mi asistencia* a los XV de Skarleth para *${guests} persona(s)*.\n\n`;
+      whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\n✅ *Confirmo mi asistencia* a los XV de Skarlet para *${guests} persona(s)*.\n\n`;
       if (dietaryRestrictions) {
         whatsappMessage += `🍽️ Restricciones alimentarias: ${dietaryRestrictions}\n\n`;
       }
@@ -158,7 +158,7 @@ export const RSVP: React.FC = () => {
 
             <div>
               <label className="block texto-general text-xv-wine text-xs mb-2 ml-1 tracking-wider">
-                Mensaje para Skarleth (opcional)
+                Mensaje para Skarlet (opcional)
               </label>
               <textarea
                 value={message}
