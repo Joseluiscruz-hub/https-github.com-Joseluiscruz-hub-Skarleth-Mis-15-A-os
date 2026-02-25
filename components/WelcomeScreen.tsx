@@ -5,7 +5,7 @@ interface WelcomeScreenProps {
   onEnter: () => void;
 }
 
-const letters = 'SKARLETH'.split('');
+const letters = 'SKARLET'.split('');
 
 export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
   useEffect(() => {
