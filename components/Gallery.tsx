@@ -58,7 +58,7 @@ const photos = [
     src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.42.08 PM.jpeg'),
     caption: 'Recuerdo 19.2',
   },
-  { src: base + 'IMG-20260208-WA0024.jpg', caption: 'Recuerdo 20' },
+  { src: base + '', caption: 'Recuerdo 20' },
   { src: base + 'IMG-20260222-WA0038.jpg', caption: 'Recuerdo 21' },
   { src: base + 'IMG-20260222-WA0039.jpg', caption: 'Recuerdo 22' },
   { src: base + 'IMG-20260222-WA0041.jpg', caption: 'Recuerdo 23' },
