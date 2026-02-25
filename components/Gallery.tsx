@@ -41,7 +41,7 @@ const photos = [
     caption: 'Recuerdo 16',
   },
   {
-    src: base + encodeURI('WhatsApp Image 2026-02-22 at 6.26.40 PM.jpeg'),
+    src: base + encodeURI(''),
     caption: 'Recuerdo 17',
   },
   {
@@ -49,7 +49,7 @@ const photos = [
     caption: 'Recuerdo 18',
   },
   // added previously missing photos
-  { src: base + 'IMG-20260201-WA0023.jpg', caption: 'Recuerdo 19' },
+  { src: base + '', caption: 'Recuerdo 19' },
   {
     src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.39.58 PM.jpeg'),
     caption: 'Recuerdo 19.1',
