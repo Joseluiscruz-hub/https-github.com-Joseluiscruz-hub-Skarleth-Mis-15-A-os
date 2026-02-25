@@ -83,9 +83,9 @@ export const Hero: React.FC = () => {
             transition={{ duration: 1, delay: 0.9 }}
             className="relative py-4"
           >
-            <h1 className="nombre-skarleth text-7xl md:text-9xl text-white relative z-10">Skarleth</h1>
-            <h1 className="nombre-skarleth text-7xl md:text-9xl text-amber-300 absolute top-0 left-0 right-0 blur-md opacity-65 z-0 translate-y-1">
-              Skarleth
+            <h1 className="nombre-skarleth text-7xl md:text-9xl text-white relative z-10">Skarlet</h1>
+            <h1 className="nombre-skarlet text-7xl md:text-9xl text-amber-300 absolute top-0 left-0 right-0 blur-md opacity-65 z-0 translate-y-1">
+              Skarlet
             </h1>
           </motion.div>
 
