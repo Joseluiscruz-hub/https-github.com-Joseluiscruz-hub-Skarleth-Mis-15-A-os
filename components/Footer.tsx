@@ -4,7 +4,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-xv-bg text-xv-wine/60 py-10 text-center border-t border-xv-rose/20">
       <div className="container mx-auto px-4">
-        <p className="nombre-skarleth text-4xl mb-2 text-xv-rose-dark">
+        <p className="nombre-skarlet text-4xl mb-2 text-xv-rose-dark">
           Skarlet Guadalupe
         </p>
         <p className="texto-general text-xs uppercase tracking-[0.3em] mb-4 text-xv-rose-gold">
