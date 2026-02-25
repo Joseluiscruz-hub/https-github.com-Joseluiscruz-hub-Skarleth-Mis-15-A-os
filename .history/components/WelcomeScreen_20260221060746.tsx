@@ -84,7 +84,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                 </p>
 
                 <h1 className="font-cinzel text-5xl md:text-6xl text-xv-rose-dark mb-2">
-                  Skarleth
+                  Skarlet
                 </h1>
 
                 <p className="font-cinzel text-xv-rose-gold text-lg tracking-widest mb-6">
@@ -133,7 +133,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
           >
             <p className="font-mont text-xv-rose-gold/60 text-sm tracking-wider">
-              #LosXVDeSkarleth
+              #LosXVDeSkarlet
             </p>
           </motion.div>
         </motion.div>
