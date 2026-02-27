@@ -114,14 +114,11 @@ export const Parents: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ParentCard
-              title="Padrinos de Velación"
-              names={['JOSE ARTURO GONZALEZ CHAVEZ', 'ELSA GONZALEZ LOPEZ']}
+              title="Padrinos"
+              names={['Jose Arturo Gonzales Chaved', 'Elsa Gonzales Lopez']}
               delay={0.5}
               icon={<Heart size={20} />}
             />
-            <ParentCard
-              title="Padrinos de Anillo"
-              names={['JOSE ARTURO GONZALEZ CHAVEZ', 'ELSA GONZALEZ LOPEZ']}
               delay={0.6}
               icon={<Heart size={20} />}
             />
