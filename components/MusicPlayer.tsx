@@ -89,7 +89,7 @@ export const MusicPlayer: React.FC = () => {
       />
 
       <div className="bg-white/95 backdrop-blur border border-xv-rose-gold/40 text-xv-rose-dark text-[11px] font-mont py-2 px-3 rounded-full shadow-lg truncate max-w-[280px]">
-        {isPlaying ? `🎵 ${currentSong.name}` : '🎵 Música ambiental'}
+        {`🎵 ${currentSong.name}`}
       </div>
 
       <div className="flex items-center gap-2">
