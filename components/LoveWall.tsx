@@ -52,10 +52,11 @@ export const LoveWall: React.FC = () => {
     return () => unsubscribe();
   }, []);
 
-  // ...existing code...
-  // Importar el componente de verificación
-  // eslint-disable-next-line
-  const VerificarFirestore = require('./VerificarFirestore').default;
+  // Carga diferida en cliente para evitar require en bundle ESM
+  const VerificarFirestore = React.useMemo(() => {
+    if (typeof window === 'undefined') return null;
+    return React.lazy(() => import('./VerificarFirestore'));
+  }, []);
 
   return (
     <section className="love-wall-section py-20 bg-xv-bg/60">
@@ -81,7 +82,11 @@ export const LoveWall: React.FC = () => {
         )}
 
         {/* Verificación de conexión Firestore */}
-        <VerificarFirestore />
+        {VerificarFirestore && (
+          <React.Suspense fallback={null}>
+            <VerificarFirestore />
+          </React.Suspense>
+        )}
 
         {isFirebaseConfigured && messages.length === 0 && (
           <div className="text-center bg-white border border-xv-rose/20 rounded-2xl p-6 font-mont text-sm text-gray-500">
