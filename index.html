@@ -25,7 +25,7 @@
     />
     <meta
       property="og:image"
-      content="https://i.ibb.co/B2hLG2s4/Caballo-charro-crema-y-blanco-con-hacienda-mexicana-de-fondo.jpg"
+      content="https://joseluiscruz-hub.github.io/https-github.com-Joseluiscruz-hub-Skarleth-Mis-15-A-os/images/skarlet-portada.png"
     />
 
     <!-- Twitter -->
@@ -37,7 +37,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://i.ibb.co/B2hLG2s4/Caballo-charro-crema-y-blanco-con-hacienda-mexicana-de-fondo.jpg"
+      content="https://joseluiscruz-hub.github.io/https-github.com-Joseluiscruz-hub-Skarleth-Mis-15-A-os/images/skarlet-portada.png"
     />
 
     <!-- Favicon -->
@@ -50,11 +50,55 @@
     <!-- Theme Color -->
     <meta name="theme-color" content="#ea580c" />
 
-    <!-- Fonts (Boho‑Editorial combo) -->
+    <!-- ── CSS Crítico inline (evita FOUC y bloqueo de renderizado) ── -->
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background-color: #1c1008;
+        color: #f2e8d9;
+        font-family: 'Montserrat', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      /* Placeholder oscuro mientras carga el hero */
+      #hero {
+        min-height: 100vh;
+        background-color: #1c1008;
+      }
+      /* Evita destello blanco en el WelcomeScreen */
+      .fixed {
+        position: fixed;
+      }
+    </style>
+
+    <!-- ── Preconnect para reducir latencia de fuentes ── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- ── Preload imagen LCP (hero / pantalla de bienvenida) ── -->
+    <link rel="preload" as="image" href="/images/skarlet-portada.png" />
+
+    <!-- ── Google Fonts cargadas de forma asíncrona (no bloquean render) ── -->
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;600&family=Pinyon+Script&display=swap"
-      rel="stylesheet"
+      onload="this.rel = 'stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;600&family=Pinyon+Script&display=swap"
+      />
+    </noscript>
   </head>
   <body
     class="bg-xv-bg text-gray-700 antialiased overflow-x-hidden selection:bg-xv-rose selection:text-white"
