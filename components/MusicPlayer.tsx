@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Music2, Pause, Play, SkipForward, Volume2, VolumeX } from 'lucide-react';
 
+const BASE = import.meta.env.BASE_URL;
+
 const songs = [
   {
     name: 'Es Mi Niña Bonita - Vicente Fernández',
-    src: `${import.meta.env.BASE_URL}music/Es Mi Nina Bonita.mp3`,
+    src: `${BASE}music/Es Mi Nina Bonita.mp3`,
   },
   {
     name: 'Tu Sangre en Mi Cuerpo - Vicente Fernández',
-    src: `${import.meta.env.BASE_URL}music/Tu Sangre en Mi Cuerpo.mp3`,
+    src: `${BASE}music/Tu%20Sangre%20en%20Mi%20Cuerpo.mp3`,
   },
 ];
 
@@ -24,7 +26,7 @@ export const MusicPlayer: React.FC = () => {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-
+    setLoadError(false);
     audio.muted = isMuted;
     audio.load();
     if (isPlaying) {
@@ -36,7 +38,6 @@ export const MusicPlayer: React.FC = () => {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-
     audio.muted = true;
     audio
       .play()
@@ -47,13 +48,11 @@ export const MusicPlayer: React.FC = () => {
   const togglePlayback = async () => {
     const audio = audioRef.current;
     if (!audio) return;
-
     if (isPlaying) {
       audio.pause();
       setIsPlaying(false);
       return;
     }
-
     try {
       await audio.play();
       setIsPlaying(true);
@@ -72,29 +71,24 @@ export const MusicPlayer: React.FC = () => {
 
   const nextSong = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setLoadError(false);
-    const next = (currentIndex + 1) % songs.length;
-    setCurrentIndex(next);
+    setCurrentIndex((prev) => (prev + 1) % songs.length);
   };
 
   const handleEnded = () => {
-    setLoadError(false);
-    const next = (currentIndex + 1) % songs.length;
-    setCurrentIndex(next);
+    setCurrentIndex((prev) => (prev + 1) % songs.length);
   };
 
   return (
-    <div className="fixed left-4 bottom-6 z-[56] flex flex-col items-start gap-2 max-w-[260px]">
+    <div className="fixed left-4 bottom-6 z-[56] flex flex-col items-start gap-2 max-w-[280px]">
       <audio
         ref={audioRef}
         src={currentSong.src}
-        loop={songs.length === 1}
         preload="auto"
         onError={() => setLoadError(true)}
         onEnded={handleEnded}
       />
 
-      <div className="bg-white/95 backdrop-blur border border-xv-rose-gold/40 text-xv-rose-dark text-[11px] font-mont py-2 px-3 rounded-full shadow-lg truncate max-w-[260px]">
+      <div className="bg-white/95 backdrop-blur border border-xv-rose-gold/40 text-xv-rose-dark text-[11px] font-mont py-2 px-3 rounded-full shadow-lg truncate max-w-[280px]">
         {isPlaying ? `🎵 ${currentSong.name}` : '🎵 Música ambiental'}
       </div>
 
@@ -138,7 +132,7 @@ export const MusicPlayer: React.FC = () => {
 
       {loadError && (
         <p className="text-[10px] font-mont text-red-600 bg-white rounded-md px-2 py-1 border border-red-200">
-          No se encontró: <code>{currentSong.src}</code>
+          No se encontró el archivo de audio.
         </p>
       )}
     </div>
