@@ -54,10 +54,10 @@ export const Vals: React.FC = () => {
             </div>
 
             <h3 className="titulos-cursiva text-4xl text-xv-rose-dark mb-2">
-              "Mi Princesa"
+              "Tu Sangre en Mi Cuerpo"
             </h3>
             <p className="font-mont text-gray-500 text-sm italic mb-4">
-              David Bisbal
+              Vicente Fernández
             </p>
 
             <div className="h-[1px] w-24 bg-xv-rose-gold/30 mx-auto my-6"></div>
