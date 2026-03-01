@@ -460,7 +460,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
                   style={{
-                    backgroundImage: "url('/images/skarlet-portada.png')",
+                    backgroundImage: `url('${import.meta.env.BASE_URL}images/skarlet-portada.png')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}

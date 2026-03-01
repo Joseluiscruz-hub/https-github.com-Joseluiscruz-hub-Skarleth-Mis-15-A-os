@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+const heroBg = `url('${import.meta.env.BASE_URL}images/skarlet-portada.png')`;
+
 export const Hero: React.FC = () => {
   return (
     <section
@@ -10,7 +12,7 @@ export const Hero: React.FC = () => {
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat bg-fixed"
         style={{
-          backgroundImage: "url('/images/skarlet-portada.png')",
+          backgroundImage: heroBg,
           backgroundPosition: 'center 22%',
         }}
       >
