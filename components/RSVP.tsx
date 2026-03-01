@@ -26,6 +26,7 @@ export const RSVP: React.FC = () => {
   const [dietaryRestrictions, setDietaryRestrictions] = useState('');
   const [message, setMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
+  const firebaseReady = Boolean(isFirebaseConfigured && db);
 
   const handleAttendance = (value: 'yes' | 'no') => {
     setAttendance(value);
@@ -40,20 +41,24 @@ export const RSVP: React.FC = () => {
 
     setIsSending(true);
 
-    if (db && isFirebaseConfigured) {
-      try {
-        await addDoc(collection(db, 'loveWallMessages'), {
-          name,
-          attendance,
-          guests: Number(guests),
-          family,
-          message: message.trim(),
-          dietaryRestrictions: dietaryRestrictions.trim(),
-          createdAt: serverTimestamp(),
-        });
-      } catch (error) {
-        console.error('Error al guardar RSVP en Firebase:', error);
-      }
+    if (!firebaseReady || !db) {
+      console.warn('Firebase no está configurado. No se envió el RSVP.');
+      setIsSending(false);
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, 'loveWallMessages'), {
+        name,
+        attendance,
+        guests: Number(guests),
+        family,
+        message: message.trim(),
+        dietaryRestrictions: dietaryRestrictions.trim(),
+        createdAt: serverTimestamp(),
+      });
+    } catch (error) {
+      console.error('Error al guardar RSVP en Firebase:', error);
     }
 
     const phoneNumber = '525588150830';
@@ -85,6 +90,24 @@ export const RSVP: React.FC = () => {
 
     setIsSending(false);
   };
+
+  if (!firebaseReady) {
+    return (
+      <section id="rsvp" className="py-20 relative overflow-hidden bg-white">
+        <div className="container mx-auto px-4 relative z-10 max-w-2xl">
+          <div className="bg-white/80 backdrop-blur-xl border border-white shadow-[0_10px_40px_rgba(225,173,186,0.2)] rounded-3xl p-8 md:p-12 text-center">
+            <h2 className="titulos-cursiva text-4xl text-xv-rose-dark mb-3">
+              Confirmación
+            </h2>
+            <p className="font-mont text-sm text-gray-600">
+              Configura las variables <code>VITE_FIREBASE_*</code> para
+              habilitar el formulario de confirmación.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="rsvp" className="py-20 relative overflow-hidden bg-white">

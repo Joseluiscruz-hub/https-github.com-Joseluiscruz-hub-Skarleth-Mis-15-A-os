@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, Firestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -10,10 +10,19 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-export const isFirebaseConfigured = Object.values(firebaseConfig).every(
-  (value) => typeof value === 'string' && value.trim().length > 0
+export const isFirebaseConfigured = Boolean(
+  firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId
 );
 
-const app = isFirebaseConfigured ? initializeApp(firebaseConfig) : null;
+let dbInstance: Firestore | null = null;
 
-export const db = app ? getFirestore(app) : null;
+if (isFirebaseConfigured) {
+  const app = initializeApp(firebaseConfig);
+  dbInstance = getFirestore(app);
+} else {
+  console.warn(
+    'Firebase env vars missing. Revisa tus variables VITE_FIREBASE_* para habilitar Firestore.'
+  );
+}
+
+export const db = dbInstance;
