@@ -14,6 +14,8 @@ export const DressCode: React.FC = () => {
   const avoidColors = [
     { name: 'Blanco', color: '#FFFFFF' },
     { name: 'Rosa Fuerte', color: '#FF69B4' },
+    { name: 'Negro', color: '#0A0A0A' },
+    { name: 'Rojo Intenso', color: '#CC0000' },
   ];
 
   return (
