@@ -2,35 +2,37 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 
+const base = import.meta.env.BASE_URL + 'images/';
+
 const moments = [
   {
     age: '0 años',
     title: 'Mi Primer Día',
-    photo: 'https://images.unsplash.com/photo-1604917869287-3ae73c77e227?auto=format&fit=crop&w=800&q=80',
+    photo: base + 'Foto0037.jpg',
     description: 'Comenzó esta historia llena de amor y sueños.',
   },
   {
     age: '4 años',
     title: 'Infancia Feliz',
-    photo: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80',
+    photo: base + '20150218_125919-1.jpg',
     description: 'Juegos, risas y una niñez inolvidable.',
   },
   {
     age: '8 años',
     title: 'Grandes Aprendizajes',
-    photo: 'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=800&q=80',
+    photo: base + 'IMG_20200325_182037_1.jpg',
     description: 'Cada paso fue construyendo quien soy hoy.',
   },
   {
     age: '12 años',
     title: 'Nuevas Metas',
-    photo: 'https://images.unsplash.com/photo-1510936111840-65e151ad71bb?auto=format&fit=crop&w=800&q=80',
+    photo: base + 'IMG-20260222-WA0039.jpg',
     description: 'Descubriendo mis pasiones y mi esencia.',
   },
   {
     age: '15 años',
     title: 'Mi Gran Momento',
-    photo: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',
+    photo: base + 'IMG-20260222-WA0038.jpg',
     description: 'Lista para celebrar esta noche de ensueño.',
   },
 ];
