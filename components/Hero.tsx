@@ -10,8 +10,7 @@ export const Hero: React.FC = () => {
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat bg-fixed"
         style={{
-          backgroundImage:
-            "url('https://i.ibb.co/B2hLG2s4/Caballo-charro-crema-y-blanco-con-hacienda-mexicana-de-fondo.jpg')",
+          backgroundImage: "url('/images/generated-image (1).png')",
           backgroundPosition: 'center 22%',
         }}
       >
@@ -53,7 +52,12 @@ export const Hero: React.FC = () => {
         {[...Array(12)].map((_, i) => (
           <motion.span
             key={`spark-${i}`}
-            initial={{ opacity: 0, scale: 0, x: `${Math.random() * 100}vw`, y: `${Math.random() * 100}vh` }}
+            initial={{
+              opacity: 0,
+              scale: 0,
+              x: `${Math.random() * 100}vw`,
+              y: `${Math.random() * 100}vh`,
+            }}
             animate={{ opacity: [0, 0.9, 0], scale: [0, 1, 0] }}
             transition={{ duration: 2.4, repeat: Infinity, delay: i * 0.35 }}
             className="absolute w-1.5 h-1.5 bg-amber-100 rounded-full"
@@ -73,7 +77,9 @@ export const Hero: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1.3, delay: 0.7 }}
             className="texto-general text-white text-sm md:text-lg uppercase mb-2 tracking-[0.3em]"
-            style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}
+            style={{
+              textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)',
+            }}
           >
             Te invito a celebrar mis
           </motion.p>
@@ -103,7 +109,9 @@ export const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 1.2 }}
             className="titulos-cursiva text-2xl md:text-5xl text-white mt-2 tracking-[0.2em]"
-            style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}
+            style={{
+              textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)',
+            }}
           >
             XV AÑOS
           </motion.h2>
@@ -134,7 +142,12 @@ export const Hero: React.FC = () => {
         transition={{ delay: 2.2, duration: 0.9 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
       >
-        <svg className="w-8 h-8 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-8 h-8 text-white/80"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
