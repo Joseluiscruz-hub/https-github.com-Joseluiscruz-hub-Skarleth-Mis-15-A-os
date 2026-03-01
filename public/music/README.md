@@ -1,10 +1,12 @@
-Coloca aquí el archivo del vals con este nombre exacto:
+Coloca aquí los archivos de música con estos nombres exactos:
 
-- `mi-princesa-david-bisbal.mp3`
+- `es-mi-nina-bonita.mp3`
+- `tu-sangre-en-mi-cuerpo.mp3`
 
-Ruta esperada por la app:
+Rutas esperadas por la app:
 
-- `/music/mi-princesa-david-bisbal.mp3`
+- `/music/es-mi-nina-bonita.mp3`
+- `/music/tu-sangre-en-mi-cuerpo.mp3`
 
 Nota:
-- Si usas otro nombre de archivo, actualiza `components/MusicPlayer.tsx`.
+- Si usas otros nombres de archivo, actualiza `components/MusicPlayer.tsx`.
