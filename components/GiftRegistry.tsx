@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Gift, CreditCard, Copy, Check, ChevronDown, ChevronUp } from 'lucide-react';
+import {
+  Gift,
+  CreditCard,
+  Copy,
+  Check,
+  ChevronDown,
+  ChevronUp,
+} from 'lucide-react';
 
 interface GiftOptionProps {
   icon: React.ReactNode;
@@ -195,7 +202,9 @@ export const GiftRegistry: React.FC = () => {
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-xv-rose-gold/20 to-xv-pink/20 text-xv-rose-gold mb-4">
                 <Gift size={28} />
               </div>
-              <h3 className="texto-general text-lg text-xv-wine mb-2">Lista de Deseos</h3>
+              <h3 className="texto-general text-lg text-xv-wine mb-2">
+                Lista de Deseos
+              </h3>
               <p className="font-mont text-gray-500 text-sm mb-4">
                 Productos seleccionados con mucho cariño 🎀
               </p>
@@ -236,7 +245,9 @@ export const GiftRegistry: React.FC = () => {
                               key={item}
                               className="font-mont text-xs text-gray-600 flex items-start gap-1.5"
                             >
-                              <span className="mt-0.5 text-xv-rose-gold">✦</span>
+                              <span className="mt-0.5 text-xv-rose-gold">
+                                ✦
+                              </span>
                               {item}
                             </li>
                           ))}
