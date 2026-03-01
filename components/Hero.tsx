@@ -66,13 +66,14 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.3 }}
-          className="relative p-6 md:p-12 border-double border-4 border-white/30 rounded-[3rem] backdrop-blur-[2px]"
+          className="relative p-6 md:p-12 border-double border-4 border-white/30 rounded-[3rem] backdrop-blur-[2px] bg-black/30"
         >
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.3, delay: 0.7 }}
             className="texto-general text-white text-sm md:text-lg uppercase mb-2 tracking-[0.3em]"
+            style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}
           >
             Te invito a celebrar mis
           </motion.p>
@@ -83,7 +84,15 @@ export const Hero: React.FC = () => {
             transition={{ duration: 1, delay: 0.9 }}
             className="relative py-4"
           >
-            <h1 className="nombre-skarleth text-7xl md:text-9xl text-white relative z-10">Skarlet</h1>
+            <h1
+              className="nombre-skarleth text-7xl md:text-9xl text-white relative z-10"
+              style={{
+                textShadow:
+                  '0 0 30px rgba(251,191,36,0.9), 0 0 60px rgba(251,191,36,0.5), 0 3px 12px rgba(0,0,0,0.95)',
+              }}
+            >
+              Skarlet
+            </h1>
             <h1 className="nombre-skarlet text-7xl md:text-9xl text-amber-300 absolute top-0 left-0 right-0 blur-md opacity-65 z-0 translate-y-1">
               Skarlet
             </h1>
@@ -94,6 +103,7 @@ export const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 1.2 }}
             className="titulos-cursiva text-2xl md:text-5xl text-white mt-2 tracking-[0.2em]"
+            style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}
           >
             XV AÑOS
           </motion.h2>
@@ -106,7 +116,10 @@ export const Hero: React.FC = () => {
           >
             <div className="flex items-center gap-4">
               <div className="h-[1px] w-12 bg-white shadow-lg" />
-              <p className="font-mont text-white text-xl md:text-2xl tracking-widest font-semibold">
+              <p
+                className="font-mont text-white text-xl md:text-2xl tracking-widest font-semibold"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+              >
                 23 • MAYO • 2026
               </p>
               <div className="h-[1px] w-12 bg-white shadow-lg" />
