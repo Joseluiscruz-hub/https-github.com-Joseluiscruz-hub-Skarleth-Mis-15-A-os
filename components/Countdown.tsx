@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface CountdownProps {
   targetDate: string;
@@ -28,99 +29,219 @@ const getTimeLeft = (targetDate: string): TimeLeft => {
   };
 };
 
-const FlipUnit: React.FC<{ value: number; label: string }> = ({ value, label }) => {
+const Separator: React.FC = () => (
+  <motion.span
+    animate={{ opacity: [1, 0.25, 1], scale: [1, 0.9, 1] }}
+    transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
+    style={{
+      fontSize: '2.5rem',
+      color: '#FFD700',
+      fontWeight: 'bold',
+      textShadow: '0 0 15px rgba(255,215,0,0.8)',
+      marginTop: '-12px',
+      lineHeight: 1,
+      userSelect: 'none',
+    }}
+  >
+    :
+  </motion.span>
+);
+
+const GoldenCard: React.FC<{ value: number; label: string }> = ({ value, label }) => {
   const [displayValue, setDisplayValue] = useState(formatUnit(value));
   const [isFlipping, setIsFlipping] = useState(false);
 
   useEffect(() => {
-    const nextValue = formatUnit(value);
-    if (nextValue === displayValue) {
-      return;
-    }
-
+    const next = formatUnit(value);
+    if (next === displayValue) return;
     setIsFlipping(true);
-    const timer = window.setTimeout(() => {
-      setDisplayValue(nextValue);
+    const t = window.setTimeout(() => {
+      setDisplayValue(next);
       setIsFlipping(false);
     }, 320);
-
-    return () => window.clearTimeout(timer);
+    return () => window.clearTimeout(t);
   }, [value, displayValue]);
 
   return (
-    <div className="flip-unit flex flex-col items-center mx-1 md:mx-3">
-      <div className="relative w-20 h-24 md:w-28 md:h-32 perspective-[1000px]">
-        <div className="flip-card absolute inset-0 rounded-xl overflow-hidden bg-gradient-to-b from-[#3b1f14] to-[#1a0e08] shadow-[0_12px_25px_rgba(28,11,4,0.45)] border border-amber-200/20">
-          <div className="absolute inset-x-0 top-1/2 h-[1px] bg-amber-200/25 z-10" />
+    <div className="countdown-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 90 }}>
+      <motion.div
+        whileHover={{ y: -4, scale: 1.06 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+        className="flip-card"
+        style={{
+          background: 'linear-gradient(145deg, rgba(255,215,0,0.15), rgba(255,255,255,0.05))',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255,215,0,0.4)',
+          borderRadius: 16,
+          width: 90,
+          height: 90,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow:
+            '0 0 20px rgba(255,215,0,0.3), 0 0 40px rgba(255,215,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: '50%',
+            height: 1,
+            background: 'rgba(255,215,0,0.25)',
+            zIndex: 10,
+          }}
+        />
 
-          <div className="absolute top-0 left-0 right-0 h-1/2 flex items-end justify-center pb-1 text-3xl md:text-5xl font-cormorant text-amber-100 tracking-wider">
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={displayValue}
+            initial={{ opacity: 0, y: isFlipping ? -10 : 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.28 }}
+            style={{
+              fontSize: '2.8rem',
+              fontWeight: 800,
+              color: '#FFD700',
+              textShadow:
+                '0 0 10px rgba(255,215,0,0.8), 0 0 20px rgba(255,215,0,0.5), 0 0 40px rgba(255,215,0,0.3)',
+              fontFamily: "'Georgia', serif",
+              letterSpacing: 2,
+              lineHeight: 1,
+              zIndex: 20,
+              position: 'relative',
+            }}
+          >
             {displayValue}
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 h-1/2 flex items-start justify-center pt-1 text-3xl md:text-5xl font-cormorant text-amber-100 tracking-wider">
-            {displayValue}
-          </div>
+          </motion.span>
+        </AnimatePresence>
+      </motion.div>
 
-          {isFlipping && (
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-0 left-0 right-0 h-1/2 origin-bottom bg-gradient-to-b from-[#4a291b] to-[#1f1008] animate-flip-top flex items-end justify-center pb-1 text-3xl md:text-5xl font-cormorant text-amber-100">
-                {displayValue}
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-1/2 origin-top bg-gradient-to-b from-[#341c12] to-[#1b0f09] animate-flip-bottom flex items-start justify-center pt-1 text-3xl md:text-5xl font-cormorant text-amber-100">
-                {formatUnit(value)}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-      <span className="flip-label font-mont text-[11px] md:text-xs mt-3 tracking-[0.2em] text-xv-wine/80 uppercase">
+      <span
+        className="countdown-label"
+        style={{
+          marginTop: 10,
+          fontSize: '0.65rem',
+          letterSpacing: 3,
+          color: 'rgba(255,215,0,0.85)',
+          textTransform: 'uppercase',
+          fontWeight: 600,
+          textShadow: '0 0 8px rgba(255,215,0,0.5)',
+        }}
+      >
         {label}
       </span>
     </div>
   );
 };
 
+const GrandDayMessage: React.FC = () => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.85 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.8, ease: 'easeOut' }}
+    style={{ textAlign: 'center', padding: '20px 12px' }}
+  >
+    <motion.p
+      animate={{ opacity: [1, 0.5, 1] }}
+      transition={{ duration: 1, repeat: Infinity }}
+      style={{
+        fontSize: '2rem',
+        color: '#FFD700',
+        textShadow: '0 0 20px gold, 0 0 40px rgba(255,215,0,0.5)',
+        letterSpacing: 4,
+        fontFamily: "'Georgia', serif",
+        marginBottom: 8,
+      }}
+    >
+      ✨ ¡HOY ES EL GRAN DÍA! ✨
+    </motion.p>
+    <p
+      style={{
+        fontSize: '1rem',
+        color: 'rgba(255,215,0,0.85)',
+        textShadow: '0 0 10px rgba(255,215,0,0.4)',
+        letterSpacing: 2,
+      }}
+    >
+      Hoy Skarlet cumple sus XV Años 💖
+    </p>
+  </motion.div>
+);
+
 export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => getTimeLeft(targetDate));
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
+    const id = window.setInterval(() => {
       setTimeLeft(getTimeLeft(targetDate));
     }, 1000);
-
-    return () => window.clearInterval(timer);
+    return () => window.clearInterval(id);
   }, [targetDate]);
 
-  const parts = useMemo(
+  const isZero =
+    timeLeft.days <= 0 &&
+    timeLeft.hours <= 0 &&
+    timeLeft.minutes <= 0 &&
+    timeLeft.seconds <= 0;
+
+  const units = useMemo(
     () => [
-      { key: 'days', label: 'Dias', value: timeLeft.days },
-      { key: 'hours', label: 'Horas', value: timeLeft.hours },
-      { key: 'minutes', label: 'Minutos', value: timeLeft.minutes },
-      { key: 'seconds', label: 'Segundos', value: timeLeft.seconds },
+      { value: timeLeft.days, label: 'Días' },
+      { value: timeLeft.hours, label: 'Horas' },
+      { value: timeLeft.minutes, label: 'Minutos' },
+      { value: timeLeft.seconds, label: 'Segundos' },
     ],
-    [timeLeft]
+    [timeLeft],
   );
 
-  return (
-    <section className="countdown-section py-20 bg-[linear-gradient(180deg,#fdf2df_0%,#fff8ee_50%,#fdf2df_100%)] relative">
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-10">
-          <h3 className="titulos-cursiva text-5xl text-xv-rose-gold mb-2">Faltan</h3>
-          <p className="texto-general text-xv-wine text-sm tracking-[0.3em] uppercase">
-            PARA MI GRAN NOCHE
-          </p>
-        </div>
-
-        <div className="flex flex-wrap justify-center items-center gap-y-4">
-          {parts.map((part, index) => (
-            <React.Fragment key={part.key}>
-              <FlipUnit value={part.value} label={part.label} />
-              {index < parts.length - 1 && (
-                <span className="hidden md:block text-2xl text-xv-wine/70 px-2">:</span>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
+  if (isZero) {
+    return (
+      <div className="countdown-container" style={{ justifyContent: 'center', padding: 20 }}>
+        <GrandDayMessage />
       </div>
-    </section>
+    );
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <p
+        className="countdown-title"
+        style={{
+          fontSize: '0.8rem',
+          letterSpacing: 4,
+          color: 'rgba(255,215,0,0.7)',
+          textTransform: 'uppercase',
+          marginBottom: 20,
+          textShadow: '0 0 10px rgba(255,215,0,0.4)',
+        }}
+      >
+        Faltan
+      </p>
+
+      <div
+        className="countdown-container"
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 12,
+          flexWrap: 'wrap',
+          padding: 20,
+        }}
+      >
+        {units.map((unit, i) => (
+          <React.Fragment key={unit.label}>
+            <GoldenCard value={unit.value} label={unit.label} />
+            {i < units.length - 1 && <Separator />}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
   );
 };
