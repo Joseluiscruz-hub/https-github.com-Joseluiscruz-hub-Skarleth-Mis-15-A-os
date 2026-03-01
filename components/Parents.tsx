@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Crown } from 'lucide-react';
+import { Heart, Crown, Music } from 'lucide-react';
 
 interface ParentCardProps {
   title: string;
@@ -112,7 +112,7 @@ export const Parents: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <ParentCard
               title="Padrinos de Velación"
               names={['JOSE ARTURO GONZALEZ CHAVEZ', 'ELSA GONZALEZ LOPEZ']}
@@ -132,6 +132,68 @@ export const Parents: React.FC = () => {
               icon={<Heart size={20} />}
             />
           </div>
+
+          {/* Divider */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex items-center justify-center gap-4 mb-16"
+          >
+            <div className="h-[1px] w-24 bg-xv-rose-gold/40"></div>
+            <Heart
+              className="text-xv-rose-gold"
+              size={20}
+              fill="currentColor"
+            />
+            <div className="h-[1px] w-24 bg-xv-rose-gold/40"></div>
+          </motion.div>
+
+          {/* Chambelanes Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h3 className="titulos-cursiva text-4xl text-xv-rose-dark mb-2">
+              Mis Chambelanes
+            </h3>
+            <p className="font-mont text-gray-400 text-xs tracking-wider uppercase">
+              Quienes me acompañan en el vals
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center"
+          >
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-xv-rose-gold/10 text-xv-rose-gold mb-6">
+              <Music size={24} />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-3xl mx-auto">
+              {[
+                'Santiago Alexander Santillan Martinez',
+                'Gael Armanda Anguiano',
+                'Erick Mauricio Perce Ledesma',
+                'Erick Salvador Mora Rivera',
+                'Iker Dylan Ponce',
+                'Patricio Hernandez Geovonni',
+              ].map((name, index) => (
+                <p
+                  key={index}
+                  className="nombres-padrinos text-2xl md:text-3xl text-xv-rose-dark"
+                >
+                  {name}
+                </p>
+              ))}
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
