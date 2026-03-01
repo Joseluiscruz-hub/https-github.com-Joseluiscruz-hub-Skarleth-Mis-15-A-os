@@ -84,15 +84,15 @@ body {
       0deg,
       transparent,
       transparent 2px,
-      rgba(255,240,200,0.08) 2px,
-      rgba(255,240,200,0.08) 4px
+      rgba(255, 240, 200, 0.08) 2px,
+      rgba(255, 240, 200, 0.08) 4px
     ),
     repeating-linear-gradient(
       90deg,
       transparent,
       transparent 3px,
-      rgba(200,170,120,0.06) 3px,
-      rgba(200,170,120,0.06) 6px
+      rgba(200, 170, 120, 0.06) 3px,
+      rgba(200, 170, 120, 0.06) 6px
     );
   filter: contrast(1.1) sepia(0.5);
 }
