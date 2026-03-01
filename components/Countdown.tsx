@@ -31,10 +31,10 @@ const getTimeLeft = (targetDate: string): TimeLeft => {
 
 const Separator: React.FC = () => (
   <motion.span
+    className="countdown-separator"
     animate={{ opacity: [1, 0.25, 1], scale: [1, 0.9, 1] }}
     transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
     style={{
-      fontSize: '2.5rem',
       color: '#FFD700',
       fontWeight: 'bold',
       textShadow: '0 0 15px rgba(255,215,0,0.8)',
@@ -63,19 +63,17 @@ const GoldenCard: React.FC<{ value: number; label: string }> = ({ value, label }
   }, [value, displayValue]);
 
   return (
-    <div className="countdown-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 90 }}>
+    <div className="countdown-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <motion.div
         whileHover={{ y: -4, scale: 1.06 }}
         transition={{ type: 'spring', stiffness: 300, damping: 18 }}
-        className="flip-card"
+        className="flip-card countdown-card-box"
         style={{
           background: 'linear-gradient(145deg, rgba(255,215,0,0.15), rgba(255,255,255,0.05))',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
           border: '1px solid rgba(255,215,0,0.4)',
           borderRadius: 16,
-          width: 90,
-          height: 90,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -100,12 +98,12 @@ const GoldenCard: React.FC<{ value: number; label: string }> = ({ value, label }
         <AnimatePresence mode="wait">
           <motion.span
             key={displayValue}
+            className="countdown-number"
             initial={{ opacity: 0, y: isFlipping ? -10 : 0 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.28 }}
             style={{
-              fontSize: '2.8rem',
               fontWeight: 800,
               color: '#FFD700',
               textShadow:
@@ -126,7 +124,6 @@ const GoldenCard: React.FC<{ value: number; label: string }> = ({ value, label }
         className="countdown-label"
         style={{
           marginTop: 10,
-          fontSize: '0.65rem',
           letterSpacing: 3,
           color: 'rgba(255,215,0,0.85)',
           textTransform: 'uppercase',
