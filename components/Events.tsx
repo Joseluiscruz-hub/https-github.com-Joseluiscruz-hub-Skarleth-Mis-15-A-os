@@ -93,7 +93,7 @@ export const Events: React.FC = () => {
             number={1}
             icon={<Church size={36} strokeWidth={1.5} />}
             title="Ceremonia"
-            time="4:00 PM"
+            time="2:00 PM"
             location="Iglesia Del Divino Niño, Loma de la Cruz, Nicolás Romero"
             mapEmbedUrl="https://www.google.com/maps?q=Iglesia+Del+Divino+Niño+Loma+de+la+Cruz+Nicolás+Romero&output=embed"
             mapLinkUrl="https://www.google.com/maps/search/?api=1&query=Iglesia+Del+Divino+Ni%C3%B1o+Loma+de+la+Cruz+Nicol%C3%A1s+Romero"
@@ -104,7 +104,7 @@ export const Events: React.FC = () => {
             number={2}
             icon={<Music size={36} strokeWidth={1.5} />}
             title="Recepción"
-            time="7:00 PM"
+            time="3:00 PM"
             location="Salón y Albercas El Mirador, Calle 13 de Enero S/N, Nicolás Romero"
             mapEmbedUrl="https://www.google.com/maps?q=Salón+y+Albercas+El+Mirador+Calle+13+de+Enero+Nicolás+Romero&output=embed"
             mapLinkUrl="https://www.google.com/maps/search/?api=1&query=Sal%C3%B3n+y+Albercas+El+Mirador+Calle+13+de+Enero+Nicol%C3%A1s+Romero"
