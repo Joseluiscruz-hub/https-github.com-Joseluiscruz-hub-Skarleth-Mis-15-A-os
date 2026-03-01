@@ -97,7 +97,7 @@ export const Parents: React.FC = () => {
             <div className="h-[1px] w-24 bg-xv-rose-gold/40"></div>
           </motion.div>
 
-          {/* Godparents Section */}
+          {/* Godparents Section — solo Padrinos de Vestido */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -112,25 +112,15 @@ export const Parents: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <ParentCard
-              title="Padrinos de Velación"
-              names={['JOSE ARTURO GONZALEZ CHAVEZ', 'ELSA GONZALEZ LOPEZ']}
-              delay={0.5}
-              icon={<Heart size={20} />}
-            />
-            <ParentCard
-              title="Padrinos de Vestido"
-              names={['JOSE ARTURO GONZALEZ CHAVEZ', 'ELSA GONZALEZ LOPEZ']}
-              delay={0.6}
-              icon={<Heart size={20} />}
-            />
-            <ParentCard
-              title="Padrinos de Corona"
-              names={['JOSE ARTURO GONZALEZ CHAVEZ', 'ELSA GONZALEZ LOPEZ']}
-              delay={0.7}
-              icon={<Heart size={20} />}
-            />
+          <div className="flex justify-center mb-16">
+            <div className="w-full max-w-sm">
+              <ParentCard
+                title="Padrinos de Vestido"
+                names={['Jose Arturo Gonzalez Chavez', 'Elsa Gonzalez Lopez']}
+                delay={0.5}
+                icon={<Heart size={20} />}
+              />
+            </div>
           </div>
 
           {/* Divider */}
