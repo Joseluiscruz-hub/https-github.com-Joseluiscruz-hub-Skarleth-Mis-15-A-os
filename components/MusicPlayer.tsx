@@ -1,16 +1,37 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Music2, Pause, Play, Volume2, VolumeX } from 'lucide-react';
+import { Music2, Pause, Play, SkipForward, Volume2, VolumeX } from 'lucide-react';
 
-const VALS_TRACK = {
-  name: 'Mi Princesa - David Bisbal',
-  src: `${import.meta.env.BASE_URL}music/mi-princesa-david-bisbal.mp3`,
-};
+const songs = [
+  {
+    name: 'Es Mi Niña Bonita - Vicente Fernández',
+    src: `${import.meta.env.BASE_URL}music/mi-princesa-david-bisbal.mp3`,
+  },
+  {
+    name: 'Tu Sangre en Mi Cuerpo - Vicente Fernández',
+    src: `${import.meta.env.BASE_URL}music/Tu Sangre en Mi Cuerpo.mp3`,
+  },
+];
 
 export const MusicPlayer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [loadError, setLoadError] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const currentSong = songs[currentIndex];
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.muted = isMuted;
+    audio.load();
+    if (isPlaying) {
+      audio.play().catch(() => setIsPlaying(false));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -49,18 +70,32 @@ export const MusicPlayer: React.FC = () => {
     setIsMuted(nextMuted);
   };
 
+  const nextSong = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setLoadError(false);
+    const next = (currentIndex + 1) % songs.length;
+    setCurrentIndex(next);
+  };
+
+  const handleEnded = () => {
+    setLoadError(false);
+    const next = (currentIndex + 1) % songs.length;
+    setCurrentIndex(next);
+  };
+
   return (
-    <div className="fixed left-4 bottom-6 z-[56] flex flex-col items-start gap-2 max-w-[240px]">
+    <div className="fixed left-4 bottom-6 z-[56] flex flex-col items-start gap-2 max-w-[260px]">
       <audio
         ref={audioRef}
-        src={VALS_TRACK.src}
-        loop
+        src={currentSong.src}
+        loop={songs.length === 1}
         preload="auto"
         onError={() => setLoadError(true)}
+        onEnded={handleEnded}
       />
 
-      <div className="bg-white/95 backdrop-blur border border-xv-rose-gold/40 text-xv-rose-dark text-[11px] font-mont py-2 px-3 rounded-full shadow-lg">
-        {isPlaying ? `🎵 ${VALS_TRACK.name}` : '🎵 Vals ambiental'}
+      <div className="bg-white/95 backdrop-blur border border-xv-rose-gold/40 text-xv-rose-dark text-[11px] font-mont py-2 px-3 rounded-full shadow-lg truncate max-w-[260px]">
+        {isPlaying ? `🎵 ${currentSong.name}` : '🎵 Música ambiental'}
       </div>
 
       <div className="flex items-center gap-2">
@@ -74,6 +109,14 @@ export const MusicPlayer: React.FC = () => {
           ) : (
             <Play size={20} className="text-xv-rose-dark ml-0.5" />
           )}
+        </button>
+
+        <button
+          onClick={nextSong}
+          className="w-10 h-10 rounded-full bg-white border border-xv-rose-gold/60 shadow-md flex items-center justify-center hover:scale-105 transition-transform"
+          title="Siguiente canción"
+        >
+          <SkipForward size={16} className="text-xv-rose-dark" />
         </button>
 
         <button
@@ -95,7 +138,7 @@ export const MusicPlayer: React.FC = () => {
 
       {loadError && (
         <p className="text-[10px] font-mont text-red-600 bg-white rounded-md px-2 py-1 border border-red-200">
-          No se encontró el archivo del vals en <code>/public/music/mi-princesa-david-bisbal.mp3</code>.
+          No se encontró: <code>{currentSong.src}</code>
         </p>
       )}
     </div>
