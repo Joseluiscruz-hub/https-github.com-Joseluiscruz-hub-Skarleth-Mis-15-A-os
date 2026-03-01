@@ -120,7 +120,7 @@ export const Parents: React.FC = () => {
               icon={<Heart size={20} />}
             />
             <ParentCard
-              title="Padrinos de Anillo"
+              title="Padrinos de Vestido"
               names={['JOSE ARTURO GONZALEZ CHAVEZ', 'ELSA GONZALEZ LOPEZ']}
               delay={0.6}
               icon={<Heart size={20} />}
