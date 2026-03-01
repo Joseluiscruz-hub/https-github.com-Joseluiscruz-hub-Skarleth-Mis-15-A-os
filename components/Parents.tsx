@@ -171,8 +171,8 @@ export const Parents: React.FC = () => {
                 'Gael Armando Anguiano',
                 'Erick Mauricio Pérez Ledesma',
                 'Erick Salvador Mora Rivera',
-                'Iker Dylan Ponce',
-                'Patricio Hernández Geovanni',
+                'Iker Patricio Hernandez',
+                'Dylan Geovanni Ponce Ricon',
               ].map((name, index) => (
                 <p
                   key={index}
