@@ -97,7 +97,7 @@ export const Parents: React.FC = () => {
             <div className="h-[1px] w-24 bg-xv-rose-gold/40"></div>
           </motion.div>
 
-          {/* Godparents Section — solo Padrinos de Vestido */}
+          {/* Godparents Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ export const Parents: React.FC = () => {
           <div className="flex justify-center mb-16">
             <div className="w-full max-w-sm">
               <ParentCard
-                title="Padrinos de Vestido"
+                title="Padrinos"
                 names={['Jose Arturo Gonzalez Chavez', 'Elsa Gonzalez Lopez']}
                 delay={0.5}
                 icon={<Heart size={20} />}
