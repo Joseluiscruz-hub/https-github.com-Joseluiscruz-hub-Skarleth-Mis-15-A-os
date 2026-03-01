@@ -4,7 +4,7 @@ import { Music2, Pause, Play, SkipForward, Volume2, VolumeX } from 'lucide-react
 const songs = [
   {
     name: 'Es Mi Niña Bonita - Vicente Fernández',
-    src: `${import.meta.env.BASE_URL}music/mi-princesa-david-bisbal.mp3`,
+    src: `${import.meta.env.BASE_URL}music/Es Mi Nina Bonita.mp3`,
   },
   {
     name: 'Tu Sangre en Mi Cuerpo - Vicente Fernández',
