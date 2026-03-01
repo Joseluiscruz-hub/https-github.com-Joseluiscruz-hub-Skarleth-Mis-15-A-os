@@ -168,11 +168,11 @@ export const Parents: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-3xl mx-auto">
               {[
                 'Santiago Alexander Santillan Martinez',
-                'Gael Armanda Anguiano',
-                'Erick Mauricio Perce Ledesma',
+                'Gael Armando Anguiano',
+                'Erick Mauricio Pérez Ledesma',
                 'Erick Salvador Mora Rivera',
                 'Iker Dylan Ponce',
-                'Patricio Hernandez Geovonni',
+                'Patricio Hernández Geovanni',
               ].map((name, index) => (
                 <p
                   key={index}
