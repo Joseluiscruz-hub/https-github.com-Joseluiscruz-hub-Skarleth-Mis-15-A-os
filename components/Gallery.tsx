@@ -15,18 +15,18 @@ const backgroundPhoto = base + '1771824907894(1).png';
 // characters (e.g. WhatsApp snapshots) so the browser requests an
 // escaped URL. Without this some images were returning 404s in production.
 const photos = [
-  { src: base + '20131221_224857.jpg', caption: 'Recuerdo 2' },
-  { src: base + '20140517_174622.jpg', caption: 'Recuerdo 3' },
-  { src: base + 'Foto0037.jpg', caption: 'Recuerdo 10' },
+  { src: base + '20131221_224857.jpg', caption: 'Momentos mágicos' },
+  { src: base + '20140517_174622.jpg', caption: 'Sonrisas eternas' },
+  { src: base + 'Foto0037.jpg', caption: 'Mis primeros días' },
   {
     src: base + 'QVZqX3Z2eDQ4WGVYYjVBLXFJOENDNGxN.jpeg',
-    caption: 'Recuerdo 16',
+    caption: 'Creciendo feliz',
   },
   {
     src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.42.08 PM.jpeg'),
-    caption: 'Recuerdo 20',
+    caption: 'Preparándome para el gran día',
   },
-  { src: base + 'IMG-20260222-WA0038.jpg', caption: 'Recuerdo 21' },
+  { src: base + 'IMG-20260222-WA0038.jpg', caption: 'Lista para mis XV' },
   // Recuerdo 29 removed from grid; used as background instead
 ];
 

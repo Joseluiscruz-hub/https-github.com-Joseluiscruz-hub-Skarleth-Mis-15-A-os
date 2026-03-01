@@ -57,7 +57,7 @@ export const Vals: React.FC = () => {
               "Tu Sangre en Mi Cuerpo"
             </h3>
             <p className="font-mont text-gray-500 text-sm italic mb-4">
-              Vicente Fernández
+              Pepe Aguilar y Ángela Aguilar
             </p>
 
             <div className="h-[1px] w-24 bg-xv-rose-gold/30 mx-auto my-6"></div>

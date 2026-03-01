@@ -6,11 +6,11 @@ const BASE = import.meta.env.BASE_URL;
 const songs = [
   {
     name: 'Es Mi Niña Bonita - Vicente Fernández',
-    src: `${BASE}music/Es Mi Nina Bonita.mp3`,
+    src: `${BASE}music/Es mi niña bonita.mp3`,
   },
   {
-    name: 'Tu Sangre en Mi Cuerpo - Vicente Fernández',
-    src: `${BASE}music/Tu%20Sangre%20en%20Mi%20Cuerpo.mp3`,
+    name: 'Tu Sangre en Mi Cuerpo - Pepe Aguilar y Ángela Aguilar',
+    src: `${BASE}music/Tu Sangre en Mi Cuerpo.mp3`,
   },
 ];
 

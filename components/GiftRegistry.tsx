@@ -47,7 +47,7 @@ export const GiftRegistry: React.FC = () => {
   // Bank account info (replace with real data)
   const bankAccount = {
     bank: 'Banorte',
-    clabe: '0000000000000000000',
+    clabe: '072580012441402978',
     card: '4915663121198122',
     holder: 'José Luis Cruz Prieto',
   };
