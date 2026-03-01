@@ -14,52 +14,19 @@ const backgroundPhoto = base + '1771824907894(1).png';
 // encodeURI is used on filenames that contain spaces or other special
 // characters (e.g. WhatsApp snapshots) so the browser requests an
 // escaped URL. Without this some images were returning 404s in production.
-// Recuerdos 5, 10, 13, 21 y 22 fueron movidos al Timeline (Mi Historia).
 const photos = [
-  { src: base + '20131221_224851.jpg', caption: 'Recuerdo 1' },
   { src: base + '20131221_224857.jpg', caption: 'Recuerdo 2' },
   { src: base + '20140517_174622.jpg', caption: 'Recuerdo 3' },
-  { src: base + '20141101_173020.jpg', caption: 'Recuerdo 4' },
-  { src: base + '20160325_143755.jpg', caption: 'Recuerdo 6' },
-  { src: base + '20170624_125446.jpg', caption: 'Recuerdo 7' },
-  { src: base + '20171101_182213.jpg', caption: 'Recuerdo 8' },
-  { src: base + '20181223_153309.jpg', caption: 'Recuerdo 9' },
-  { src: base + 'Foto0886.jpg', caption: 'Recuerdo 11' },
-  { src: base + 'IMG_20180904_202705.jpg', caption: 'Recuerdo 12' },
-  {
-    src: base + 'QVZobTFTY19peV83R000cS1FaEpaSUVV.jpeg',
-    caption: 'Recuerdo 14',
-  },
-  {
-    src: base + 'QVZqSHhXcE02bC1xbUhyaF9NVER5MWh2.jpeg',
-    caption: 'Recuerdo 15',
-  },
+  { src: base + 'Foto0037.jpg', caption: 'Recuerdo 10' },
   {
     src: base + 'QVZqX3Z2eDQ4WGVYYjVBLXFJOENDNGxN.jpeg',
     caption: 'Recuerdo 16',
   },
   {
-    src: base + encodeURI('WhatsApp Image 2026-02-22 at 6.26.40 PM.jpeg'),
-    caption: 'Recuerdo 17',
-  },
-  {
-    src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.18.00 PM.jpeg'),
-    caption: 'Recuerdo 18',
-  },
-  {
-    src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.39.58 PM.jpeg'),
-    caption: 'Recuerdo 19',
-  },
-  {
     src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.42.08 PM.jpeg'),
     caption: 'Recuerdo 20',
   },
-  { src: base + 'IMG-20260222-WA0041.jpg', caption: 'Recuerdo 23' },
-  { src: base + 'foto1.jpg', caption: 'Recuerdo 24' },
-  { src: base + 'foto2.jpg', caption: 'Recuerdo 25' },
-  { src: base + 'foto3.jpg', caption: 'Recuerdo 26' },
-  { src: base + 'foto4.jpg', caption: 'Recuerdo 27' },
-  { src: base + '1771824780683.png', caption: 'Recuerdo 28' },
+  { src: base + 'IMG-20260222-WA0038.jpg', caption: 'Recuerdo 21' },
   // Recuerdo 29 removed from grid; used as background instead
 ];
 
