@@ -10,7 +10,7 @@ export const Hero: React.FC = () => {
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat bg-fixed"
         style={{
-          backgroundImage: "url('/images/generated-image (1).png')",
+          backgroundImage: "url('/images/skarlet-portada.png')",
           backgroundPosition: 'center 22%',
         }}
       >
