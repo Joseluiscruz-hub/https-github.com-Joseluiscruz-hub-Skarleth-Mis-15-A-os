@@ -3,6 +3,7 @@ import { Hero } from './components/Hero';
 import { Countdown } from './components/Countdown';
 import { Parents } from './components/Parents';
 import { Timeline } from './components/Timeline';
+import { MensajeSkarlet } from './components/MensajeSkarlet';
 import { Events } from './components/Events';
 import { Vals } from './components/Vals';
 import { DressCode } from './components/DressCode';
@@ -36,6 +37,7 @@ const App: React.FC = () => {
           <Countdown targetDate="2026-05-23T16:00:00" />
           <Parents />
           <Timeline />
+          <MensajeSkarlet />
           <Events />
           <Vals />
           <DressCode />
