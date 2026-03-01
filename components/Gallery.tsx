@@ -19,7 +19,6 @@ const photos = [
   { src: base + '20131221_224857.jpg', caption: 'Recuerdo 2' },
   { src: base + '20140517_174622.jpg', caption: 'Recuerdo 3' },
   { src: base + '20141101_173020.jpg', caption: 'Recuerdo 4' },
-  { src: base + '20141101_173020.jpg', caption: 'Recuerdo 4' },
   { src: base + '20150218_125919-1.jpg', caption: 'Recuerdo 5' },
   { src: base + '20160325_143755.jpg', caption: 'Recuerdo 6' },
   { src: base + '20170624_125446.jpg', caption: 'Recuerdo 7' },
@@ -42,24 +41,21 @@ const photos = [
     caption: 'Recuerdo 16',
   },
   {
-    src: base + encodeURI(''),
+    src: base + encodeURI('WhatsApp Image 2026-02-22 at 6.26.40 PM.jpeg'),
     caption: 'Recuerdo 17',
   },
   {
     src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.18.00 PM.jpeg'),
     caption: 'Recuerdo 18',
   },
-  // added previously missing photos
-  { src: base + '', caption: 'Recuerdo 19' },
   {
     src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.39.58 PM.jpeg'),
-    caption: 'Recuerdo 19.1',
+    caption: 'Recuerdo 19',
   },
   {
     src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.42.08 PM.jpeg'),
-    caption: 'Recuerdo 19.2',
+    caption: 'Recuerdo 20',
   },
-  { src: base + '', caption: 'Recuerdo 20' },
   { src: base + 'IMG-20260222-WA0038.jpg', caption: 'Recuerdo 21' },
   { src: base + 'IMG-20260222-WA0039.jpg', caption: 'Recuerdo 22' },
   { src: base + 'IMG-20260222-WA0041.jpg', caption: 'Recuerdo 23' },
