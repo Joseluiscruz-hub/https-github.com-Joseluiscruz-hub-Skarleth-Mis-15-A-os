@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Gift,
-  ChevronDown,
-  ChevronUp,
-} from 'lucide-react';
+import { Gift, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface GiftOptionProps {
   icon: React.ReactNode;
