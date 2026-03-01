@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Gift,
-  CreditCard,
-  Copy,
-  Check,
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
@@ -86,22 +83,7 @@ const WISH_CATEGORIES = [
 ];
 
 export const GiftRegistry: React.FC = () => {
-  const [copied, setCopied] = useState<string | null>(null);
   const [wishOpen, setWishOpen] = useState(false);
-
-  const copyToClipboard = (text: string, type: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(type);
-    setTimeout(() => setCopied(null), 2000);
-  };
-
-  // Bank account info (replace with real data)
-  const bankAccount = {
-    bank: 'Banorte',
-    clabe: '072580012441402978',
-    card: '4915663121198122',
-    holder: 'José Luis Cruz Prieto',
-  };
 
   return (
     <section className="py-20 bg-xv-bg relative overflow-hidden">
@@ -130,7 +112,7 @@ export const GiftRegistry: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {/* Lluvia de Sobres */}
           <GiftOption
             icon={<Gift size={28} />}
@@ -141,52 +123,6 @@ export const GiftRegistry: React.FC = () => {
               <span className="inline-block font-mont text-xs text-xv-rose-gold bg-xv-rose-gold/10 px-4 py-2 rounded-full">
                 💌 En la fiesta
               </span>
-            }
-          />
-
-          {/* Bank Transfer */}
-          <GiftOption
-            icon={<CreditCard size={28} />}
-            title="Transferencia"
-            description={`${bankAccount.bank} - ${bankAccount.holder}`}
-            delay={0.3}
-            action={
-              <div className="space-y-2">
-                <button
-                  onClick={() => copyToClipboard(bankAccount.clabe, 'clabe')}
-                  className="w-full flex items-center justify-between bg-xv-bg hover:bg-xv-pink/20 px-4 py-2 rounded-lg transition-colors group"
-                >
-                  <span className="font-mono text-xs text-gray-600">
-                    CLABE: {bankAccount.clabe.slice(0, 8)}...
-                  </span>
-                  {copied === 'clabe' ? (
-                    <Check size={16} className="text-green-500" />
-                  ) : (
-                    <Copy
-                      size={16}
-                      className="text-gray-400 group-hover:text-xv-rose-gold"
-                    />
-                  )}
-                </button>
-                <button
-                  onClick={() =>
-                    copyToClipboard(bankAccount.card.replace(/\s/g, ''), 'card')
-                  }
-                  className="w-full flex items-center justify-between bg-xv-bg hover:bg-xv-pink/20 px-4 py-2 rounded-lg transition-colors group"
-                >
-                  <span className="font-mono text-xs text-gray-600">
-                    Tarjeta: {bankAccount.card}
-                  </span>
-                  {copied === 'card' ? (
-                    <Check size={16} className="text-green-500" />
-                  ) : (
-                    <Copy
-                      size={16}
-                      className="text-gray-400 group-hover:text-xv-rose-gold"
-                    />
-                  )}
-                </button>
-              </div>
             }
           />
 
