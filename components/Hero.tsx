@@ -28,22 +28,21 @@ export const Hero: React.FC = () => {
     >
       {/* ── Imagen de fondo ── */}
       <div
-        className="absolute inset-0 z-0 bg-cover bg-no-repeat scale-[1.01]"
+        className="hero-bg absolute inset-0 z-0 bg-cover bg-no-repeat scale-[1.01]"
         style={{
           backgroundImage: `url('${heroImage}')`,
-          backgroundPosition: 'center top',
         }}
       />
 
-      <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_72%_52%,transparent_0%,rgba(10,4,4,0.12)_33%,rgba(10,4,4,0.75)_100%)] pointer-events-none" />
+      <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_70%_56%,transparent_0%,rgba(10,4,4,0.04)_44%,rgba(10,4,4,0.34)_100%)] pointer-events-none" />
 
       {/* ── Gradiente superior (protege legibilidad del título) ── */}
       <div
         className="absolute top-0 left-0 w-full pointer-events-none z-[1]"
         style={{
-          height: '42vh',
+          height: '30vh',
           background:
-            'linear-gradient(to bottom, rgba(18,5,7,0.82) 0%, rgba(35,10,12,0.44) 58%, transparent 100%)',
+            'linear-gradient(to bottom, rgba(18,5,7,0.52) 0%, rgba(35,10,12,0.18) 62%, transparent 100%)',
         }}
       />
 
@@ -51,9 +50,9 @@ export const Hero: React.FC = () => {
       <div
         className="absolute bottom-0 left-0 w-full pointer-events-none z-[1]"
         style={{
-          height: '34vh',
+          height: '32vh',
           background:
-            'linear-gradient(to top, rgba(12,4,4,0.78) 0%, rgba(12,4,4,0.28) 62%, transparent 100%)',
+            'linear-gradient(to top, rgba(12,4,4,0.68) 0%, rgba(12,4,4,0.18) 64%, transparent 100%)',
         }}
       />
 
@@ -123,7 +122,7 @@ export const Hero: React.FC = () => {
           style={{
             fontSize: 'clamp(0.7rem, 2.5vw, 1.05rem)',
             textShadow:
-              '2px 4px 10px rgba(0,0,0,0.85), 0 0 4px rgba(0,0,0,0.7)',
+              '1px 3px 8px rgba(0,0,0,0.68), 0 0 4px rgba(0,0,0,0.48)',
           }}
         >
           Con alegría te invito a celebrar
@@ -139,9 +138,9 @@ export const Hero: React.FC = () => {
           <h1
             className="nombre-skarleth relative z-10 leading-none text-amber-300"
             style={{
-              fontSize: 'clamp(3.8rem, 14vw, 7rem)',
+              fontSize: 'clamp(3rem, 11vw, 5.6rem)',
               textShadow:
-                '3px 5px 14px rgba(0,0,0,0.95), 0 0 28px rgba(212,175,55,0.75), 0 0 55px rgba(212,175,55,0.35)',
+                '2px 4px 12px rgba(0,0,0,0.72), 0 0 22px rgba(212,175,55,0.55), 0 0 42px rgba(212,175,55,0.22)',
             }}
           >
             Skarlet
@@ -149,8 +148,8 @@ export const Hero: React.FC = () => {
           {/* Capa glow desenfocada — decorativa, detrás del texto */}
           <h1
             aria-hidden="true"
-            className="nombre-skarleth absolute top-0 left-0 right-0 text-center leading-none text-amber-300 blur-md opacity-50 select-none pointer-events-none translate-y-1"
-            style={{ fontSize: 'clamp(3.8rem, 14vw, 7rem)' }}
+            className="nombre-skarleth absolute top-0 left-0 right-0 text-center leading-none text-amber-300 blur-md opacity-30 select-none pointer-events-none translate-y-1"
+            style={{ fontSize: 'clamp(3rem, 11vw, 5.6rem)' }}
           >
             Skarlet
           </h1>
@@ -164,7 +163,7 @@ export const Hero: React.FC = () => {
           style={{
             fontSize: 'clamp(1.3rem, 5vw, 2.2rem)',
             textShadow:
-              '2px 4px 10px rgba(0,0,0,0.85), 0 0 4px rgba(0,0,0,0.7)',
+              '1px 3px 8px rgba(0,0,0,0.62), 0 0 4px rgba(0,0,0,0.44)',
           }}
         >
           {invitation.headline}

@@ -188,6 +188,10 @@ section.hero {
     #160b10 100%
   );
 }
+.hero-bg {
+  background-position: center top;
+  filter: brightness(1.12) saturate(1.18) contrast(1.02);
+}
 
 /* ── Cards ── */
 section [class*='bg-white'],
@@ -280,6 +284,9 @@ a:hover {
 @media (max-width: 640px) {
   .nombre-skarleth {
     letter-spacing: 0.09em;
+  }
+  .hero-bg {
+    background-position: center center;
   }
   .hero-action {
     min-width: 8.6rem;
