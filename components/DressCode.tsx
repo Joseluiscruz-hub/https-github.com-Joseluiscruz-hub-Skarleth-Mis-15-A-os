@@ -111,11 +111,11 @@ export const DressCode: React.FC = () => {
               </span>
               <span className="text-xv-rose-gold">•</span>
               <span className="flex items-center gap-2">
-                <span className="text-lg">👔</span> Caballeros: Ropa Formal
+                <span className="text-lg">👔</span> Caballeros: Traje
               </span>
               <span className="text-xv-rose-gold">•</span>
               <span className="flex items-center gap-2">
-                <span className="text-lg">👗</span> Damas: Ropa Formal
+                <span className="text-lg">👗</span> Damas: Vestido largo
               </span>
             </div>
           </motion.div>
