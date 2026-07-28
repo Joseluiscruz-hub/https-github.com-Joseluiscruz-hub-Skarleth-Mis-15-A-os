@@ -5,12 +5,6 @@ import { Heart } from 'lucide-react';
 export const MensajeSkarlet: React.FC = () => {
   return (
     <section className="relative py-20 bg-gradient-to-b from-white via-xv-bg/60 to-white overflow-hidden">
-      {/* Fondo decorativo sutil */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 left-1/4 w-72 h-72 bg-xv-rose-gold/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-1/4 w-72 h-72 bg-xv-pink/10 rounded-full blur-3xl" />
-      </div>
-
       <div className="container mx-auto px-4 relative z-10 max-w-2xl">
 
         {/* Ornamento superior */}

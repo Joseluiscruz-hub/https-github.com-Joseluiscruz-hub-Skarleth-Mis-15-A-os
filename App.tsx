@@ -17,6 +17,7 @@ import { PapelPicado } from './components/PapelPicado';
 import { WelcomeScreen } from './components/WelcomeScreen';
 import { FloatingRSVPButton } from './components/FloatingRSVPButton';
 import { LoveWall } from './components/LoveWall';
+import { invitation } from './lib/invitation';
 
 const App: React.FC = () => {
   const [showWelcome, setShowWelcome] = useState(true);
@@ -34,7 +35,7 @@ const App: React.FC = () => {
 
         <main className="relative z-10">
           <Hero />
-          <Countdown targetDate="2026-05-23T16:00:00" />
+          <Countdown targetDate={invitation.eventDateIso} />
           <Parents />
           <Timeline />
           <MensajeSkarlet />

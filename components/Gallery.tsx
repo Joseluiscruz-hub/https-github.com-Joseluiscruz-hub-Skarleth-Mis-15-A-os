@@ -15,9 +15,16 @@ const backgroundPhoto = base + '1771824907894(1).png';
 // characters (e.g. WhatsApp snapshots) so the browser requests an
 // escaped URL. Without this some images were returning 404s in production.
 const photos = [
+  { src: base + 'Foto0037.jpg', caption: 'Mis primeros días' },
   { src: base + '20131221_224857.jpg', caption: 'Momentos mágicos' },
   { src: base + '20140517_174622.jpg', caption: 'Sonrisas eternas' },
-  { src: base + 'Foto0037.jpg', caption: 'Mis primeros días' },
+  { src: base + '20141101_173020.jpg', caption: 'Pequeñas aventuras' },
+  { src: base + '20150218_125919-1.jpg', caption: 'Infancia feliz' },
+  { src: base + '20160325_143755.jpg', caption: 'Días de alegría' },
+  { src: base + '20170624_125446.jpg', caption: 'Creciendo con amor' },
+  { src: base + '20171101_182213.jpg', caption: 'Recuerdos en familia' },
+  { src: base + 'IMG_20180904_202705.jpg', caption: 'Momentos únicos' },
+  { src: base + 'IMG_20200325_182037_1.jpg', caption: 'Grandes sonrisas' },
   {
     src: base + 'QVZqX3Z2eDQ4WGVYYjVBLXFJOENDNGxN.jpeg',
     caption: 'Creciendo feliz',
@@ -27,7 +34,8 @@ const photos = [
     caption: 'Preparándome para el gran día',
   },
   { src: base + 'IMG-20260222-WA0038.jpg', caption: 'Lista para mis XV' },
-  // Recuerdo 29 removed from grid; used as background instead
+  { src: base + 'IMG-20260222-WA0039.jpg', caption: 'Mi estilo' },
+  { src: base + 'IMG-20260222-WA0041.jpg', caption: 'Ensueño mexicano' },
 ];
 
 export const Gallery: React.FC = () => {
@@ -87,8 +95,9 @@ export const Gallery: React.FC = () => {
         backgroundImage: `url(${backgroundPhoto})`,
       }}
     >
+      <div className="absolute inset-0 bg-xv-bg/80 backdrop-blur-[1px]" />
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 relative z-10">
           <h2 className="titulos-cursiva text-5xl md:text-6xl text-xv-rose-dark mb-2">
             Galería
           </h2>
@@ -98,7 +107,7 @@ export const Gallery: React.FC = () => {
           </p>
         </div>
 
-        <div className="columns-1 sm:columns-2 md:columns-3 gap-4 [column-fill:_balance]">
+        <div className="relative z-10 columns-1 sm:columns-2 md:columns-3 gap-4 [column-fill:_balance]">
           {photos.map((photo, index) => (
             <motion.button
               key={photo.src}
@@ -109,6 +118,7 @@ export const Gallery: React.FC = () => {
               transition={{ delay: index * 0.06 }}
               onClick={() => openLightbox(index)}
               className="group relative mb-4 w-full overflow-hidden rounded-2xl border-4 border-white shadow-lg break-inside-avoid"
+              aria-label={`Abrir foto: ${photo.caption}`}
             >
               <img
                 src={photo.src}

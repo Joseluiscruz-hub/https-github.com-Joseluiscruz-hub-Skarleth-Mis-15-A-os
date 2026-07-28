@@ -79,7 +79,7 @@ export const MusicPlayer: React.FC = () => {
   };
 
   return (
-    <div className="fixed left-4 bottom-6 z-[56] flex flex-col items-start gap-2 max-w-[280px]">
+    <div className="fixed left-3 bottom-4 md:left-4 md:bottom-6 z-[56] flex flex-col items-start gap-2 max-w-[220px] md:max-w-[280px]">
       <audio
         ref={audioRef}
         src={currentSong.src}
@@ -88,14 +88,14 @@ export const MusicPlayer: React.FC = () => {
         onEnded={handleEnded}
       />
 
-      <div className="bg-white/95 backdrop-blur border border-xv-rose-gold/40 text-xv-rose-dark text-[11px] font-mont py-2 px-3 rounded-full shadow-lg truncate max-w-[280px]">
+      <div className="bg-white/95 backdrop-blur border border-xv-rose-gold/40 text-xv-rose-dark text-[10px] md:text-[11px] font-mont py-2 px-3 rounded-full shadow-lg truncate max-w-[220px] md:max-w-[280px]">
         {`🎵 ${currentSong.name}`}
       </div>
 
       <div className="flex items-center gap-2">
         <button
           onClick={togglePlayback}
-          className="w-12 h-12 rounded-full bg-white border-2 border-xv-rose-gold shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
+          className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white border-2 border-xv-rose-gold shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
           title={isPlaying ? 'Pausar' : 'Reproducir'}
         >
           {isPlaying ? (
@@ -107,7 +107,7 @@ export const MusicPlayer: React.FC = () => {
 
         <button
           onClick={nextSong}
-          className="w-10 h-10 rounded-full bg-white border border-xv-rose-gold/60 shadow-md flex items-center justify-center hover:scale-105 transition-transform"
+          className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white border border-xv-rose-gold/60 shadow-md flex items-center justify-center hover:scale-105 transition-transform"
           title="Siguiente canción"
         >
           <SkipForward size={16} className="text-xv-rose-dark" />
@@ -115,7 +115,7 @@ export const MusicPlayer: React.FC = () => {
 
         <button
           onClick={toggleMute}
-          className="w-10 h-10 rounded-full bg-white border border-xv-rose-gold/60 shadow-md flex items-center justify-center hover:scale-105 transition-transform"
+          className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white border border-xv-rose-gold/60 shadow-md flex items-center justify-center hover:scale-105 transition-transform"
           title={isMuted ? 'Activar sonido' : 'Silenciar'}
         >
           {isMuted ? (
@@ -125,7 +125,7 @@ export const MusicPlayer: React.FC = () => {
           )}
         </button>
 
-        <div className="w-10 h-10 rounded-full bg-xv-rose-dark text-white flex items-center justify-center shadow-md">
+        <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-xv-rose-dark text-white flex items-center justify-center shadow-md">
           <Music2 size={16} />
         </div>
       </div>

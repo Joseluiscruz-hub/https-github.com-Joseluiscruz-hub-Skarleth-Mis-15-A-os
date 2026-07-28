@@ -1,7 +1,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { CalendarPlus, ChevronDown, MapPin, Send } from 'lucide-react';
+import { googleCalendarUrl, heroImage, invitation } from '../lib/invitation';
 
-const heroBg = `url('${import.meta.env.BASE_URL}images/skarlet-portada.png')`;
+const petals = Array.from({ length: 16 }, (_, index) => ({
+  id: index,
+  startX: (index * 23) % 100,
+  endX: ((index * 31) % 100) + ((index % 3) - 1) * 18,
+  rotate: 160 + index * 19,
+  duration: 13 + (index % 5) * 1.7,
+  delay: (index % 8) * 0.55,
+  color: index % 2 === 0 ? '#f59e0b' : '#e11d48',
+}));
+
+const sparkles = Array.from({ length: 10 }, (_, index) => ({
+  id: index,
+  x: (index * 29) % 100,
+  y: (index * 47) % 100,
+  delay: index * 0.35,
+}));
 
 export const Hero: React.FC = () => {
   return (
@@ -11,60 +28,62 @@ export const Hero: React.FC = () => {
     >
       {/* ── Imagen de fondo ── */}
       <div
-        className="absolute inset-0 z-0 bg-cover bg-no-repeat"
+        className="absolute inset-0 z-0 bg-cover bg-no-repeat scale-[1.01]"
         style={{
-          backgroundImage: heroBg,
+          backgroundImage: `url('${heroImage}')`,
           backgroundPosition: 'center top',
         }}
       />
 
-      {/* ── Gradiente SOLO en la parte superior (protege legibilidad del título) ── */}
+      <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_72%_52%,transparent_0%,rgba(10,4,4,0.12)_33%,rgba(10,4,4,0.75)_100%)] pointer-events-none" />
+
+      {/* ── Gradiente superior (protege legibilidad del título) ── */}
       <div
-        className="absolute top-0 left-0 w-full pointer-events-none z-1"
+        className="absolute top-0 left-0 w-full pointer-events-none z-[1]"
         style={{
-          height: '40vh',
+          height: '42vh',
           background:
-            'linear-gradient(to bottom, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.35) 55%, transparent 100%)',
+            'linear-gradient(to bottom, rgba(18,5,7,0.82) 0%, rgba(35,10,12,0.44) 58%, transparent 100%)',
         }}
       />
 
       {/* ── Gradiente inferior (protege legibilidad de la fecha) ── */}
       <div
-        className="absolute bottom-0 left-0 w-full pointer-events-none z-1"
+        className="absolute bottom-0 left-0 w-full pointer-events-none z-[1]"
         style={{
-          height: '28vh',
+          height: '34vh',
           background:
-            'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)',
+            'linear-gradient(to top, rgba(12,4,4,0.78) 0%, rgba(12,4,4,0.28) 62%, transparent 100%)',
         }}
       />
 
       {/* ── Pétalos animados ── */}
       <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-        {[...Array(18)].map((_, i) => (
+        {petals.map((petal) => (
           <motion.span
-            key={`petal-${i}`}
+            key={`petal-${petal.id}`}
             initial={{
               y: -40,
-              x: `${Math.random() * 100}vw`,
+              x: `${petal.startX}vw`,
               opacity: 0,
-              rotate: Math.random() * 35,
+              rotate: 0,
             }}
             animate={{
               y: '115vh',
-              x: `calc(${Math.random() * 100}vw + ${Math.random() * 120 - 60}px)`,
-              rotate: 300,
-              opacity: [0, 0.7, 0],
+              x: `${petal.endX}vw`,
+              rotate: petal.rotate,
+              opacity: [0, 0.62, 0],
             }}
             transition={{
-              duration: Math.random() * 8 + 13,
+              duration: petal.duration,
               repeat: Infinity,
               ease: 'linear',
-              delay: Math.random() * 5,
+              delay: petal.delay,
             }}
             className="absolute w-3 h-4 rounded-[55%_45%_50%_50%] blur-[0.4px]"
             style={{
-              background: i % 2 === 0 ? '#f59e0b' : '#fb923c',
-              boxShadow: '0 0 10px rgba(245, 158, 11, 0.35)',
+              background: petal.color,
+              boxShadow: '0 0 10px rgba(245, 158, 11, 0.28)',
             }}
           />
         ))}
@@ -72,17 +91,17 @@ export const Hero: React.FC = () => {
 
       {/* ── Destellos ── */}
       <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-        {[...Array(12)].map((_, i) => (
+        {sparkles.map((sparkle) => (
           <motion.span
-            key={`spark-${i}`}
+            key={`spark-${sparkle.id}`}
             initial={{
               opacity: 0,
               scale: 0,
-              x: `${Math.random() * 100}vw`,
-              y: `${Math.random() * 100}vh`,
+              x: `${sparkle.x}vw`,
+              y: `${sparkle.y}vh`,
             }}
             animate={{ opacity: [0, 0.9, 0], scale: [0, 1, 0] }}
-            transition={{ duration: 2.4, repeat: Infinity, delay: i * 0.35 }}
+            transition={{ duration: 2.4, repeat: Infinity, delay: sparkle.delay }}
             className="absolute w-1.5 h-1.5 bg-amber-100 rounded-full"
           />
         ))}
@@ -107,7 +126,7 @@ export const Hero: React.FC = () => {
               '2px 4px 10px rgba(0,0,0,0.85), 0 0 4px rgba(0,0,0,0.7)',
           }}
         >
-          Te invito a celebrar mis
+          Con alegría te invito a celebrar
         </motion.p>
 
         {/* Nombre con efecto glow — sin backdrop-blur que tape la imagen */}
@@ -130,7 +149,7 @@ export const Hero: React.FC = () => {
           {/* Capa glow desenfocada — decorativa, detrás del texto */}
           <h1
             aria-hidden="true"
-            className="nombre-skarlet absolute top-0 left-0 right-0 text-center leading-none text-amber-300 blur-md opacity-50 select-none pointer-events-none translate-y-1"
+            className="nombre-skarleth absolute top-0 left-0 right-0 text-center leading-none text-amber-300 blur-md opacity-50 select-none pointer-events-none translate-y-1"
             style={{ fontSize: 'clamp(3.8rem, 14vw, 7rem)' }}
           >
             Skarlet
@@ -148,7 +167,7 @@ export const Hero: React.FC = () => {
               '2px 4px 10px rgba(0,0,0,0.85), 0 0 4px rgba(0,0,0,0.7)',
           }}
         >
-          XV AÑOS
+          {invitation.headline}
         </motion.h2>
       </header>
 
@@ -161,7 +180,7 @@ export const Hero: React.FC = () => {
       {/* ════════════════════════════════════════════════
           SECCIÓN INFERIOR — fecha + flecha scroll
           ════════════════════════════════════════════════ */}
-      <footer className="relative z-20 text-center pb-8 px-6 flex flex-col items-center gap-4">
+      <footer className="relative z-20 text-center pb-36 md:pb-8 px-6 flex flex-col items-center gap-4">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -176,32 +195,54 @@ export const Hero: React.FC = () => {
               textShadow: '2px 4px 10px rgba(0,0,0,0.85)',
             }}
           >
-            23 • MAYO • 2026
+            {invitation.dateShort.toUpperCase()}
           </p>
           <div className="h-px w-10 md:w-14 bg-white/80 shadow" />
         </motion.div>
 
         <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.85, duration: 0.75 }}
+          className="flex flex-wrap items-center justify-center gap-2"
+        >
+          <a
+            href="#rsvp"
+            className="hero-action"
+          >
+            <Send size={16} />
+            Confirmar
+          </a>
+          <a
+            href={invitation.reception.mapLinkUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="hero-action hero-action-secondary"
+          >
+            <MapPin size={16} />
+            Ubicación
+          </a>
+          <a
+            href={googleCalendarUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="hero-action hero-action-secondary"
+          >
+            <CalendarPlus size={16} />
+            Calendario
+          </a>
+        </motion.div>
+
+        <motion.a
+          href="#countdown"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.2, duration: 0.9 }}
-          className="animate-bounce"
+          className="animate-bounce text-white/80 hover:text-white"
+          aria-label="Bajar a la invitación"
         >
-          <svg
-            className="w-7 h-7 text-white/80"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1.5}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </motion.div>
+          <ChevronDown size={30} strokeWidth={1.5} />
+        </motion.a>
       </footer>
     </section>
   );

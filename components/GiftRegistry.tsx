@@ -83,10 +83,6 @@ export const GiftRegistry: React.FC = () => {
 
   return (
     <section className="py-20 bg-xv-bg relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-10 right-10 w-32 h-32 bg-xv-pink/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-10 left-10 w-32 h-32 bg-xv-rose/20 rounded-full blur-3xl"></div>
-
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

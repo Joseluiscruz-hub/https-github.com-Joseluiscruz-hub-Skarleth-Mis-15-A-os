@@ -41,7 +41,7 @@ export const PapelPicado: React.FC = () => {
   ];
 
   return (
-    <div className="fixed top-0 left-0 w-full z-40 pointer-events-none flex justify-between px-2 -mt-2 overflow-hidden">
+    <div className="absolute top-0 left-0 w-full z-40 pointer-events-none flex justify-between px-2 -mt-2 overflow-hidden">
        {/* Use a simple repetition logic for screen width coverage */}
        {[...flags, ...flags].map((flag, idx) => (
          <Flag key={idx} color={flag.color} delay={flag.delay} />

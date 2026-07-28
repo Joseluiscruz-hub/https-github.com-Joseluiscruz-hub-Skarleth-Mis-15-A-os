@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CalendarHeart } from 'lucide-react';
+import { invitation } from '../lib/invitation';
 
 interface CountdownProps {
   targetDate: string;
@@ -29,72 +31,54 @@ const getTimeLeft = (targetDate: string): TimeLeft => {
   };
 };
 
+const getEventState = (targetDate: string) => {
+  const now = Date.now();
+  const start = +new Date(targetDate);
+  const celebrationWindowMs = 18 * 60 * 60 * 1000;
+
+  if (now < start) return 'upcoming';
+  if (now <= start + celebrationWindowMs) return 'today';
+  return 'past';
+};
+
 const Separator: React.FC = () => (
   <motion.span
     className="countdown-separator"
-    animate={{ opacity: [1, 0.25, 1], scale: [1, 0.9, 1] }}
+    animate={{ opacity: [1, 0.35, 1], scale: [1, 0.92, 1] }}
     transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
-    style={{
-      color: '#FFD700',
-      fontWeight: 'bold',
-      textShadow: '0 0 15px rgba(255,215,0,0.8)',
-      marginTop: '-12px',
-      lineHeight: 1,
-      userSelect: 'none',
-    }}
   >
     :
   </motion.span>
 );
 
-const GoldenCard: React.FC<{ value: number; label: string }> = ({ value, label }) => {
+const GoldenCard: React.FC<{ value: number; label: string }> = ({
+  value,
+  label,
+}) => {
   const [displayValue, setDisplayValue] = useState(formatUnit(value));
   const [isFlipping, setIsFlipping] = useState(false);
 
   useEffect(() => {
     const next = formatUnit(value);
     if (next === displayValue) return;
+
     setIsFlipping(true);
-    const t = window.setTimeout(() => {
+    const timer = window.setTimeout(() => {
       setDisplayValue(next);
       setIsFlipping(false);
     }, 320);
-    return () => window.clearTimeout(t);
-  }, [value, displayValue]);
+
+    return () => window.clearTimeout(timer);
+  }, [displayValue, value]);
 
   return (
-    <div className="countdown-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className="countdown-item">
       <motion.div
-        whileHover={{ y: -4, scale: 1.06 }}
+        whileHover={{ y: -4, scale: 1.04 }}
         transition={{ type: 'spring', stiffness: 300, damping: 18 }}
         className="flip-card countdown-card-box"
-        style={{
-          background: 'linear-gradient(145deg, rgba(255,215,0,0.15), rgba(255,255,255,0.05))',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255,215,0,0.4)',
-          borderRadius: 16,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow:
-            '0 0 20px rgba(255,215,0,0.3), 0 0 40px rgba(255,215,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2)',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            top: '50%',
-            height: 1,
-            background: 'rgba(255,215,0,0.25)',
-            zIndex: 10,
-          }}
-        />
-
+        <span className="countdown-card-line" />
         <AnimatePresence mode="wait">
           <motion.span
             key={displayValue}
@@ -103,84 +87,58 @@ const GoldenCard: React.FC<{ value: number; label: string }> = ({ value, label }
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.28 }}
-            style={{
-              fontWeight: 800,
-              color: '#FFD700',
-              textShadow:
-                '0 0 10px rgba(255,215,0,0.8), 0 0 20px rgba(255,215,0,0.5), 0 0 40px rgba(255,215,0,0.3)',
-              fontFamily: "'Georgia', serif",
-              letterSpacing: 2,
-              lineHeight: 1,
-              zIndex: 20,
-              position: 'relative',
-            }}
           >
             {displayValue}
           </motion.span>
         </AnimatePresence>
       </motion.div>
-
-      <span
-        className="countdown-label"
-        style={{
-          marginTop: 10,
-          letterSpacing: 3,
-          color: 'rgba(255,215,0,0.85)',
-          textTransform: 'uppercase',
-          fontWeight: 600,
-          textShadow: '0 0 8px rgba(255,215,0,0.5)',
-        }}
-      >
-        {label}
-      </span>
+      <span className="countdown-label">{label}</span>
     </div>
   );
 };
 
-const GrandDayMessage: React.FC = () => (
+const EventMessage: React.FC<{ state: 'today' | 'past' }> = ({ state }) => (
   <motion.div
-    initial={{ opacity: 0, scale: 0.85 }}
+    initial={{ opacity: 0, scale: 0.92 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.8, ease: 'easeOut' }}
-    style={{ textAlign: 'center', padding: '20px 12px' }}
+    className="text-center px-4 py-5"
   >
-    <motion.p
-      animate={{ opacity: [1, 0.5, 1] }}
-      transition={{ duration: 1, repeat: Infinity }}
-      style={{
-        fontSize: '2rem',
-        color: '#FFD700',
-        textShadow: '0 0 20px gold, 0 0 40px rgba(255,215,0,0.5)',
-        letterSpacing: 4,
-        fontFamily: "'Georgia', serif",
-        marginBottom: 8,
-      }}
-    >
-      ✨ ¡HOY ES EL GRAN DÍA! ✨
-    </motion.p>
-    <p
-      style={{
-        fontSize: '1rem',
-        color: 'rgba(255,215,0,0.85)',
-        textShadow: '0 0 10px rgba(255,215,0,0.4)',
-        letterSpacing: 2,
-      }}
-    >
-      Hoy Skarlet cumple sus XV Años 💖
+    {state === 'today' ? (
+      <motion.p
+        animate={{ opacity: [1, 0.55, 1] }}
+        transition={{ duration: 1, repeat: Infinity }}
+        className="font-cormorant text-4xl md:text-5xl text-xv-gold"
+      >
+        Hoy es el gran día
+      </motion.p>
+    ) : (
+      <p className="font-cormorant text-4xl md:text-5xl text-xv-gold">
+        Gracias por acompañarme
+      </p>
+    )}
+    <p className="mt-3 font-mont text-sm md:text-base uppercase tracking-[0.2em] text-xv-muted">
+      {state === 'today'
+        ? 'Hoy Skarlet celebra sus XV Años'
+        : `${invitation.dateDisplay} quedó guardado como un recuerdo especial.`}
     </p>
   </motion.div>
 );
 
 export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => getTimeLeft(targetDate));
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(() =>
+    getTimeLeft(targetDate),
+  );
 
   useEffect(() => {
     const id = window.setInterval(() => {
       setTimeLeft(getTimeLeft(targetDate));
     }, 1000);
+
     return () => window.clearInterval(id);
   }, [targetDate]);
 
+  const eventState = getEventState(targetDate);
   const isZero =
     timeLeft.days <= 0 &&
     timeLeft.hours <= 0 &&
@@ -197,48 +155,40 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     [timeLeft],
   );
 
-  if (isZero) {
-    return (
-      <div className="countdown-container" style={{ justifyContent: 'center', padding: 20 }}>
-        <GrandDayMessage />
-      </div>
-    );
-  }
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <p
-        className="countdown-title"
-        style={{
-          fontSize: '0.8rem',
-          letterSpacing: 4,
-          color: 'rgba(255,215,0,0.7)',
-          textTransform: 'uppercase',
-          marginBottom: 20,
-          textShadow: '0 0 10px rgba(255,215,0,0.4)',
-        }}
-      >
-        Faltan
-      </p>
+    <section
+      id="countdown"
+      className="countdown-section py-16 md:py-20 relative overflow-hidden"
+    >
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="countdown-shell max-w-4xl mx-auto text-center"
+        >
+          <CalendarHeart className="mx-auto text-xv-gold mb-3" size={34} />
 
-      <div
-        className="countdown-container"
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: 12,
-          flexWrap: 'wrap',
-          padding: 20,
-        }}
-      >
-        {units.map((unit, i) => (
-          <React.Fragment key={unit.label}>
-            <GoldenCard value={unit.value} label={unit.label} />
-            {i < units.length - 1 && <Separator />}
-          </React.Fragment>
-        ))}
+          {isZero ? (
+            <EventMessage state={eventState === 'past' ? 'past' : 'today'} />
+          ) : (
+            <>
+              <p className="countdown-title">Faltan</p>
+              <div className="countdown-container">
+                {units.map((unit, index) => (
+                  <React.Fragment key={unit.label}>
+                    <GoldenCard value={unit.value} label={unit.label} />
+                    {index < units.length - 1 && <Separator />}
+                  </React.Fragment>
+                ))}
+              </div>
+              <p className="font-mont text-xs md:text-sm uppercase tracking-[0.22em] text-xv-muted mt-3">
+                {invitation.dateDisplay} · Ceremonia {invitation.ceremony.time}
+              </p>
+            </>
+          )}
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };

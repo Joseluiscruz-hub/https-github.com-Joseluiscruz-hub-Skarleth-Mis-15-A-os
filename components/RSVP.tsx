@@ -3,6 +3,7 @@ import { Send, CheckCircle2, Heart, XCircle, Utensils } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db, isFirebaseConfigured } from '../firebase';
+import { invitation } from '../lib/invitation';
 
 const fireGoldConfetti = () => {
   const defaults = {
@@ -26,6 +27,7 @@ export const RSVP: React.FC = () => {
   const [dietaryRestrictions, setDietaryRestrictions] = useState('');
   const [message, setMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
   const firebaseReady = Boolean(isFirebaseConfigured && db);
 
   const handleAttendance = (value: 'yes' | 'no') => {
@@ -41,82 +43,58 @@ export const RSVP: React.FC = () => {
 
     setIsSending(true);
 
-    if (!firebaseReady || !db) {
-      console.warn('Firebase no está configurado. No se envió el RSVP.');
-      setIsSending(false);
-      return;
-    }
-
     try {
-      await addDoc(collection(db, 'loveWallMessages'), {
-        name,
-        attendance,
-        guests: Number(guests),
-        family,
-        message: message.trim(),
-        dietaryRestrictions: dietaryRestrictions.trim(),
-        createdAt: serverTimestamp(),
-      });
+      if (firebaseReady && db) {
+        await addDoc(collection(db, 'loveWallMessages'), {
+          name,
+          attendance,
+          guests: Number(guests),
+          family,
+          message: message.trim(),
+          dietaryRestrictions: dietaryRestrictions.trim(),
+          createdAt: serverTimestamp(),
+        });
+      }
     } catch (error) {
       console.error('Error al guardar RSVP en Firebase:', error);
     }
 
-    const phoneNumber = '525588150830';
-
     let whatsappMessage = '';
     if (attendance === 'yes') {
-      whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\n✅ *Confirmo mi asistencia* a los XV de Skarlet para *${guests} persona(s)*.\n\n`;
+      whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\nConfirmo mi asistencia a los XV de Skarlet para *${guests} persona(s)*.\n\n`;
       if (dietaryRestrictions) {
-        whatsappMessage += `🍽️ Restricciones alimentarias: ${dietaryRestrictions}\n\n`;
+        whatsappMessage += `Restricciones alimentarias: ${dietaryRestrictions}\n\n`;
       }
       if (message) {
-        whatsappMessage += `💬 Mensaje: ${message}\n\n`;
+        whatsappMessage += `Mensaje: ${message}\n\n`;
       }
-      whatsappMessage += '¡Gracias! 👑💖';
+      whatsappMessage += '¡Gracias!';
     } else {
-      whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\n❌ Lamentablemente *no podré asistir* a los XV de Skarlet.\n\n`;
+      whatsappMessage = `¡Hola! Soy *${name}* ${family ? `(Familia ${family})` : ''}.\n\nLamentablemente no podré asistir a los XV de Skarlet.\n\n`;
       if (message) {
-        whatsappMessage += `💬 Mensaje: ${message}\n\n`;
+        whatsappMessage += `Mensaje: ${message}\n\n`;
       }
-      whatsappMessage += 'Les deseo lo mejor en su celebración. 💖';
+      whatsappMessage += 'Les deseo lo mejor en su celebración.';
     }
 
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    const url = `https://wa.me/${invitation.whatsappPhone}?text=${encodeURIComponent(
+      whatsappMessage,
+    )}`;
     window.open(url, '_blank');
 
     if (attendance === 'yes') {
       fireGoldConfetti();
     }
 
+    setStatusMessage('Listo. Se abrió WhatsApp para terminar tu confirmación.');
     setIsSending(false);
   };
 
-  if (!firebaseReady) {
-    return (
-      <section id="rsvp" className="py-20 relative overflow-hidden bg-white">
-        <div className="container mx-auto px-4 relative z-10 max-w-2xl">
-          <div className="bg-white/80 backdrop-blur-xl border border-white shadow-[0_10px_40px_rgba(225,173,186,0.2)] rounded-3xl p-8 md:p-12 text-center">
-            <h2 className="titulos-cursiva text-4xl text-xv-rose-dark mb-3">
-              Confirmación
-            </h2>
-            <p className="font-mont text-sm text-gray-600">
-              Configura las variables <code>VITE_FIREBASE_*</code> para
-              habilitar el formulario de confirmación.
-            </p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section id="rsvp" className="py-20 relative overflow-hidden bg-white">
-      <div className="absolute top-0 left-0 w-64 h-64 bg-xv-pink/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-xv-rose/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-
       <div className="container mx-auto px-4 relative z-10 max-w-2xl">
-        <div className="bg-white/80 backdrop-blur-xl border border-white shadow-[0_10px_40px_rgba(225,173,186,0.2)] rounded-3xl p-8 md:p-12 relative">
-          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-white p-3 rounded-full shadow-lg text-xv-rose-gold">
+        <div className="rsvp-card bg-white/80 backdrop-blur-xl border border-white shadow-[0_10px_40px_rgba(225,173,186,0.2)] p-8 md:p-12 relative">
+          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-white p-3 rounded-full shadow-lg text-xv-rose-gold border border-xv-rose-gold/30">
             <Heart fill="currentColor" size={32} />
           </div>
 
@@ -127,7 +105,7 @@ export const RSVP: React.FC = () => {
             <p className="font-mont text-gray-500 leading-relaxed font-light">
               Nos encantaría compartir este momento mágico contigo. <br />
               Por favor confirma tu asistencia antes del{' '}
-              <strong className="text-xv-wine">1 de Mayo, 2026</strong>.
+              <strong className="text-xv-wine">{invitation.rsvpDeadline}</strong>.
             </p>
           </div>
 
@@ -249,6 +227,12 @@ export const RSVP: React.FC = () => {
                 {isSending ? 'Enviando...' : 'Enviar Confirmación por WhatsApp'}
               </span>
             </button>
+
+            {statusMessage && (
+              <p className="text-center font-mont text-xs text-xv-rose-gold">
+                {statusMessage}
+              </p>
+            )}
           </form>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-3">

@@ -20,7 +20,7 @@ const ParentCard: React.FC<ParentCardProps> = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.6, delay }}
-    className="text-center"
+    className="parent-card text-center"
   >
     <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-xv-rose-gold/10 text-xv-rose-gold mb-4">
       {icon}
@@ -114,9 +114,9 @@ export const Parents: React.FC = () => {
 
           <div className="flex justify-center mb-16">
             <div className="w-full max-w-sm">
-              <ParentCard
-                title="Padrinos"
-                names={['Jose Arturo Gonzalez Chavez', 'Elsa Gonzalez Lopez']}
+            <ParentCard
+              title="Padrinos"
+              names={['José Arturo González Chávez', 'Elsa González López']}
                 delay={0.5}
                 icon={<Heart size={20} />}
               />
@@ -167,12 +167,12 @@ export const Parents: React.FC = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-3xl mx-auto">
               {[
-                'Santiago Alexander Santillan Martinez',
+                'Santiago Alexander Santillán Martínez',
                 'Gael Armando Anguiano',
                 'Erick Mauricio Pérez Ledesma',
                 'Erick Salvador Mora Rivera',
-                'Iker Patricio Hernandez',
-                'Dylan Geovanni Ponce Ricon',
+                'Iker Patricio Hernández',
+                'Dylan Geovanni Ponce Rincón',
               ].map((name, index) => (
                 <p
                   key={index}

@@ -11,16 +11,17 @@ html {
 
 @theme {
   /* ── Fondos cálidos oscuros (NO negro frío) ── */
-  --color-xv-bg: #1c1008;
-  --color-xv-cream: #251610;
-  --color-xv-card: #201208;
+  --color-xv-bg: #160b10;
+  --color-xv-cream: #25161b;
+  --color-xv-card: #201318;
 
   /* ── Acentos del vestido ── */
   --color-xv-rose: #b01020;
   --color-xv-rose-dark: #8b0f1e;
-  --color-xv-gold: #c9952a;
-  --color-xv-rose-gold: #d4a830;
-  --color-xv-wine: #5c1010;
+  --color-xv-gold: #d6ad3a;
+  --color-xv-rose-gold: #d8b04c;
+  --color-xv-wine: #6f1221;
+  --color-xv-muted: #d5c3a4;
 
   /* ── Colores del bordado Otomí (detalles) ── */
   --color-xv-pink: #c97c5d;
@@ -40,15 +41,16 @@ html {
 
 /* ── Variables CSS para uso manual ── */
 :root {
-  --color-bg: #1c1008;
-  --color-bg-card: #251610;
-  --color-bg-section: #201208;
+  --color-bg: #160b10;
+  --color-bg-card: #25161b;
+  --color-bg-section: #201318;
   --color-primary: #b01020;
   --color-primary-soft: #8b0f1e;
-  --color-gold: #c9952a;
-  --color-gold-soft: rgba(201, 149, 42, 0.22);
-  --color-text: #f2e8d9;
-  --color-text-muted: #bfa882;
+  --color-gold: #d6ad3a;
+  --color-emerald: #2d6a4f;
+  --color-gold-soft: rgba(216, 176, 76, 0.22);
+  --color-text: #fff6e6;
+  --color-text-muted: #d5c3a4;
   --color-border: rgba(176, 16, 32, 0.3);
 }
 
@@ -63,7 +65,7 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #1c1008;
+  background: #160b10;
 }
 ::-webkit-scrollbar-thumb {
   background: #b01020;
@@ -105,7 +107,7 @@ body {
   letter-spacing: 0.15em;
   color: var(--color-gold);
   text-shadow:
-    0 0 30px rgba(201, 149, 42, 0.35),
+    0 0 30px rgba(216, 176, 76, 0.35),
     0 2px 4px rgba(0, 0, 0, 0.55);
 }
 
@@ -170,29 +172,30 @@ section:not(.hero)::after {
 
 /* ── Secciones ── */
 section {
-  background: linear-gradient(180deg, #251610 0%, #1c1008 100%);
+  background: linear-gradient(180deg, #25161b 0%, #160b10 100%);
   border-top: 1px solid rgba(176, 16, 32, 0.18);
-  border-bottom: 1px solid rgba(201, 149, 42, 0.1);
+  border-bottom: 1px solid rgba(216, 176, 76, 0.12);
 }
 section:nth-of-type(even) {
-  background: linear-gradient(180deg, #201208 0%, #18090a 100%);
+  background: linear-gradient(180deg, #201318 0%, #14080d 100%);
 }
 section.hero {
   border: none;
   background: radial-gradient(
     ellipse at top center,
-    #3a1a08 0%,
-    #201208 55%,
-    #1c1008 100%
+    #3a1422 0%,
+    #201318 55%,
+    #160b10 100%
   );
 }
 
 /* ── Cards ── */
-[class*='bg-white'],
+section [class*='bg-white'],
 .card {
-  background-color: rgba(37, 22, 16, 0.95) !important;
+  background-color: rgba(37, 22, 27, 0.95) !important;
   color: var(--color-text);
   border-color: var(--color-border) !important;
+  border-radius: 0.75rem !important;
 }
 
 /* ── Textos ── */
@@ -223,8 +226,70 @@ a:hover {
   color: #fdf8ef;
 }
 
+.hero-action {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(247, 215, 110, 0.58);
+  background: rgba(176, 16, 32, 0.84);
+  color: #fff7dc;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.32);
+  font-family: var(--font-mont), sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+.hero-action:hover {
+  color: #18080d;
+  background: #f4cf65;
+}
+.hero-action-secondary {
+  background: rgba(20, 8, 12, 0.62);
+}
+.mini-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(216, 176, 76, 0.38);
+  color: #f3d37d;
+  font-family: var(--font-mont), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.mini-action:hover {
+  background: rgba(216, 176, 76, 0.16);
+  color: #fff4c8;
+}
+.event-card,
+.rsvp-card,
+.parent-card {
+  border-radius: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .nombre-skarleth {
+    letter-spacing: 0.09em;
+  }
+  .hero-action {
+    min-width: 8.6rem;
+    padding-inline: 0.85rem;
+    font-size: 0.72rem;
+  }
+}
+
 /* ── Botones ── */
-button:not([aria-label]),
+.xv-action,
 [type='submit'],
 .fab-floating {
   background: linear-gradient(135deg, #b01020, #8b0f1e);
@@ -233,7 +298,7 @@ button:not([aria-label]),
   box-shadow: 0 6px 22px rgba(176, 16, 32, 0.3);
   transition: all 0.3s ease;
 }
-button:not([aria-label]):hover,
+.xv-action:hover,
 .fab-floating:hover {
   background: linear-gradient(135deg, #c9952a, #b07818);
   color: #1c1008;
@@ -243,7 +308,7 @@ button:not([aria-label]):hover,
 input,
 textarea,
 select {
-  background: rgba(28, 10, 8, 0.9) !important;
+  background: rgba(22, 11, 16, 0.9) !important;
   border: 1px solid var(--color-border) !important;
   color: var(--color-text) !important;
 }
@@ -257,6 +322,9 @@ select:focus {
 
 /* ── Countdown responsive ── */
 .countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-width: clamp(56px, 16vw, 90px) !important;
 }
 .countdown-card-box {
@@ -265,20 +333,78 @@ select:focus {
 }
 .countdown-number {
   font-size: clamp(1.4rem, 4.5vw, 2.8rem) !important;
+  font-family: var(--font-cormorant), serif;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+  color: #f7d76e;
+  text-shadow:
+    0 0 10px rgba(247, 215, 110, 0.68),
+    0 0 24px rgba(216, 176, 76, 0.35);
 }
 .countdown-label {
   font-size: clamp(0.5rem, 1.6vw, 0.65rem) !important;
+  margin-top: 0.75rem;
+  color: rgba(247, 215, 110, 0.82);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 .countdown-separator {
   font-size: clamp(1.4rem, 4vw, 2.5rem) !important;
+  color: #f7d76e;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: -1.25rem;
+  user-select: none;
 }
 
 /* ── Flip Clock ── */
 .countdown-section .flip-card {
-  background: linear-gradient(180deg, #2b1008 0%, #150806 100%);
-  border: 1px solid rgba(201, 149, 42, 0.35);
+  background: linear-gradient(180deg, #2a141b 0%, #12070b 100%);
+  border: 1px solid rgba(216, 176, 76, 0.35);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
   color: var(--color-gold);
+}
+.countdown-section .countdown-shell {
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border: 1px solid rgba(216, 176, 76, 0.24);
+  background:
+    linear-gradient(135deg, rgba(111, 18, 33, 0.22), rgba(45, 106, 79, 0.12)),
+    rgba(22, 11, 16, 0.78);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.32);
+  border-radius: 0.75rem;
+}
+.countdown-section .countdown-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+  color: rgba(247, 215, 110, 0.78);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 0 10px rgba(216, 176, 76, 0.36);
+}
+.countdown-section .countdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 1.25rem;
+}
+.countdown-section .countdown-card-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(247, 215, 110, 0.22);
+  z-index: 1;
 }
 .countdown-section .flip-label {
   color: var(--color-primary);
@@ -297,7 +423,7 @@ select:focus {
   );
 }
 .timeline-section .timeline-card {
-  background: rgba(37, 22, 16, 0.9);
+  background: rgba(37, 22, 27, 0.9);
   border: 1px solid rgba(176, 16, 32, 0.35);
 }
 .timeline-section .timeline-age {

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Church, Gift, MapPin, Music } from 'lucide-react';
+import { CalendarPlus, Church, Gift, MapPin, Music } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { googleCalendarUrl, invitation } from '../lib/invitation';
 
 interface EventCardProps {
   number: number;
@@ -30,7 +31,7 @@ const EventCard: React.FC<EventCardProps> = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.6, delay }}
-    className="bg-white rounded-3xl shadow-lg border border-xv-rose/20 overflow-hidden"
+    className="event-card bg-white shadow-lg border border-xv-rose/20 overflow-hidden"
   >
     <div className="p-7 md:p-8">
       <div className="flex items-center gap-4 mb-4">
@@ -40,11 +41,21 @@ const EventCard: React.FC<EventCardProps> = ({
         <div className="text-xv-rose-gold">{icon}</div>
       </div>
 
-      <h3 className="titulos-cursiva text-4xl text-xv-rose-dark mb-1">{title}</h3>
-      {time && <p className="font-mont text-sm tracking-[0.2em] uppercase text-xv-wine mb-2">{time}</p>}
+      <h3 className="titulos-cursiva text-4xl text-xv-rose-dark mb-1">
+        {title}
+      </h3>
+      {time && (
+        <p className="font-mont text-sm tracking-[0.2em] uppercase text-xv-wine mb-2">
+          {time}
+        </p>
+      )}
       <p className="font-mont text-sm text-gray-600 leading-relaxed">{location}</p>
 
-      {description && <p className="font-mont text-xs italic text-gray-400 mt-4">{description}</p>}
+      {description && (
+        <p className="font-mont text-xs italic text-gray-400 mt-4">
+          {description}
+        </p>
+      )}
     </div>
 
     {mapEmbedUrl && (
@@ -58,14 +69,24 @@ const EventCard: React.FC<EventCardProps> = ({
             className="w-full h-56"
           />
         </div>
-        <a
-          href={mapLinkUrl || mapEmbedUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-3 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-xv-wine hover:text-xv-rose-dark"
-        >
-          <MapPin size={12} /> Abrir mapa completo
-        </a>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <a
+            href={mapLinkUrl || mapEmbedUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mini-action"
+          >
+            <MapPin size={13} /> Abrir mapa
+          </a>
+          <a
+            href={googleCalendarUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mini-action"
+          >
+            <CalendarPlus size={13} /> Guardar fecha
+          </a>
+        </div>
       </div>
     )}
   </motion.article>
@@ -83,7 +104,7 @@ export const Events: React.FC = () => {
           >
             <h2 className="titulos-cursiva text-6xl md:text-7xl text-xv-rose-gold mb-4">Itinerario</h2>
             <p className="texto-general text-sm md:text-base text-xv-wine/70 tracking-[0.3em] uppercase">
-              Acompañanos en este dia especial
+              Acompáñanos en este día especial
             </p>
           </motion.div>
         </div>
@@ -92,22 +113,22 @@ export const Events: React.FC = () => {
           <EventCard
             number={1}
             icon={<Church size={36} strokeWidth={1.5} />}
-            title="Ceremonia"
-            time="2:00 PM"
-            location="Iglesia Del Divino Niño, Loma de la Cruz, Nicolás Romero"
-            mapEmbedUrl="https://www.google.com/maps?q=Iglesia+Del+Divino+Niño+Loma+de+la+Cruz+Nicolás+Romero&output=embed"
-            mapLinkUrl="https://www.google.com/maps/search/?api=1&query=Iglesia+Del+Divino+Ni%C3%B1o+Loma+de+la+Cruz+Nicol%C3%A1s+Romero"
+            title={invitation.ceremony.title}
+            time={invitation.ceremony.time}
+            location={invitation.ceremony.location}
+            mapEmbedUrl={invitation.ceremony.mapEmbedUrl}
+            mapLinkUrl={invitation.ceremony.mapLinkUrl}
             delay={0.1}
           />
 
           <EventCard
             number={2}
             icon={<Music size={36} strokeWidth={1.5} />}
-            title="Recepción"
-            time="3:00 PM"
-            location="Salón y Albercas El Mirador, Calle 13 de Enero S/N, Nicolás Romero"
-            mapEmbedUrl="https://www.google.com/maps?q=Salón+y+Albercas+El+Mirador+Calle+13+de+Enero+Nicolás+Romero&output=embed"
-            mapLinkUrl="https://www.google.com/maps/search/?api=1&query=Sal%C3%B3n+y+Albercas+El+Mirador+Calle+13+de+Enero+Nicol%C3%A1s+Romero"
+            title={invitation.reception.title}
+            time={invitation.reception.time}
+            location={invitation.reception.location}
+            mapEmbedUrl={invitation.reception.mapEmbedUrl}
+            mapLinkUrl={invitation.reception.mapLinkUrl}
             delay={0.2}
           />
 
@@ -117,7 +138,7 @@ export const Events: React.FC = () => {
             title="Regalos"
             time=""
             location="Lluvia de sobres"
-            description="Tu presencia es mi mayor regalo."
+            description="Tu presencia es mi mayor regalo. Si deseas tener un detalle, habrá buzón en la recepción."
             delay={0.3}
           />
         </div>

@@ -5,12 +5,6 @@ import { Music2, Heart } from 'lucide-react';
 export const Vals: React.FC = () => {
   return (
     <section className="py-20 bg-gradient-to-b from-xv-bg to-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-xv-rose-gold rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-xv-pink rounded-full blur-3xl"></div>
-      </div>
-
       <div className="container mx-auto px-4 relative z-10">
         {/* Main Vals Section */}
         <motion.div

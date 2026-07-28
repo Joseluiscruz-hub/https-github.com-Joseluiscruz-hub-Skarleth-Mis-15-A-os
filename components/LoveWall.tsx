@@ -18,6 +18,27 @@ interface WallMessage {
   createdAt?: Timestamp;
 }
 
+const fallbackMessages: WallMessage[] = [
+  {
+    id: 'sample-1',
+    name: 'Familia',
+    message: 'Que esta noche esté llena de amor, alegría y recuerdos hermosos.',
+    attendance: 'yes',
+  },
+  {
+    id: 'sample-2',
+    name: 'Amigos',
+    message: 'Estamos felices de celebrar contigo este día tan especial.',
+    attendance: 'yes',
+  },
+  {
+    id: 'sample-3',
+    name: 'Invitados',
+    message: 'Skarlet, que tus XV sean el inicio de una etapa maravillosa.',
+    attendance: 'yes',
+  },
+];
+
 export const LoveWall: React.FC = () => {
   const [messages, setMessages] = useState<WallMessage[]>([]);
 
@@ -52,11 +73,7 @@ export const LoveWall: React.FC = () => {
     return () => unsubscribe();
   }, []);
 
-  // Carga diferida en cliente para evitar require en bundle ESM
-  const VerificarFirestore = React.useMemo(() => {
-    if (typeof window === 'undefined') return null;
-    return React.lazy(() => import('./VerificarFirestore'));
-  }, []);
+  const visibleMessages = messages.length > 0 ? messages : fallbackMessages;
 
   return (
     <section className="love-wall-section py-20 bg-xv-bg/60">
@@ -74,55 +91,38 @@ export const LoveWall: React.FC = () => {
           </p>
         </div>
 
-        {!isFirebaseConfigured && (
-          <div className="text-center bg-white border border-xv-rose/20 rounded-2xl p-6 font-mont text-sm text-gray-500">
-            Configura las variables <code>VITE_FIREBASE_*</code> para activar el
-            muro en tiempo real.
-          </div>
-        )}
-
-        {/* Verificación de conexión Firestore */}
-        {VerificarFirestore && (
-          <React.Suspense fallback={null}>
-            <VerificarFirestore />
-          </React.Suspense>
-        )}
-
         {isFirebaseConfigured && messages.length === 0 && (
-          <div className="text-center bg-white border border-xv-rose/20 rounded-2xl p-6 font-mont text-sm text-gray-500">
-            Aún no hay mensajes. Sé el primero en dejar uno al confirmar
-            asistencia.
-          </div>
+          <p className="text-center font-mont text-xs uppercase tracking-[0.22em] text-xv-wine/60 mb-5">
+            Sé el primero en dejar un mensaje al confirmar asistencia
+          </p>
         )}
 
-        {messages.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {messages.map((message) => (
-              <article
-                key={message.id}
-                className="love-message bg-white rounded-2xl p-5 border border-xv-rose/20 shadow-sm"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-cormorant text-2xl text-xv-rose-dark">
-                    {message.name}
-                  </h3>
-                  <span
-                    className={`text-xs font-mont px-2 py-1 rounded-full ${
-                      message.attendance === 'yes'
-                        ? 'bg-green-100 text-green-700'
-                        : 'bg-red-100 text-red-600'
-                    }`}
-                  >
-                    {message.attendance === 'yes' ? 'Asiste' : 'No asiste'}
-                  </span>
-                </div>
-                <p className="font-mont text-sm text-gray-600 leading-relaxed">
-                  “{message.message}”
-                </p>
-              </article>
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {visibleMessages.map((message) => (
+            <article
+              key={message.id}
+              className="love-message bg-white rounded-2xl p-5 border border-xv-rose/20 shadow-sm"
+            >
+              <div className="flex items-center justify-between gap-3 mb-3">
+                <h3 className="font-cormorant text-2xl text-xv-rose-dark">
+                  {message.name}
+                </h3>
+                <span
+                  className={`text-xs font-mont px-2 py-1 rounded-full ${
+                    message.attendance === 'yes'
+                      ? 'bg-green-100 text-green-700'
+                      : 'bg-red-100 text-red-600'
+                  }`}
+                >
+                  {message.attendance === 'yes' ? 'Asiste' : 'No asiste'}
+                </span>
+              </div>
+              <p className="font-mont text-sm text-gray-600 leading-relaxed">
+                "{message.message}"
+              </p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

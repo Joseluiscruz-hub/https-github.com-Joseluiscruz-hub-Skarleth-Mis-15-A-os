@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
+import { heroImage, invitation } from '../lib/invitation';
 
 interface WelcomeScreenProps {
   onEnter: () => void;
@@ -277,8 +278,8 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                     color: '#9a6a1a',
                     textShadow: '0 1px 6px rgba(201,149,42,0.35)',
                   }}
-                >
-                  Mis XV Años
+                  >
+                  {invitation.headline}
                 </p>
                 <p
                   className="font-mont text-2xl sm:text-3xl mt-1 tracking-widest"
@@ -288,7 +289,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                     letterSpacing: '0.25em',
                   }}
                 >
-                  SKARLET
+                  {invitation.shortName.toUpperCase()}
                 </p>
                 <div
                   className="w-16 mt-2"
@@ -302,7 +303,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                   className="font-mont text-[8px] tracking-[0.35em] mt-2"
                   style={{ color: 'rgba(120,80,30,0.5)' }}
                 >
-                  23 · MAYO · 2026
+                  {invitation.dateShort.toUpperCase()}
                 </p>
 
                 {/* small floral ornament */}
@@ -460,7 +461,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
                   style={{
-                    backgroundImage: `url('${import.meta.env.BASE_URL}images/skarlet-portada.png')`,
+                    backgroundImage: `url('${heroImage}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}
@@ -493,7 +494,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                       textShadow: '0 2px 20px rgba(201,149,42,0.6)',
                     }}
                   >
-                    Mis XV Años
+                    {invitation.headline}
                   </p>
                   <p
                     className="text-4xl sm:text-5xl mt-2 tracking-[0.3em]"
@@ -503,7 +504,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                       textShadow: '0 2px 16px rgba(201,149,42,0.5)',
                     }}
                   >
-                    SKARLET
+                    {invitation.shortName.toUpperCase()}
                   </p>
                   <div
                     className="w-32 my-4"
@@ -517,7 +518,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                     className="font-mont uppercase tracking-[0.4em] text-[10px]"
                     style={{ color: 'rgba(253,230,138,0.6)' }}
                   >
-                    23 · Mayo · 2026
+                    {invitation.dateShort}
                   </p>
                   <motion.p
                     className="mt-4 text-xl"
@@ -575,7 +576,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
             animate={phase === 'revealed' ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 1.6, duration: 0.9 }}
           >
-            Una celebración única te espera ✨
+            Una celebración única te espera
           </motion.p>
         </motion.div>
       )}

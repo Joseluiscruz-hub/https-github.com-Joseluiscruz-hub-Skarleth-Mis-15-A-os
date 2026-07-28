@@ -1,13 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Instagram, Camera, Hash } from 'lucide-react';
-
-const INSTAGRAM_URL =
-  'https://www.instagram.com/skarleth__mj?utm_source=qr&igsh=MXg0bWZ3ZnM1aGJ5Mg==';
+import { invitation } from '../lib/invitation';
 
 export const Hashtag: React.FC = () => {
-  const hashtag = '#LosXVDeSkarlet';
-
   return (
     <section className="py-12 bg-gradient-to-r from-xv-wine via-xv-rose-dark to-xv-wine relative overflow-hidden">
       <div className="absolute inset-0 opacity-20">
@@ -40,7 +36,7 @@ export const Hashtag: React.FC = () => {
           </div>
 
           <motion.a
-            href={INSTAGRAM_URL}
+            href={invitation.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
@@ -48,7 +44,7 @@ export const Hashtag: React.FC = () => {
             className="group relative inline-block"
           >
             <h2 className="titulos-cursiva text-4xl md:text-6xl text-white drop-shadow-lg cursor-pointer">
-              {hashtag}
+              {invitation.hashtag}
             </h2>
             <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 font-mont text-xs text-white/60 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
               Ver en Instagram ✨
