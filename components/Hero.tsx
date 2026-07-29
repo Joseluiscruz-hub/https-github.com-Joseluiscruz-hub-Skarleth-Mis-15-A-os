@@ -33,14 +33,6 @@ export const Hero: React.FC = () => {
           backgroundImage: `url('${heroImage}')`,
         }}
       />
-      <div className="hero-image-frame">
-        <img
-          src={heroImage}
-          alt="Skarlet Guadalupe en su invitación de XV años"
-          className="hero-main-image"
-          fetchPriority="high"
-        />
-      </div>
 
       <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_70%_56%,transparent_0%,rgba(10,4,4,0.04)_44%,rgba(10,4,4,0.34)_100%)] pointer-events-none" />
 
@@ -65,7 +57,7 @@ export const Hero: React.FC = () => {
       />
 
       {/* ── Pétalos animados ── */}
-      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 z-[3] pointer-events-none overflow-hidden">
         {petals.map((petal) => (
           <motion.span
             key={`petal-${petal.id}`}
@@ -97,7 +89,7 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* ── Destellos ── */}
-      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 z-[3] pointer-events-none overflow-hidden">
         {sparkles.map((sparkle) => (
           <motion.span
             key={`spark-${sparkle.id}`}
@@ -120,7 +112,7 @@ export const Hero: React.FC = () => {
           ════════════════════════════════════════════════ */}
       <header
         className="relative z-20 text-center px-6"
-        style={{ paddingTop: 'clamp(5rem, 12vh, 9rem)' }}
+        style={{ paddingTop: 'clamp(4rem, 8vh, 6.5rem)' }}
       >
         <motion.p
           initial={{ opacity: 0, y: -10 }}
@@ -178,16 +170,19 @@ export const Hero: React.FC = () => {
           </motion.h2>
       </header>
 
-      {/* ════════════════════════════════════════════════
-          ZONA CENTRAL — "resorte" que mantiene los rostros despejados
-          flex-grow empuja header hacia arriba y footer hacia abajo
-          ════════════════════════════════════════════════ */}
-      <div className="relative z-20 flex-1" style={{ minHeight: '30vh' }} />
+      <figure className="hero-image-frame">
+        <img
+          src={heroImage}
+          alt="Skarlet Guadalupe en su invitación de XV años"
+          className="hero-main-image"
+          fetchPriority="high"
+        />
+      </figure>
 
       {/* ════════════════════════════════════════════════
           SECCIÓN INFERIOR — fecha + flecha scroll
           ════════════════════════════════════════════════ */}
-      <footer className="relative z-20 text-center pb-36 md:pb-8 px-6 flex flex-col items-center gap-4">
+      <footer className="relative z-20 text-center pb-24 md:pb-8 px-6 flex flex-col items-center gap-4">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

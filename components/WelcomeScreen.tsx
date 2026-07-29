@@ -16,43 +16,32 @@ const fireConfetti = () => {
   const all = [...gold, ...rose, '#fff7c2'];
 
   confetti({
-    particleCount: 100,
+    particleCount: 60,
     spread: 120,
     origin: { x: 0.5, y: 0.5 },
     colors: all,
     gravity: 0.65,
     scalar: 1.1,
-    ticks: 200,
+    ticks: 85,
   });
   setTimeout(() => {
     confetti({
-      particleCount: 50,
+      particleCount: 24,
       angle: 60,
       spread: 55,
       origin: { x: 0, y: 0.55 },
       colors: gold,
-      ticks: 180,
+      ticks: 75,
     });
     confetti({
-      particleCount: 50,
+      particleCount: 24,
       angle: 120,
       spread: 55,
       origin: { x: 1, y: 0.55 },
       colors: rose,
-      ticks: 180,
+      ticks: 75,
     });
   }, 300);
-  setTimeout(() => {
-    confetti({
-      particleCount: 35,
-      spread: 180,
-      origin: { x: 0.5, y: 0.25 },
-      colors: all,
-      shapes: ['star'],
-      scalar: 1.4,
-      ticks: 220,
-    });
-  }, 700);
 };
 
 /* ── Falling light sparkle ──────────────────────────── */
