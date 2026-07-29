@@ -189,8 +189,27 @@ section.hero {
   );
 }
 .hero-bg {
-  background-position: center top;
-  filter: brightness(1.12) saturate(1.18) contrast(1.02);
+  background-position: center center;
+  filter: brightness(0.72) saturate(1.12) blur(18px);
+  opacity: 0.55;
+}
+.hero-image-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(5rem, 11vh, 7rem) 0 clamp(11rem, 23vh, 13rem);
+  pointer-events: none;
+}
+.hero-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  filter: brightness(1.08) saturate(1.12) contrast(1.02);
+  transform: translateY(1.5rem);
 }
 
 /* ── Cards ── */
@@ -287,6 +306,12 @@ a:hover {
   }
   .hero-bg {
     background-position: center center;
+  }
+  .hero-image-frame {
+    padding: 6.2rem 0 12.8rem;
+  }
+  .hero-main-image {
+    transform: translateY(1rem);
   }
   .hero-action {
     min-width: 8.6rem;

@@ -26,13 +26,21 @@ export const Hero: React.FC = () => {
       id="hero"
       className="hero relative min-h-screen w-full overflow-hidden flex flex-col justify-between bg-xv-bg"
     >
-      {/* ── Imagen de fondo ── */}
+      {/* ── Imagen principal completa ── */}
       <div
-        className="hero-bg absolute inset-0 z-0 bg-cover bg-no-repeat scale-[1.01]"
+        className="hero-bg absolute inset-0 z-0 bg-cover bg-no-repeat scale-105"
         style={{
           backgroundImage: `url('${heroImage}')`,
         }}
       />
+      <div className="hero-image-frame">
+        <img
+          src={heroImage}
+          alt="Skarlet Guadalupe en su invitación de XV años"
+          className="hero-main-image"
+          fetchPriority="high"
+        />
+      </div>
 
       <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_70%_56%,transparent_0%,rgba(10,4,4,0.04)_44%,rgba(10,4,4,0.34)_100%)] pointer-events-none" />
 
