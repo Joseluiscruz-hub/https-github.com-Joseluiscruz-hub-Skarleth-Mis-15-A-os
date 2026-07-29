@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CalendarPlus, ChevronDown, MapPin, Send } from 'lucide-react';
-import { googleCalendarUrl, heroImage, invitation } from '../lib/invitation';
+import { Camera, ChevronDown, Heart } from 'lucide-react';
+import { heroImage, invitation } from '../lib/invitation';
 
 const petals = Array.from({ length: 16 }, (_, index) => ({
   id: index,
@@ -133,7 +133,7 @@ export const Hero: React.FC = () => {
               '1px 3px 8px rgba(0,0,0,0.68), 0 0 4px rgba(0,0,0,0.48)',
           }}
         >
-          Con alegría te invito a celebrar
+          Gracias por ser parte de
         </motion.p>
 
         {/* Nombre con efecto glow — sin backdrop-blur que tape la imagen */}
@@ -154,13 +154,13 @@ export const Hero: React.FC = () => {
             Skarlet
           </h1>
           {/* Capa glow desenfocada — decorativa, detrás del texto */}
-          <h1
+          <span
             aria-hidden="true"
             className="nombre-skarleth absolute top-0 left-0 right-0 text-center leading-none text-amber-300 blur-md opacity-30 select-none pointer-events-none translate-y-1"
             style={{ fontSize: 'clamp(3rem, 11vw, 5.6rem)' }}
           >
             Skarlet
-          </h1>
+          </span>
         </motion.div>
 
         <motion.h2
@@ -173,9 +173,9 @@ export const Hero: React.FC = () => {
             textShadow:
               '1px 3px 8px rgba(0,0,0,0.62), 0 0 4px rgba(0,0,0,0.44)',
           }}
-        >
-          {invitation.headline}
-        </motion.h2>
+          >
+            {invitation.headline}
+          </motion.h2>
       </header>
 
       {/* ════════════════════════════════════════════════
@@ -214,29 +214,18 @@ export const Hero: React.FC = () => {
           className="flex flex-wrap items-center justify-center gap-2"
         >
           <a
-            href="#rsvp"
+            href="#gallery"
             className="hero-action"
           >
-            <Send size={16} />
-            Confirmar
+            <Camera size={16} aria-hidden="true" />
+            Ver galería
           </a>
           <a
-            href={invitation.reception.mapLinkUrl}
-            target="_blank"
-            rel="noreferrer"
+            href="#memories"
             className="hero-action hero-action-secondary"
           >
-            <MapPin size={16} />
-            Ubicación
-          </a>
-          <a
-            href={googleCalendarUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="hero-action hero-action-secondary"
-          >
-            <CalendarPlus size={16} />
-            Calendario
+            <Heart size={16} aria-hidden="true" />
+            Mensajes
           </a>
         </motion.div>
 

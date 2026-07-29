@@ -14,44 +14,67 @@ const backgroundPhoto = base + '1771824907894(1).png';
 // encodeURI is used on filenames that contain spaces or other special
 // characters (e.g. WhatsApp snapshots) so the browser requests an
 // escaped URL. Without this some images were returning 404s in production.
-const photos = [
-  { src: base + 'Foto0037.jpg', caption: 'Mis primeros días' },
-  { src: base + '20131221_224857.jpg', caption: 'Momentos mágicos' },
-  { src: base + '20140517_174622.jpg', caption: 'Sonrisas eternas' },
-  { src: base + '20141101_173020.jpg', caption: 'Pequeñas aventuras' },
-  { src: base + '20150218_125919-1.jpg', caption: 'Infancia feliz' },
-  { src: base + '20160325_143755.jpg', caption: 'Días de alegría' },
-  { src: base + '20170624_125446.jpg', caption: 'Creciendo con amor' },
-  { src: base + '20171101_182213.jpg', caption: 'Recuerdos en familia' },
-  { src: base + 'IMG_20180904_202705.jpg', caption: 'Momentos únicos' },
-  { src: base + 'IMG_20200325_182037_1.jpg', caption: 'Grandes sonrisas' },
+type Category = 'Todos' | 'Infancia' | 'Familia' | 'Mis XV';
+
+const categories: Category[] = ['Todos', 'Infancia', 'Familia', 'Mis XV'];
+
+const photos: Array<{
+  src: string;
+  caption: string;
+  width: number;
+  height: number;
+  category: Exclude<Category, 'Todos'>;
+}> = [
+  { src: base + 'Foto0037.jpg', caption: 'Mis primeros días', width: 480, height: 600, category: 'Infancia' },
+  { src: base + '20131221_224857.jpg', caption: 'Momentos mágicos', width: 1145, height: 859, category: 'Infancia' },
+  { src: base + '20140517_174622.jpg', caption: 'Sonrisas eternas', width: 644, height: 859, category: 'Infancia' },
+  { src: base + '20141101_173020.jpg', caption: 'Pequeñas aventuras', width: 644, height: 859, category: 'Infancia' },
+  { src: base + '20150218_125919-1.jpg', caption: 'Infancia feliz', width: 535, height: 699, category: 'Infancia' },
+  { src: base + '20160325_143755.jpg', caption: 'Días de alegría', width: 483, height: 859, category: 'Familia' },
+  { src: base + '20170624_125446.jpg', caption: 'Creciendo con amor', width: 393, height: 699, category: 'Familia' },
+  { src: base + '20171101_182213.jpg', caption: 'Recuerdos en familia', width: 644, height: 859, category: 'Familia' },
+  { src: base + 'IMG_20180904_202705.jpg', caption: 'Momentos únicos', width: 524, height: 699, category: 'Familia' },
+  { src: base + 'IMG_20200325_182037_1.jpg', caption: 'Grandes sonrisas', width: 1120, height: 859, category: 'Familia' },
   {
     src: base + 'QVZqX3Z2eDQ4WGVYYjVBLXFJOENDNGxN.jpeg',
     caption: 'Creciendo feliz',
+    width: 864,
+    height: 859,
+    category: 'Familia',
   },
   {
     src: base + encodeURI('WhatsApp Image 2026-02-22 at 9.42.08 PM.jpeg'),
     caption: 'Preparándome para el gran día',
+    width: 719,
+    height: 1280,
+    category: 'Mis XV',
   },
-  { src: base + 'IMG-20260222-WA0038.jpg', caption: 'Lista para mis XV' },
-  { src: base + 'IMG-20260222-WA0039.jpg', caption: 'Mi estilo' },
-  { src: base + 'IMG-20260222-WA0041.jpg', caption: 'Ensueño mexicano' },
+  { src: base + 'IMG-20260222-WA0038.jpg', caption: 'Lista para mis XV', width: 960, height: 1280, category: 'Mis XV' },
+  { src: base + 'IMG-20260222-WA0039.jpg', caption: 'Mi estilo', width: 1200, height: 1600, category: 'Mis XV' },
+  { src: base + 'IMG-20260222-WA0041.jpg', caption: 'Ensueño mexicano', width: 719, height: 1280, category: 'Mis XV' },
 ];
 
 export const Gallery: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeCategory, setActiveCategory] = useState<Category>('Todos');
   const touchStartX = useRef<number | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const lastFocusedElement = useRef<HTMLElement | null>(null);
+  const filteredPhotos =
+    activeCategory === 'Todos'
+      ? photos
+      : photos.filter((photo) => photo.category === activeCategory);
 
-  const openLightbox = (index: number) => {
-    setCurrentIndex(index);
+  const openLightbox = (photoSrc: string) => {
+    lastFocusedElement.current = document.activeElement as HTMLElement | null;
+    setCurrentIndex(photos.findIndex((photo) => photo.src === photoSrc));
     setIsOpen(true);
-    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
     setIsOpen(false);
-    document.body.style.overflow = 'unset';
+    window.requestAnimationFrame(() => lastFocusedElement.current?.focus());
   };
 
   const showNext = useCallback(() => {
@@ -63,15 +86,25 @@ export const Gallery: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.body.dataset.lightboxOpen = 'true';
+    closeButtonRef.current?.focus();
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isOpen) return;
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowRight') showNext();
       if (e.key === 'ArrowLeft') showPrev();
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      delete document.body.dataset.lightboxOpen;
+    };
   }, [isOpen, showNext, showPrev]);
 
   const onTouchStart: React.TouchEventHandler<HTMLDivElement> = (event) => {
@@ -90,6 +123,7 @@ export const Gallery: React.FC = () => {
 
   return (
     <section
+      id="gallery"
       className="gallery-section py-20 bg-white relative bg-cover bg-center"
       style={{
         backgroundImage: `url(${backgroundPhoto})`,
@@ -107,8 +141,22 @@ export const Gallery: React.FC = () => {
           </p>
         </div>
 
+        <div className="gallery-tabs relative z-10 mb-8 flex flex-wrap justify-center gap-2">
+          {categories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              aria-pressed={activeCategory === category}
+              onClick={() => setActiveCategory(category)}
+              className="gallery-tab"
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
         <div className="relative z-10 columns-1 sm:columns-2 md:columns-3 gap-4 [column-fill:_balance]">
-          {photos.map((photo, index) => (
+          {filteredPhotos.map((photo, index) => (
             <motion.button
               key={photo.src}
               type="button"
@@ -116,13 +164,15 @@ export const Gallery: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.06 }}
-              onClick={() => openLightbox(index)}
+              onClick={() => openLightbox(photo.src)}
               className="group relative mb-4 w-full overflow-hidden rounded-2xl border-4 border-white shadow-lg break-inside-avoid"
               aria-label={`Abrir foto: ${photo.caption}`}
             >
               <img
                 src={photo.src}
                 alt={photo.caption}
+                width={photo.width}
+                height={photo.height}
                 loading="lazy"
                 decoding="async"
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
@@ -147,9 +197,14 @@ export const Gallery: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeLightbox}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Foto ampliada: ${photos[currentIndex].caption}`}
             className="fixed inset-0 z-[80] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4"
           >
             <button
+              ref={closeButtonRef}
+              type="button"
               onClick={closeLightbox}
               className="absolute top-4 right-4 text-white/90 hover:text-white transition-colors z-30 p-2"
               aria-label="Cerrar"
@@ -158,6 +213,7 @@ export const Gallery: React.FC = () => {
             </button>
 
             <button
+              type="button"
               onClick={(event) => {
                 event.stopPropagation();
                 showPrev();
@@ -169,6 +225,7 @@ export const Gallery: React.FC = () => {
             </button>
 
             <button
+              type="button"
               onClick={(event) => {
                 event.stopPropagation();
                 showNext();
@@ -193,6 +250,8 @@ export const Gallery: React.FC = () => {
               <img
                 src={photos[currentIndex].src}
                 alt={photos[currentIndex].caption}
+                width={photos[currentIndex].width}
+                height={photos[currentIndex].height}
                 className="max-w-full max-h-full object-contain rounded-lg shadow-2xl border-[6px] border-white"
               />
 

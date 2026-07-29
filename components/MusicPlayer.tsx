@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Music2, Pause, Play, SkipForward, Volume2, VolumeX } from 'lucide-react';
+import { Pause, Play, SkipForward, Volume2, VolumeX } from 'lucide-react';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -17,7 +17,7 @@ const songs = [
 export const MusicPlayer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -34,16 +34,6 @@ export const MusicPlayer: React.FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex]);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    audio.muted = true;
-    audio
-      .play()
-      .then(() => setIsPlaying(true))
-      .catch(() => setIsPlaying(false));
-  }, []);
 
   const togglePlayback = async () => {
     const audio = audioRef.current;
@@ -79,16 +69,16 @@ export const MusicPlayer: React.FC = () => {
   };
 
   return (
-    <div className="fixed left-3 bottom-4 md:left-4 md:bottom-6 z-[56] flex flex-col items-start gap-2 max-w-[220px] md:max-w-[280px]">
+    <div className="music-player fixed left-3 bottom-4 md:left-4 md:bottom-6 z-[56] flex flex-col items-start gap-2 md:max-w-[280px]">
       <audio
         ref={audioRef}
         src={currentSong.src}
-        preload="auto"
+        preload="metadata"
         onError={() => setLoadError(true)}
         onEnded={handleEnded}
       />
 
-      <div className="bg-white/95 backdrop-blur border border-xv-rose-gold/40 text-xv-rose-dark text-[10px] md:text-[11px] font-mont py-2 px-3 rounded-full shadow-lg truncate max-w-[220px] md:max-w-[280px]">
+      <div className="hidden md:block bg-white/95 backdrop-blur border border-xv-rose-gold/40 text-xv-rose-dark text-[11px] font-mont py-2 px-3 rounded-full shadow-lg truncate max-w-[280px]">
         {`🎵 ${currentSong.name}`}
       </div>
 
@@ -97,6 +87,7 @@ export const MusicPlayer: React.FC = () => {
           onClick={togglePlayback}
           className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white border-2 border-xv-rose-gold shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
           title={isPlaying ? 'Pausar' : 'Reproducir'}
+          aria-label={isPlaying ? 'Pausar música' : 'Reproducir música'}
         >
           {isPlaying ? (
             <Pause size={20} className="text-xv-rose-dark" />
@@ -109,6 +100,7 @@ export const MusicPlayer: React.FC = () => {
           onClick={nextSong}
           className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white border border-xv-rose-gold/60 shadow-md flex items-center justify-center hover:scale-105 transition-transform"
           title="Siguiente canción"
+          aria-label="Reproducir la siguiente canción"
         >
           <SkipForward size={16} className="text-xv-rose-dark" />
         </button>
@@ -117,6 +109,7 @@ export const MusicPlayer: React.FC = () => {
           onClick={toggleMute}
           className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white border border-xv-rose-gold/60 shadow-md flex items-center justify-center hover:scale-105 transition-transform"
           title={isMuted ? 'Activar sonido' : 'Silenciar'}
+          aria-label={isMuted ? 'Activar sonido' : 'Silenciar música'}
         >
           {isMuted ? (
             <VolumeX size={16} className="text-xv-rose-dark" />
@@ -125,9 +118,6 @@ export const MusicPlayer: React.FC = () => {
           )}
         </button>
 
-        <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-xv-rose-dark text-white flex items-center justify-center shadow-md">
-          <Music2 size={16} />
-        </div>
       </div>
 
       {loadError && (

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { heroImage, invitation } from '../lib/invitation';
@@ -9,6 +9,8 @@ interface WelcomeScreenProps {
 
 /* ── Confetti burst ─────────────────────────────────── */
 const fireConfetti = () => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const gold = ['#d4a830', '#f0c84a', '#c9952a', '#fcd34d'];
   const rose = ['#e8a0b4', '#e74c6f', '#ff8fa3', '#f9a8d4'];
   const all = [...gold, ...rose, '#fff7c2'];
@@ -93,42 +95,52 @@ type Phase = 'sealed' | 'opening' | 'revealed' | 'expanding' | 'exit';
 export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
   const [phase, setPhase] = useState<Phase>('sealed');
   const [sealGlow, setSealGlow] = useState(false);
+  const timers = useRef<number[]>([]);
+
+  const schedule = useCallback((callback: () => void, delay: number) => {
+    timers.current.push(window.setTimeout(callback, delay));
+  }, []);
 
   const handleOpen = useCallback(() => {
     if (phase !== 'sealed') return;
 
     /* 1. Sello brilla y se disuelve */
     setSealGlow(true);
-    setTimeout(() => setPhase('opening'), 400);
+    schedule(() => setPhase('opening'), 250);
 
     /* 2. Solapa abre → tarjeta sube */
-    setTimeout(() => {
+    schedule(() => {
       setPhase('revealed');
       fireConfetti();
-    }, 1200);
+    }, 850);
 
     /* 3. Tarjeta se expande a pantalla completa */
-    setTimeout(() => {
+    schedule(() => {
       setPhase('expanding');
-    }, 3800);
+    }, 1800);
 
     /* 4. Fade out total → página real */
-    setTimeout(() => {
+    schedule(() => {
       setPhase('exit');
-    }, 5200);
+    }, 2600);
 
-    setTimeout(() => {
+    schedule(() => {
       onEnter();
-    }, 6000);
-  }, [phase, onEnter]);
+    }, 3000);
+  }, [onEnter, phase, schedule]);
 
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === ' ') handleOpen();
+    return () => {
+      timers.current.forEach((timer) => window.clearTimeout(timer));
     };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [handleOpen]);
+  }, []);
+
+  const handleSkip = () => {
+    timers.current.forEach((timer) => window.clearTimeout(timer));
+    timers.current = [];
+    setPhase('exit');
+    onEnter();
+  };
 
   const isAfter = (...phases: Phase[]) => phases.includes(phase);
 
@@ -138,6 +150,9 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
         <motion.div
           key="welcome-root"
           className="fixed inset-0 z-[200] flex flex-col items-center justify-center overflow-hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Abrir recuerdos de los XV años de Skarlet"
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -169,10 +184,13 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
           />
 
           {/* ══════════ ENVELOPE WRAPPER ══════════ */}
-          <motion.div
-            className="relative select-none"
+          <motion.button
+            type="button"
+            className="relative select-none appearance-none border-0 bg-transparent p-0 text-inherit rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 focus-visible:ring-offset-4 focus-visible:ring-offset-[#1a0e1f]"
             style={{ perspective: 1400 }}
             onClick={handleOpen}
+            aria-label="Abrir recuerdos de los XV años"
+            disabled={phase !== 'sealed'}
             whileHover={phase === 'sealed' ? { scale: 1.04, y: -4 } : {}}
             whileTap={phase === 'sealed' ? { scale: 0.97 } : {}}
             animate={
@@ -270,7 +288,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                   className="font-mont uppercase text-[7px] tracking-[0.55em] mb-1"
                   style={{ color: 'rgba(120,80,30,0.55)' }}
                 >
-                  Te invito a celebrar
+                  Un recuerdo de
                 </p>
                 <p
                   className="titulos-cursiva text-3xl sm:text-4xl"
@@ -437,7 +455,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                 }}
               />
             </div>
-          </motion.div>
+          </motion.button>
 
           {/* ══════════ EXPANDING CARD OVERLAY ══════════ */}
           <AnimatePresence>
@@ -485,7 +503,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
                     className="font-mont uppercase tracking-[0.55em] text-[9px] mb-3"
                     style={{ color: 'rgba(253,230,138,0.75)' }}
                   >
-                    Con gran alegría te invito a celebrar
+                    Gracias por haberme acompañado en
                   </p>
                   <p
                     className="titulos-cursiva text-5xl sm:text-6xl"
@@ -550,7 +568,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
               animate={{ opacity: [0.45, 1, 0.45], scale: [1, 1.04, 1] }}
               transition={{ duration: 2.2, repeat: Infinity }}
             >
-              Toca para abrir
+              Abrir recuerdos
             </motion.p>
             <motion.div
               className="mt-3 mx-auto w-5 h-5"
@@ -568,6 +586,16 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
             </motion.div>
           </motion.div>
 
+          {phase === 'sealed' && (
+            <button
+              type="button"
+              onClick={handleSkip}
+              className="relative z-10 mt-5 rounded-full border border-amber-200/30 bg-black/20 px-4 py-2 font-mont text-[10px] uppercase tracking-[0.25em] text-amber-100/75 transition-colors hover:bg-black/35 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
+            >
+              Entrar sin animación
+            </button>
+          )}
+
           {/* subtitle after revealed */}
           <motion.p
             className="relative z-10 font-mont uppercase text-[9px] tracking-[0.55em] mt-5"
@@ -576,7 +604,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
             animate={phase === 'revealed' ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 1.6, duration: 0.9 }}
           >
-            Una celebración única te espera
+            Una noche para recordar
           </motion.p>
         </motion.div>
       )}

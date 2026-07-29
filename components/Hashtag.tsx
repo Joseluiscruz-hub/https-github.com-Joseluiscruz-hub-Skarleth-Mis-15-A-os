@@ -30,7 +30,7 @@ export const Hashtag: React.FC = () => {
           <div className="flex items-center justify-center gap-3 mb-4">
             <Camera className="text-white/70" size={24} />
             <span className="font-mont text-white/80 text-sm uppercase tracking-widest">
-              Comparte tus fotos con los XV de Skarlet
+              Comparte tus recuerdos de los XV de Skarlet
             </span>
             <Instagram className="text-white/70" size={24} />
           </div>
@@ -58,7 +58,7 @@ export const Hashtag: React.FC = () => {
             transition={{ delay: 0.3 }}
             className="font-mont text-white/60 text-sm mt-8"
           >
-            ¡Queremos ver tus mejores momentos! 📸✨
+            Revivamos juntos los momentos de aquella noche 📸✨
           </motion.p>
         </motion.div>
       </div>

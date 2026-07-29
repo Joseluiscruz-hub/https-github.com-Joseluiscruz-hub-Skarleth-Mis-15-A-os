@@ -114,13 +114,13 @@ const EventMessage: React.FC<{ state: 'today' | 'past' }> = ({ state }) => (
       </motion.p>
     ) : (
       <p className="font-cormorant text-4xl md:text-5xl text-xv-gold">
-        Gracias por acompañarme
+        Gracias por ser parte de este sueño
       </p>
     )}
     <p className="mt-3 font-mont text-sm md:text-base uppercase tracking-[0.2em] text-xv-muted">
       {state === 'today'
         ? 'Hoy Skarlet celebra sus XV Años'
-        : `${invitation.dateDisplay} quedó guardado como un recuerdo especial.`}
+        : invitation.memoryMessage}
     </p>
   </motion.div>
 );

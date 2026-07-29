@@ -4,6 +4,10 @@ html {
   scroll-behavior: smooth;
 }
 
+[id] {
+  scroll-margin-top: 1rem;
+}
+
 /* ============================================
    TEMA: CREMA MEXICANA — SKARLET XV AÑOS
    Tailwind v4 — @theme es la fuente de verdad
@@ -244,6 +248,9 @@ a {
 a:hover {
   color: #f1ca5a;
 }
+strong {
+  color: var(--color-gold);
+}
 ::selection {
   background: #b01020;
   color: #fdf8ef;
@@ -294,8 +301,58 @@ a:hover {
   background: rgba(216, 176, 76, 0.16);
   color: #fff4c8;
 }
+.memory-highlights {
+  background:
+    linear-gradient(135deg, rgba(45, 106, 79, 0.16), transparent 42%),
+    linear-gradient(180deg, #160b10 0%, #201318 100%);
+}
+.highlight-metric {
+  min-height: 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  justify-content: center;
+  padding: 1rem;
+  border: 1px solid rgba(216, 176, 76, 0.24);
+  border-radius: 0.75rem;
+  background: rgba(255, 246, 230, 0.045);
+}
+.memory-feature {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(216, 176, 76, 0.3);
+  aspect-ratio: 4 / 5;
+  background: rgba(255, 246, 230, 0.06);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+.memory-feature img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.08) contrast(1.03);
+}
+.memory-feature figcaption {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(22, 11, 16, 0.72);
+  color: #fff6e6;
+  font-family: var(--font-mont), sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
 .event-card,
-.rsvp-card,
 .parent-card {
   border-radius: 0.75rem;
 }
@@ -323,7 +380,7 @@ a:hover {
 /* ── Botones ── */
 .xv-action,
 [type='submit'],
-.fab-floating {
+.memory-fab {
   background: linear-gradient(135deg, #b01020, #8b0f1e);
   color: #f2e8d9;
   border: 1px solid rgba(201, 149, 42, 0.6);
@@ -331,9 +388,18 @@ a:hover {
   transition: all 0.3s ease;
 }
 .xv-action:hover,
-.fab-floating:hover {
+.memory-fab:hover {
   background: linear-gradient(135deg, #c9952a, #b07818);
   color: #1c1008;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #f7d76e;
+  outline-offset: 3px;
 }
 
 /* ── Inputs ── */
@@ -472,6 +538,31 @@ select:focus {
 }
 
 /* ── Galería ── */
+.gallery-tab {
+  min-height: 2.5rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid rgba(216, 176, 76, 0.32);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-family: var(--font-mont), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+.gallery-tab:hover {
+  transform: translateY(-1px);
+  background: rgba(216, 176, 76, 0.12);
+}
+.gallery-tab[aria-pressed='true'] {
+  background: linear-gradient(135deg, #b01020, #8b0f1e);
+  color: #fff6e6;
+  border-color: rgba(216, 176, 76, 0.65);
+}
 .gallery-section img {
   border: 2px solid rgba(176, 16, 32, 0.35);
   filter: brightness(0.88) saturate(1.15);
@@ -495,6 +586,39 @@ footer {
   background: linear-gradient(180deg, #120606, #080404);
   border-top: 1px solid var(--color-border);
   color: var(--color-text-muted);
+}
+
+.music-player,
+.memory-fab {
+  bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+body[data-lightbox-open='true'] .music-player,
+body[data-lightbox-open='true'] .memory-fab {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .music-player,
+  .memory-fab {
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ── Animaciones ── */

@@ -9,30 +9,40 @@ const moments = [
     age: '0 años',
     title: 'Mi Primer Día',
     photo: base + 'Foto0037.jpg',
+    width: 480,
+    height: 600,
     description: 'Comenzó esta historia llena de amor y sueños.',
   },
   {
     age: '4 años',
     title: 'Infancia Feliz',
     photo: base + '20150218_125919-1.jpg',
+    width: 535,
+    height: 699,
     description: 'Juegos, risas y una niñez inolvidable.',
   },
   {
     age: '8 años',
     title: 'Grandes Aprendizajes',
     photo: base + 'IMG_20200325_182037_1.jpg',
+    width: 1120,
+    height: 859,
     description: 'Cada paso fue construyendo quien soy hoy.',
   },
   {
     age: '12 años',
     title: 'Nuevas Metas',
     photo: base + 'IMG-20260222-WA0039.jpg',
+    width: 1200,
+    height: 1600,
     description: 'Descubriendo mis pasiones y mi esencia.',
   },
   {
     age: '15 años',
     title: 'Mi Gran Momento',
     photo: base + 'IMG-20260222-WA0038.jpg',
+    width: 960,
+    height: 1280,
     description: 'Lista para celebrar esta noche de ensueño.',
   },
 ];
@@ -73,6 +83,10 @@ export const Timeline: React.FC = () => {
                   <img
                     src={moment.photo}
                     alt={moment.title}
+                    width={moment.width}
+                    height={moment.height}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-56 object-cover rounded-2xl"
                   />
                   <span className="timeline-age absolute top-3 left-3 bg-white/90 px-3 py-1 rounded-full text-xs font-mont text-xv-wine tracking-wider uppercase">

@@ -1,7 +1,7 @@
 import React from 'react';
-import { CalendarPlus, Church, Gift, MapPin, Music } from 'lucide-react';
+import { Church, Music } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { googleCalendarUrl, invitation } from '../lib/invitation';
+import { invitation } from '../lib/invitation';
 
 interface EventCardProps {
   number: number;
@@ -9,10 +9,8 @@ interface EventCardProps {
   title: string;
   time: string;
   location: string;
+  description: string;
   delay: number;
-  mapEmbedUrl?: string;
-  mapLinkUrl?: string;
-  description?: string;
 }
 
 const EventCard: React.FC<EventCardProps> = ({
@@ -21,74 +19,37 @@ const EventCard: React.FC<EventCardProps> = ({
   title,
   time,
   location,
-  delay,
-  mapEmbedUrl,
-  mapLinkUrl,
   description,
+  delay,
 }) => (
   <motion.article
     initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.6, delay }}
-    className="event-card bg-white shadow-lg border border-xv-rose/20 overflow-hidden"
+    className="event-card bg-white shadow-lg border border-xv-rose/20 overflow-hidden p-7 md:p-8"
   >
-    <div className="p-7 md:p-8">
-      <div className="flex items-center gap-4 mb-4">
-        <div className="itinerario-number w-10 h-10 rounded-full bg-xv-bg border border-xv-rose-gold flex items-center justify-center texto-general text-xv-wine text-sm">
-          {number}
-        </div>
-        <div className="text-xv-rose-gold">{icon}</div>
+    <div className="flex items-center gap-4 mb-5">
+      <div className="itinerario-number w-10 h-10 rounded-full flex items-center justify-center texto-general text-sm">
+        {number}
       </div>
-
-      <h3 className="titulos-cursiva text-4xl text-xv-rose-dark mb-1">
-        {title}
-      </h3>
-      {time && (
-        <p className="font-mont text-sm tracking-[0.2em] uppercase text-xv-wine mb-2">
-          {time}
-        </p>
-      )}
-      <p className="font-mont text-sm text-gray-600 leading-relaxed">{location}</p>
-
-      {description && (
-        <p className="font-mont text-xs italic text-gray-400 mt-4">
-          {description}
-        </p>
-      )}
+      <div className="text-xv-rose-gold" aria-hidden="true">
+        {icon}
+      </div>
     </div>
 
-    {mapEmbedUrl && (
-      <div className="px-5 pb-5">
-        <div className="rounded-2xl overflow-hidden border border-xv-rose/20 shadow-sm">
-          <iframe
-            title={`Mapa de ${title}`}
-            src={mapEmbedUrl}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="w-full h-56"
-          />
-        </div>
-        <div className="mt-3 flex flex-wrap gap-2">
-          <a
-            href={mapLinkUrl || mapEmbedUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mini-action"
-          >
-            <MapPin size={13} /> Abrir mapa
-          </a>
-          <a
-            href={googleCalendarUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mini-action"
-          >
-            <CalendarPlus size={13} /> Guardar fecha
-          </a>
-        </div>
-      </div>
-    )}
+    <h3 className="titulos-cursiva text-4xl text-xv-rose-dark mb-1">
+      {title}
+    </h3>
+    <p className="font-mont text-sm tracking-[0.2em] uppercase text-xv-muted mb-3">
+      {time}
+    </p>
+    <p className="font-mont text-sm text-xv-muted leading-relaxed">
+      {location}
+    </p>
+    <p className="font-mont text-xs text-xv-muted/75 leading-relaxed mt-5">
+      {description}
+    </p>
   </motion.article>
 );
 
@@ -96,28 +57,29 @@ export const Events: React.FC = () => {
   return (
     <section className="py-24 bg-xv-bg relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="titulos-cursiva text-6xl md:text-7xl text-xv-rose-gold mb-4">Itinerario</h2>
-            <p className="texto-general text-sm md:text-base text-xv-wine/70 tracking-[0.3em] uppercase">
-              Acompáñanos en este día especial
-            </p>
-          </motion.div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-14"
+        >
+          <h2 className="titulos-cursiva text-6xl md:text-7xl text-xv-rose-gold mb-4">
+            Así lo celebramos
+          </h2>
+          <p className="texto-general text-sm md:text-base tracking-[0.25em] uppercase max-w-2xl mx-auto">
+            Una tarde de fe, familia, música y momentos que permanecerán para
+            siempre
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <EventCard
             number={1}
             icon={<Church size={36} strokeWidth={1.5} />}
             title={invitation.ceremony.title}
             time={invitation.ceremony.time}
             location={invitation.ceremony.location}
-            mapEmbedUrl={invitation.ceremony.mapEmbedUrl}
-            mapLinkUrl={invitation.ceremony.mapLinkUrl}
+            description="Ahí comenzó una celebración llena de gratitud, emoción y bendiciones."
             delay={0.1}
           />
 
@@ -127,19 +89,8 @@ export const Events: React.FC = () => {
             title={invitation.reception.title}
             time={invitation.reception.time}
             location={invitation.reception.location}
-            mapEmbedUrl={invitation.reception.mapEmbedUrl}
-            mapLinkUrl={invitation.reception.mapLinkUrl}
+            description="Compartimos la mesa, el vals y una noche inolvidable con quienes más queremos."
             delay={0.2}
-          />
-
-          <EventCard
-            number={3}
-            icon={<Gift size={36} strokeWidth={1.5} />}
-            title="Regalos"
-            time=""
-            location="Lluvia de sobres"
-            description="Tu presencia es mi mayor regalo. Si deseas tener un detalle, habrá buzón en la recepción."
-            delay={0.3}
           />
         </div>
       </div>

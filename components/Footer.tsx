@@ -8,10 +8,10 @@ export const Footer: React.FC = () => {
           Skarlet Guadalupe
         </p>
         <p className="texto-general text-xs uppercase tracking-[0.3em] mb-4 text-xv-rose-gold">
-          Mis Quince Años
+          Recuerdos de mis Quince Años
         </p>
         <p className="text-[10px] font-mont opacity-50">
-          © 2026. Hecho con ❤️ para una noche de ensueño.
+          © 2026. Hecho con ❤️ para recordar una noche de ensueño.
         </p>
         <p className="font-mont text-xs text-xv-rose-gold/60 mt-2">
           #LosXVDeSkarlet
